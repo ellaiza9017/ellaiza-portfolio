@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✦ ELLAIZA ROSE B. PESONS ✦ Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Ellaiza Rose B. Pesons - 4th-year BSIT Student, 3D Low-Poly Modeler, and Multimedia Asset Designer open for OJT Internship and Commissions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="dark">
+
+  <!-- Interactive Stardust & Dust Sparks Canvas -->
+  <canvas id="stardust-canvas" aria-hidden="true"></canvas>
+
+  <!-- Star Cursor Element (Custom interactive celestial follower) -->
+  <div class="star-cursor" id="star-cursor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" class="cursor-svg">
+      <!-- 4-point glowing star with radiant core -->
+      <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="url(#starGrad)" />
+      <defs>
+        <linearGradient id="starGrad" x1="0" y1="0" x2="24" y2="24">
+          <stop offset="0%" stop-color="#FFFFFF" />
+          <stop offset="50%" stop-color="#D4B8FF" />
+          <stop offset="100%" stop-color="#9B6CFA" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="cursor-trail-tail"></div>
+  </div>
+
+  <!-- Ambient Cursor Glow Follower -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- MULTI-PLANE PARALLAX GALAXY UNIVERSE -->
+  <div class="parallax-backdrop" aria-hidden="true">
+    <!-- Plane 0: Deep Space Galaxy Dust Clouds -->
+    <div class="p-layer p-nebula" data-speed="0.08">
+      <div class="nebula-orb orb-1"></div>
+      <div class="nebula-orb orb-2"></div>
+      <div class="nebula-orb orb-3"></div>
+      <div class="galaxy-milky-dust dust-1"></div>
+      <div class="galaxy-milky-dust dust-2"></div>
+    </div>
+
+    <!-- Plane 1: Twinkling Micro-Stars -->
+    <div class="p-layer p-stars-deep" data-speed="0.18" id="stars-container"></div>
+
+    <!-- Plane 2: Celestial Orbital Rings & Geometry -->
+    <div class="p-layer p-geometry" data-speed="0.32">
+      <div class="celestial-orbit orbit-large"></div>
+      <div class="celestial-orbit orbit-medium"></div>
+    </div>
+
+    <!-- Plane 3: Floating Four-Point Star Dust Elements -->
+    <div class="p-layer p-sparkles" data-speed="0.55">
+      <span class="float-star s1" style="top: 15%; left: 8%;">✦</span>
+      <span class="float-star s2" style="top: 35%; right: 12%;">✧</span>
+      <span class="float-star s3" style="top: 60%; left: 14%;">✦</span>
+      <span class="float-star s4" style="top: 75%; right: 9%;">✧</span>
+      <span class="float-star s5" style="top: 25%; left: 80%;">✦</span>
+      <span class="float-star s6" style="top: 48%; left: 5%;">✧</span>
+      <span class="float-star s7" style="top: 72%; left: 45%;">✦</span>
+      <span class="float-star s8" style="top: 88%; right: 40%;">✧</span>
+    </div>
+  </div>
+
+  <!-- MINIMALIST NAVIGATION HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Clickable Logo to toggle vinyl BG music & view art -->
+      <a href="javascript:void(0)" class="brand-crest" id="btn-view-logo"
+        title="Click to toggle relaxing lo-fi vinyl soundtrack">
+        <img src="assets/images/ellaiza-logo.png" alt="Ellaiza Vinyl Logo" class="brand-crest-img vinyl-spin"
+          id="vinyl-disc">
+        <div class="brand-info">
+          <span class="brand-name">ELLAIZA</span>
+          <div class="brand-music-badge" id="music-badge">
+            <span class="music-wave"></span>
+            <span id="music-text">Now Playing</span>
+          </div>
+        </div>
+      </a>
+      <audio id="bg-audio" loop preload="auto" autoplay>
+        <source src="assets/Music/fassounds-good-night-lofi-cozy-chill-music-160166.mp3" type="audio/mpeg">
+      </audio>
+
+      <nav class="nav-links">
+        <a href="#home" class="nav-item active" data-nav="home">
+          <span class="nav-dot"></span>
+          <span>Home</span>
+        </a>
+        <a href="#about" class="nav-item" data-nav="about">
+          <span class="nav-dot"></span>
+          <span>About Me</span>
+        </a>
+        <a href="#skills" class="nav-item" data-nav="skills">
+          <span class="nav-dot"></span>
+          <span>Skills</span>
+        </a>
+        <a href="#works" class="nav-item" data-nav="works">
+          <span class="nav-dot"></span>
+          <span>Works</span>
+        </a>
+        <a href="#contact" class="nav-item" data-nav="contact">
+          <span class="nav-dot"></span>
+          <span>Contact</span>
+        </a>
+        <a href="gallery.html" class="nav-item gallery-nav-btn" style="color: var(--accent-gold);">
+          <span class="btn-sparkle">✦</span>
+          <span>Gallery ↗</span>
+        </a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-indicator"></span>
+        <span class="status-text">AVAILABLE FOR OJT &amp; COMMISSIONS</span>
+      </div>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu Overlay -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-nav-inner">
+        <a href="#home" class="mobile-nav-item" data-nav="home"><span>Home</span></a>
+        <a href="#about" class="mobile-nav-item" data-nav="about"><span>About Me</span></a>
+        <a href="#skills" class="mobile-nav-item" data-nav="skills"><span>Skills</span></a>
+        <a href="#works" class="mobile-nav-item" data-nav="works"><span>Works</span></a>
+        <a href="#contact" class="mobile-nav-item" data-nav="contact"><span>Contact</span></a>
+        <a href="gallery.html" class="mobile-nav-item mobile-nav-highlight"><span>Explore Full Gallery ↗</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="page-viewport">
+
+    <!-- ========================================================
+         HERO SECTION: CAT & GIRL INTERACTION + INTRO
+         ======================================================== -->
+    <section id="home" class="section hero-section">
+      <div class="hero-container">
+
+        <!-- Left Column: Typography & Narrative -->
+        <div class="hero-narrative" data-reveal>
+          <div class="hero-eyebrow">
+            <span class="sparkle-glyph">✦</span>
+            <span>PORTFOLIO &bull; 2026</span>
+            <span class="sparkle-glyph">✦</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-line-2">ELLAIZA ROSE B. PESONS</span>
+            <span class="title-line-3">4th-Year BSIT Student </span>
+            <span class="title-line-3">3D &bull; Basic Dev &bull; Illustrations</span>
+          </h1>
+
+          <p class="hero-description">
+            4th-year BSIT student at National University – Dasmariñas. Through school activities and academic projects,
+            I was able to explore <strong>general programming</strong>, <strong>web and mobile programming</strong>, and
+            <strong>database systems &amp; database management</strong> using tools like <em>Blender</em>,
+            <em>Unity</em>, <em>MySQL</em>, <em>Supabase</em>, <em>Firebase</em>, <em>React</em>, and <em>Flutter</em>.
+            Eager to contribute and learn during my On-the-Job Training (OJT) internship and freelance commissions.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#works" class="btn-celestial primary">
+              <span class="btn-sparkle">✦</span>
+              <span>View Works</span>
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="https://luminang.com" target="_blank" rel="noopener noreferrer" class="btn-celestial ghost">
+              <span>Luminang.com ↗</span>
+            </a>
+            <a href="https://github.com/ellaiza9017/Luminang" target="_blank" rel="noopener noreferrer"
+              class="btn-celestial ghost">
+              <span>GitHub Capstone ↗</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-value">BSIT 4th Year</span>
+              <span class="metric-label">NU Dasmariñas</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-value">Blender &bull; Unity</span>
+              <span class="metric-label">3D &amp; Game Workflow</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-value">OJT Ready</span>
+              <span class="metric-label">Available for Internship</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: LIVE 2D CAT & GIRL STAGE (AUTONOMOUS HOVERING FLOAT) -->
+        <div class="live2d-stage-wrapper" data-reveal>
+          <div class="live2d-card auto-hover-float" id="live2d-card">
+            <!-- Ambient Card Glow Ring -->
+            <div class="live2d-aura"></div>
+
+            <div class="holo-tag tag-bottom-left">
+              <span>NYX &bull; COMPANION</span>
+            </div>
+
+            <!-- Character Viewport -->
+            <div class="live2d-viewport">
+              <!-- Base Layer: Anime Girl & Nyx Image -->
+              <img src="assets/images/girl-and-cat.png" alt="Anime Girl with Purple Eyes and Black Cat Nyx"
+                class="live2d-character-image" id="live2d-img">
+
+              <!-- Subtle Lighting Shimmer Pass -->
+              <div class="live2d-shimmer-pass"></div>
+
+              <!-- Floating Micro-Dust Sparks Inside Frame -->
+              <div class="card-dust cd-1">✦</div>
+              <div class="card-dust cd-2">✧</div>
+              <div class="card-dust cd-3">✦</div>
+            </div>
+
+            <!-- Card Bottom Bio Plate -->
+            <div class="live2d-footer">
+              <div class="avatar-mini">
+                <img src="assets/images/ellaiza-logo.png" alt="Logo avatar">
+              </div>
+              <div class="footer-meta">
+                <span class="name">Ellaiza &amp; Nyx</span>
+                <span class="sub">Night sky companion</span>
+              </div>
+              <div class="footer-sound-wave" title="Audio frequency">
+                <span class="bar b1"></span>
+                <span class="bar b2"></span>
+                <span class="bar b3"></span>
+                <span class="bar b4"></span>
+              </div>
+            </div>
+          </div>
+          <div class="interaction-hint">
+            <span class="hint-icon">✧</span>
+            <span>Card floats gently in orbit &bull; Move cursor to tilt perspective</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-down-pill" aria-label="Scroll to About Me">
+        <span class="pill-text">SCROLL DOWN</span>
+        <div class="mouse-icon">
+          <div class="wheel"></div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ========================================================
+         ABOUT ME SECTION (Refined, Clean & Symmetrical)
+         ======================================================== -->
+    <section id="about" class="section about-section">
+      <div class="section-container">
+
+        <div class="section-header" data-reveal>
+          <div class="section-tag">
+            <span>01 &bull; ABOUT ME</span>
+          </div>
+          <h2 class="section-title">Who I Am</h2>
+          <p class="section-subtitle">I'm a 4th-year BSIT student learning, building, and eager to grow.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left: Background & Aspirations Card -->
+          <div class="story-card glass-panel" data-reveal>
+            <div class="card-crest">✦</div>
+            <h3 class="card-heading">Background &amp; Aspirations</h3>
+
+            <p class="body-text">
+              I am a <strong>4th-year Bachelor of Science in Information Technology (BSIT)</strong> student at
+              <strong>National University – Dasmariñas</strong> with foundational experience in general programming, web
+              and mobile development, and database systems built through hands-on academic coursework and school
+              projects.
+            </p>
+
+            <p class="body-text">
+              Through our capstone project, I gained proven hands-on experience in <strong>low-poly 3D modeling in
+                Blender</strong>, <strong>Unity feature co-development</strong>, and mobile UI layouts. I consider
+              myself an adaptable, diligent, and proactive team player eager to apply core IT skills, learn from
+              industry mentors, and contribute to team workflows during an <strong>On-the-Job Training (OJT)
+                internship</strong> and creative projects.
+            </p>
+
+            <div class="resume-callout-row">
+              <div class="info-pill">
+                <span class="lbl">Location:</span>
+                <span class="val">GMA, Cavite, Philippines</span>
+              </div>
+              <div class="info-pill">
+                <span class="lbl">Email:</span>
+                <span class="val">pesonsellaiza@gmail.com</span>
+              </div>
+              <div class="info-pill">
+                <span class="lbl">Phone:</span>
+                <span class="val">+63 993-219-3080</span>
+              </div>
+              <div class="info-pill">
+                <span class="lbl">GitHub:</span>
+                <a href="https://github.com/ellaiza9017" target="_blank" rel="noopener noreferrer" class="val"
+                  style="color: var(--primary); text-decoration: underline;">
+                  github.com/ellaiza9017 ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Academic Journey & Education Card -->
+          <div class="academic-card glass-panel" data-reveal>
+            <div class="section-tag" style="margin-bottom: 0.3rem;">
+              <span>ACADEMIC JOURNEY</span>
+            </div>
+            <h3 class="card-heading" style="margin-bottom: 0.8rem;">Education</h3>
+
+            <!-- College -->
+            <div class="clean-edu-card">
+              <div class="edu-card-top">
+                <span class="edu-badge">COLLEGE &bull; 4TH YEAR</span>
+                <span class="edu-date">2023 – Current</span>
+              </div>
+              <h4 class="edu-title">Bachelor of Science in Information Technology (BSIT)</h4>
+              <p class="edu-school">National University – Dasmariñas</p>
+            </div>
+
+            <!-- Senior High School -->
+            <div class="clean-edu-card">
+              <div class="edu-card-top">
+                <span class="edu-badge secondary">SENIOR HIGH SCHOOL</span>
+                <span class="edu-date">2021 – 2023</span>
+              </div>
+              <h4 class="edu-title">Accountancy, Business, and Management (ABM)</h4>
+              <p class="edu-school">Philippine Christian University</p>
+            </div>
+
+            <!-- Key Strengths -->
+            <div class="strengths-box">
+              <h5 class="mini-title">Key Strengths</h5>
+              <div class="strength-tags">
+                <span>Team Player &amp; Adaptability</span>
+                <span>Hard-worker &amp; Diligent</span>
+                <span>Eager to Learn in Industry</span>
+                <span>Customer/Client Friendly</span>
+                <span>Creative &amp; Resilient</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SKILLS & CERTIFICATIONS SECTION
+         ======================================================== -->
+    <section id="skills" class="section skills-section">
+      <div class="section-container">
+
+        <div class="section-header" data-reveal>
+          <div class="section-tag">
+            <span>02 &bull; TECHNICAL CAPABILITIES</span>
+          </div>
+          <h2 class="section-title">Technical Skills &amp; Tools</h2>
+          <p class="section-subtitle">Categorized breakdown of programming languages, engines, frameworks, and database
+            management tools.</p>
+        </div>
+
+        <div class="skills-showcase">
+          <!-- Programming & Engines -->
+          <div class="skill-group glass-panel" data-reveal>
+            <div class="group-header">
+              <div class="group-icon">✦</div>
+              <h3>Programming &amp; Engines</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Java</strong> (Foundational
+                Programming)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>C#</strong> (Unity Game Scripting)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>HTML5 &amp; CSS3</strong> (Web
+                Development)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Blender 3D</strong> (Low-Poly Modeling
+                &amp; Props)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Unity Engine</strong> (Mobile Scene &amp;
+                Controls)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Visual Studio Code</strong> (IDE &amp;
+                Tools)</span>
+            </div>
+          </div>
+
+          <!-- Frameworks & Databases -->
+          <div class="skill-group glass-panel" data-reveal>
+            <div class="group-header">
+              <div class="group-icon">✦</div>
+              <h3>Frameworks &amp; Database Management</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>React</strong> &bull;
+                <strong>Flutter</strong> (Web &amp; Mobile)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>MySQL</strong> &bull;
+                <strong>Oracle</strong> (SQL Databases)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Supabase</strong> &bull;
+                <strong>Firebase</strong> (Backend &amp; Auth)</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Database Management</strong> &amp; Schema
+                Design</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>JSON</strong> Data Encoding &amp; Content
+                Structuring</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Git / GitHub</strong>
+                (@ellaiza9017)</span>
+            </div>
+          </div>
+
+          <!-- Multimedia & AI/Tools -->
+          <div class="skill-group glass-panel" data-reveal>
+            <div class="group-header">
+              <div class="group-icon">✦</div>
+              <h3>Multimedia, AI &amp; Certifications</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>3D Low-Poly Modeling</strong> &amp; UV
+                Mapping</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>UI/UX Layouts</strong> &amp; Mobile
+                Wireframing</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>Manual QA Testing</strong> on Android
+                Devices</span>
+              <span class="skill-tag"><span class="tag-star">✦</span> <strong>AI &amp; Productive Tooling</strong>
+                (Claude, ChatGPT, Copilot, CapCut)</span>
+              <div class="cert-box">
+                <span class="cert-title">Verified Certifications:</span>
+                <span class="cert-badge">Java</span>
+                <span class="cert-badge">Database</span>
+                <span class="cert-badge">HTML and CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Palette Feature -->
+        <div class="palette-bar glass-panel" data-reveal>
+          <div class="palette-title">
+            <span class="palette-icon">✦</span>
+            <span>SIGNATURE COLOR PALETTE (CLICK ANY COLOR TO COPY HEX)</span>
+          </div>
+          <div class="palette-swatches">
+            <button class="swatch" data-hex="#0A0813" style="--c: #0A0813;">
+              <span class="hex">#0A0813</span>
+              <span class="name">Abyssal Deep</span>
+            </button>
+            <button class="swatch" data-hex="#181329" style="--c: #181329;">
+              <span class="hex">#181329</span>
+              <span class="name">Obsidian Night</span>
+            </button>
+            <button class="swatch" data-hex="#3D2968" style="--c: #3D2968;">
+              <span class="hex">#3D2968</span>
+              <span class="name">Nebula Indigo</span>
+            </button>
+            <button class="swatch" data-hex="#8E63DB" style="--c: #8E63DB;">
+              <span class="hex">#8E63DB</span>
+              <span class="name">Starlight Violet</span>
+            </button>
+            <button class="swatch" data-hex="#D4B8FF" style="--c: #D4B8FF;">
+              <span class="hex">#D4B8FF</span>
+              <span class="name">Ethereal Lavender</span>
+            </button>
+            <button class="swatch" data-hex="#F4EFFF" style="--c: #F4EFFF;">
+              <span class="hex">#F4EFFF</span>
+              <span class="name">Pure Stardust</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         WORKS SECTION: CLEAN MINIMAL CARDS
+         ======================================================== -->
+    <section id="works" class="section gallery-section">
+      <div class="section-container">
+
+        <div class="section-header" data-reveal>
+          <div class="section-tag">
+            <span>03 &bull; SELECTED WORKS &bull; SNEAK PEEK</span>
+          </div>
+          <h2 class="section-title">Selected Works</h2>
+          <p class="section-subtitle">
+            A curated sneak peek into my works and creative designs. Click any card to inspect full details, or visit
+            the comprehensive gallery.
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="gallery.html" class="btn-celestial primary">
+              <span class="btn-sparkle">✦</span>
+              <span>Explore Full Gallery ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CLEAN MINIMAL WORKS CARDS (Title + Tag, details in Lightbox) -->
+        <div class="parallax-gallery-container" id="gallery-container">
+
+          <!-- Item 3: Luminang Mobile Game Capstone Card -->
+          <article class="gallery-card minimal-card glass-panel" data-category="3d" data-speed="0.04" data-reveal
+            data-artifact="3">
+            <div class="card-media-wrap">
+              <img src="assets/images/luminang-website-hero.png" alt="Luminang: Voices of the Regions Website"
+                class="gallery-img">
+              <div class="media-overlay">
+                <span class="preview-badge">Click to View Details</span>
+              </div>
+            </div>
+            <div class="card-content-minimal">
+              <div class="card-meta">
+                <span class="tag">CAPSTONE &bull; 3D &amp; GAME</span>
+                <span class="year">2025 – 2026</span>
+              </div>
+              <h3 class="card-title">Luminang: Language Learning Mobile Game</h3>
+            </div>
+          </article>
+
+          <!-- Item 4: Resume & Academic Profile -->
+          <article class="gallery-card minimal-card glass-panel" data-category="art" data-speed="-0.05" data-reveal
+            data-artifact="4">
+            <div class="card-media-wrap">
+              <img src="assets/images/ELLAIZA-RESUME.png" alt="Ellaiza Resume Preview" class="gallery-img">
+              <div class="media-overlay">
+                <span class="preview-badge">Click to View Details</span>
+              </div>
+            </div>
+            <div class="card-content-minimal">
+              <div class="card-meta">
+                <span class="tag">RESUME / PROFILE</span>
+                <span class="year">2026</span>
+              </div>
+              <h3 class="card-title">Official Resume &amp; Credentials</h3>
+            </div>
+          </article>
+
+          <!-- Item 6: Official Ellaiza Logo -->
+          <article class="gallery-card minimal-card glass-panel" data-category="stream" data-speed="-0.03" data-reveal
+            data-artifact="6">
+            <div class="card-media-wrap">
+              <img src="assets/images/ellaiza-logo.png" alt="Official Ellaiza Logo Crest" class="gallery-img">
+              <div class="media-overlay">
+                <span class="preview-badge">Click to View Details</span>
+              </div>
+            </div>
+            <div class="card-content-minimal">
+              <div class="card-meta">
+                <span class="tag">PERSONAL BRAND</span>
+                <span class="year">2026</span>
+              </div>
+              <h3 class="card-title">ELLAIZA &bull; Galaxy Logo</h3>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT SECTION: SIMPLE, NORMAL & PROFESSIONAL
+         ======================================================== -->
+    <section id="contact" class="section contact-section">
+      <div class="section-container">
+
+        <div class="section-header" data-reveal>
+          <div class="section-tag">
+            <span>04 &bull; GET IN TOUCH</span>
+          </div>
+          <h2 class="section-title">Contact &amp; Connect</h2>
+          <p class="section-subtitle">Feel free to reach out for internship opportunities, freelance commissions, or
+            creative collaborations.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Clean Form -->
+          <div class="contact-card glass-panel" data-reveal>
+            <h3 class="form-title">Send a Direct Message</h3>
+            <form id="contact-form" class="ethereal-form">
+              <div class="form-group">
+                <label for="contact-name">Your Full Name</label>
+                <input type="text" id="contact-name" name="name" required placeholder="e.g. John Doe">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" name="email" required placeholder="john.doe@example.com">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject">Inquiry Type</label>
+                <select id="contact-subject" name="subject" class="form-select" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="ojt">OJT / Internship Opportunity</option>
+                  <option value="freelance">3D / Multimedia Freelance Commission</option>
+                  <option value="other">General Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="5" required
+                  placeholder="Share details about the role, project timeline, or questions..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-celestial primary submit-btn">
+                <span class="btn-sparkle">✦</span>
+                <span>Send Message</span>
+              </button>
+
+              <div class="form-notification" id="form-status"></div>
+            </form>
+          </div>
+
+          <!-- Right: Direct Channels -->
+          <div class="contact-channels glass-panel" data-reveal>
+            <h3 class="form-title">Direct Information</h3>
+
+            <div class="channel-list">
+              <a href="mailto:pesons.ellaiza@gmail.com" class="channel-item">
+                <div class="channel-icon">✉</div>
+                <div class="channel-info">
+                  <span class="label">Personal Email</span>
+                  <span class="val">pesons.ellaiza@gmail.com</span>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a href="mailto:pesonseb@students.national-u.edu.ph" class="channel-item">
+                <div class="channel-icon">🎓</div>
+                <div class="channel-info">
+                  <span class="label">University Academic Email</span>
+                  <span class="val">pesonseb@students.national-u.edu.ph</span>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a href="https://github.com/ellaiza9017" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="channel-icon">💻</div>
+                <div class="channel-info">
+                  <span class="label">GitHub Profile</span>
+                  <span class="val">github.com/ellaiza9017</span>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a href="https://github.com/ellaiza9017/Luminang" target="_blank" rel="noopener noreferrer"
+                class="channel-item">
+                <div class="channel-icon">✦</div>
+                <div class="channel-info">
+                  <span class="label">Capstone Project (Luminang)</span>
+                  <span class="val">github.com/ellaiza9017/Luminang</span>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+
+              <div class="channel-item">
+                <div class="channel-icon">📞</div>
+                <div class="channel-info">
+                  <span class="label">Phone / Mobile</span>
+                  <span class="val">+63 993-219-3080</span>
+                </div>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-icon">📍</div>
+                <div class="channel-info">
+                  <span class="label">Location</span>
+                  <span class="val">Blk 39, Alta Tierra Homes, GMA, Cavite</span>
+                </div>
+              </div>
+
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="channel-icon">👤</div>
+                <div class="channel-info">
+                  <span class="label">Facebook</span>
+                  <span class="val">Ellaiza Pesons</span>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+            </div>
+
+            <div class="status-box">
+              <span class="dot-online"></span>
+              <span>Available for OJT Internship &bull; Active for Commissions</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       LIGHTBOX MODAL FOR ARTIFACT / LOGO INSPECTION
+       ======================================================== -->
+  <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-close-overlay"></div>
+    <div class="lightbox-dialog glass-panel" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close modal">✕</button>
+      <div class="lightbox-layout">
+        <div class="lightbox-media-side">
+          <img src="" alt="Artifact preview" id="lightbox-img" class="lightbox-image">
+        </div>
+        <div class="lightbox-details-side">
+          <span class="modal-category" id="lightbox-category">STREAM KIT</span>
+          <h3 class="modal-title" id="lightbox-title">Artifact Title</h3>
+          <p class="modal-desc" id="lightbox-desc">Detailed breakdown of the artwork and design decisions.</p>
+
+          <div class="modal-palette">
+            <h4>COLOR PROFILE</h4>
+            <div class="modal-swatches" id="lightbox-swatches">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="modal-actions" id="lightbox-actions-container">
+            <!-- External link buttons dynamically injected -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-sparkle">✦</span>
+        <span>ELLAIZA ROSE B. PESONS &bull; 4TH YEAR BSIT</span>
+      </div>
+      <p class="footer-copy">Crafted with stardust, smooth parallax, and care &copy; 2026. All rights reserved.</p>
+      <a href="#home" class="footer-back-to-top" aria-label="Back to top">
+        <span>Back to Top</span>
+        <span class="up-arr">↑</span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

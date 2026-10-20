@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Master Gallery &bull; Ellaiza Rose B. Pesons &bull; 100% Hand-Drawn Showcase</title>
+  <meta name="description"
+    content="Master creative gallery of Ellaiza Rose B. Pesons: 100% hand-drawn storyboards, illustrations, videos and multimedia works.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery-hero {
+      padding-top: 8rem;
+      padding-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .gallery-section-block {
+      max-width: 1400px;
+      margin: 0 auto 5.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-desc-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      background: rgba(252, 232, 166, 0.12);
+      border: 1px solid rgba(252, 232, 166, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Shooting Star Cursor -->
+  <div class="star-cursor" id="star-cursor" aria-hidden="true">
+    <svg class="cursor-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 1L14.2 9.8L23 12L14.2 14.2L12 23L9.8 14.2L1 12L9.8 9.8L12 1Z" fill="#F4EFFF" stroke="#BA9BFF"
+        stroke-width="1.2" />
+    </svg>
+    <div class="cursor-trail-tail"></div>
+  </div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Cosmic Canvas Particles -->
+  <canvas id="stardust-canvas"></canvas>
+
+  <!-- Parallax Cosmos Backdrop -->
+  <div class="parallax-backdrop" aria-hidden="true">
+    <div class="p-layer p-nebula" data-speed="0.12">
+      <div class="nebula-orb orb-1"></div>
+      <div class="nebula-orb orb-2"></div>
+      <div class="nebula-orb orb-3"></div>
+      <div class="galaxy-milky-dust dust-1"></div>
+      <div class="galaxy-milky-dust dust-2"></div>
+    </div>
+    <div class="p-layer p-stars" id="stars-container" data-speed="0.2"></div>
+  </div>
+
+  <!-- Ambient Lo-fi Audio Player Tag for Gallery -->
+  <audio id="bg-audio" loop preload="auto" autoplay>
+    <source src="assets/Music/fassounds-good-night-lofi-cozy-chill-music-160166.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="brand-crest" id="btn-view-logo" title="Click to toggle relaxing background vinyl music">
+        <img src="assets/images/ellaiza-logo.png" alt="Ellaiza Logo Vinyl" class="brand-crest-img vinyl-spin"
+          id="vinyl-disc">
+        <div class="brand-info">
+          <span class="brand-name">ELLAIZA</span>
+          <span class="brand-role">BSIT &bull; 3D &bull; MULTIMEDIA</span>
+          <span class="brand-music-badge">
+            <span class="music-wave"></span>
+            <span id="music-text">Now Playing</span>
+          </span>
+        </div>
+      </button>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">
+          <span class="nav-dot"></span>
+          <span>&larr; Back to Portfolio</span>
+        </a>
+        <a href="#storyboards" class="nav-item">
+          <span class="nav-dot"></span>
+          <span>Storyboards</span>
+        </a>
+        <a href="#illustrations" class="nav-item">
+          <span class="nav-dot"></span>
+          <span>Illustrations</span>
+        </a>
+        <a href="#videos" class="nav-item">
+          <span class="nav-dot"></span>
+          <span>Videos / Clips</span>
+        </a>
+        <a href="#other-works" class="nav-item">
+          <span class="nav-dot"></span>
+          <span>Other Works</span>
+        </a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-indicator"></span>
+        <span class="status-text">CREATIVE REPOSITORY</span>
+      </div>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu Overlay -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-nav-inner">
+        <a href="index.html" class="mobile-nav-item"><span>&larr; Back to Portfolio</span></a>
+        <a href="#storyboards" class="mobile-nav-item"><span>Storyboards</span></a>
+        <a href="#illustrations" class="mobile-nav-item"><span>Illustrations</span></a>
+        <a href="#videos" class="mobile-nav-item"><span>Videos / Clips</span></a>
+        <a href="#other-works" class="mobile-nav-item"><span>Other Works</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-viewport">
+
+    <!-- Gallery Hero Header -->
+    <section class="gallery-hero">
+      <div class="section-container">
+        <div class="section-tag" data-reveal>
+          <span>COMPLETE CREATIVE ARCHIVE &bull; 2026</span>
+        </div>
+        <h1 class="section-title" data-reveal>The Master Gallery</h1>
+        <p class="section-subtitle" data-reveal style="max-width: 750px; margin: 0 auto;">
+          An expansive showcase of my digital illustrations, storyboards, ultra-short animations, and
+          other creations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 1: STORYBOARDS
+         ======================================================== -->
+    <section id="storyboards" class="gallery-section-block">
+      <div class="section-header" data-reveal>
+        <div class="section-tag">
+          <span>01 &bull; NARRATIVE DESIGN &bull; CHILDREN'S BOOK STYLE</span>
+        </div>
+        <h2 class="section-title">Storyboards</h2>
+        <p class="section-subtitle">
+          Original storyboards, comics, and panel layouts drawn by hand.
+        </p>
+      </div>
+
+      <!-- Centered Storyboards Showcase (Starts at center, fills out as more are added) -->
+      <div class="storyboards-showcase-container" data-reveal>
+
+        <!-- Card 2: Nyx & The Magic Hat -->
+        <article class="storyboard-thumb-card">
+          <div class="storyboard-thumb-media">
+            <img src="assets/images/NyxStoryboard/8.png" alt="Nyx and the Magic Hat storyboard">
+          </div>
+          <div class="storyboard-thumb-info">
+            <h3 class="storyboard-thumb-title">Nyx &amp; The Magic Hat</h3>
+            <p class="storyboard-thumb-desc">Storyboard sketches for an activity we did in school. I got too lazy to add
+              the descriptions for each panels. I'll let you interpret how you see the story✦</p>
+            <button class="btn-celestial primary btn-open-book" data-book-id="nyx">
+              <span class="btn-sparkle">📖</span>
+              <span>View Storyboard (Flip Book)</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: ILLUSTRATIONS
+         ======================================================== -->
+    <section id="illustrations" class="gallery-section-block">
+      <div class="section-header" data-reveal>
+        <div class="section-tag">
+          <span>02 &bull; DIGITAL ART &bull; VISUAL GALLERY</span>
+        </div>
+        <h2 class="section-title">Illustrations</h2>
+        <p class="section-subtitle">
+          Personal digital illustrations, character artwork, and sketches.
+        </p>
+      </div>
+
+      <!-- Autonomous Reverse-Sliding Showcase: Pure Images Only (Untitled Artworks) -->
+      <div class="showcase-slider-wrap" data-reveal>
+        <div class="showcase-track showcase-track-reverse">
+
+          <div class="illustration-pure-item" data-title="Study"
+            data-desc="Kaveh drawing for a side-profile drawing study">
+            <img src="assets/images/Illustrations/Untitled_Artwork.png" alt="Untitled Artwork 1">
+          </div>
+          <div class="illustration-pure-item" data-title="Character Art" data-desc="Random character drawing">
+            <img src="assets/images/Illustrations/Untitled_Artwork (1).png" alt="Untitled Artwork 2">
+          </div>
+          <div class="illustration-pure-item" data-title="Character Art" data-desc="Random character drawing">
+            <img src="assets/images/Illustrations/Untitled_Artwork (2).png" alt="Untitled Artwork 3">
+          </div>
+          <div class="illustration-pure-item" data-title="Little Mermaid"
+            data-desc="Silvery dress and hair as red as blood.">
+            <img src="assets/images/Illustrations/Untitled_Artwork (3).png" alt="Little Mermaid">
+          </div>
+          <div class="illustration-pure-item" data-title="Sketch" data-desc="Tryng out character sketches">
+            <img src="assets/images/Illustrations/Untitled_Artwork (4).png" alt="Sketch">
+          </div>
+          <div class="illustration-pure-item" data-title="Starry Eyed"
+            data-desc="Ever wonder what it feels like to dream?">
+            <img src="assets/images/Illustrations/Untitled_Artwork (5).png" alt="Cosmic Starlight Cat">
+          </div>
+
+          <!-- Duplicated for smooth infinite loop -->
+          <div class="illustration-pure-item" data-title="Study"
+            data-desc="Kaveh drawing for a side-profile drawing study">
+            <img src="assets/images/Illustrations/Untitled_Artwork.png" alt="Untitled Artwork 1">
+          </div>
+          <div class="illustration-pure-item" data-title="Character Art" data-desc="Random character drawing">
+            <img src="assets/images/Illustrations/Untitled_Artwork (1).png" alt="Untitled Artwork 2">
+          </div>
+          <div class="illustration-pure-item" data-title="Character Art" data-desc="Random character drawing">
+            <img src="assets/images/Illustrations/Untitled_Artwork (2).png" alt="Untitled Artwork 3">
+          </div>
+          <div class="illustration-pure-item" data-title="Little Mermaid"
+            data-desc="Silvery dress and hair as red as blood.">
+            <img src="assets/images/Illustrations/Untitled_Artwork (3).png" alt="Little Mermaid">
+          </div>
+          <div class="illustration-pure-item" data-title="Sketch" data-desc="Tryng out character sketches">
+            <img src="assets/images/Illustrations/Untitled_Artwork (4).png" alt="Sketch">
+          </div>
+          <div class="illustration-pure-item" data-title="Starry Eyed"
+            data-desc="Ever wonder what it feels like to dream?">
+            <img src="assets/images/Illustrations/Untitled_Artwork (5).png" alt="Cosmic Starlight Cat">
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: VIDEOS / CLIPS
+         ======================================================== -->
+    <section id="videos" class="gallery-section-block">
+      <div class="section-header" data-reveal>
+        <div class="section-tag">
+          <span>03 &bull; ANIMATION &bull; CLIPS</span>
+        </div>
+        <h2 class="section-title">Videos / Clips</h2>
+        <p class="section-subtitle">
+          Collection of hand-drawn animations. You know when you randomly get visual flashes of animations in your mind?
+          Here's me trying to bring mine to life
+        </p>
+      </div>
+
+      <!-- Autonomous Marquee: Video Clips Only -->
+      <div class="showcase-slider-wrap" data-reveal>
+        <div class="showcase-track">
+
+          <div class="video-pure-item"
+               data-title="Simple 4-Page Animation"
+               data-category="PROCREATE ANIMATION"
+               data-desc="Hand-drawn 4-page sequence animated directly on Procreate."
+               data-video="assets/videos/Procreate-4Page.mp4">
+            <video src="assets/videos/Procreate-4Page.mp4" autoplay loop muted playsinline></video>
+            <div class="video-play-indicator">
+              <div class="video-play-btn">▶</div>
+            </div>
+          </div>
+
+          <!-- Duplicated for infinite marquee loop -->
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: OTHER WORKS (Branding, Resume, 3D Assets)
+         ======================================================== -->
+    <section id="other-works" class="gallery-section-block">
+      <div class="section-header" data-reveal>
+        <div class="section-tag">
+          <span>04 &bull; MULTIMEDIA &bull; BRANDING &bull; 3D</span>
+        </div>
+        <h2 class="section-title">Other Works</h2>
+        <p class="section-subtitle">
+          Collection of other projects.
+        </p>
+      </div>
+
+      <div class="parallax-gallery-container">
+
+        <!-- Luminang Capstone -->
+        <article class="gallery-card minimal-card glass-panel" data-reveal data-artifact="3">
+          <div class="card-media-wrap">
+            <img src="assets/images/luminang-website-hero.png" alt="Luminang Game Environment" class="gallery-img">
+            <div class="media-overlay">
+              <span class="preview-badge">View Details</span>
+            </div>
+          </div>
+          <div class="card-content-minimal">
+            <div class="card-meta">
+              <span class="tag">CAPSTONE &bull; 3D</span>
+              <span class="year">2026</span>
+            </div>
+            <h3 class="card-title">Luminang: Language Learning Mobile Game</h3>
+          </div>
+        </article>
+
+        <!-- Resume & Profile -->
+        <article class="gallery-card minimal-card glass-panel" data-reveal data-artifact="4">
+          <div class="card-media-wrap">
+            <img src="assets/images/ELLAIZA-RESUME.png" alt="Resume Preview" class="gallery-img">
+            <div class="media-overlay">
+              <span class="preview-badge">View Details</span>
+            </div>
+          </div>
+          <div class="card-content-minimal">
+            <div class="card-meta">
+              <span class="tag">RESUME / CREDENTIALS</span>
+              <span class="year">2026</span>
+            </div>
+            <h3 class="card-title">Official Resume • Credentials</h3>
+          </div>
+        </article>
+
+        <!-- Ellaiza Logo -->
+        <article class="gallery-card minimal-card glass-panel" data-reveal data-artifact="6">
+          <div class="card-media-wrap">
+            <img src="assets/images/ellaiza-logo.png" alt="Signature Galaxy Logo" class="gallery-img">
+            <div class="media-overlay">
+              <span class="preview-badge">View Details</span>
+            </div>
+          </div>
+          <div class="card-content-minimal">
+            <div class="card-meta">
+              <span class="tag">BRAND LOGO</span>
+              <span class="year">2026</span>
+            </div>
+            <h3 class="card-title">ELLAIZA &bull; Galaxy Logo</h3>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       SINGLE-PAGE INTERACTIVE FLIPBOOK MODAL (PURE ARTWORK)
+       ======================================================== -->
+  <div class="book-modal" id="book-modal" aria-hidden="true">
+    <div class="book-modal-backdrop" id="book-backdrop"></div>
+    <div class="book-container" role="dialog" aria-modal="true">
+      <div class="book-header">
+        <div class="book-header-title">
+          <span class="sparkle-glyph">✦</span>
+          <span id="book-title">Nyx &amp; The Magic Hat</span>
+        </div>
+        <button class="book-close-btn" id="book-close-btn" aria-label="Close Storyboard">✕</button>
+      </div>
+
+      <!-- Single Page Stage with 3D Page Flip Transitions -->
+      <div class="book-single-stage">
+        <div class="book-single-page" id="book-page-wrap">
+          <img src="assets/images/girl-and-cat.png" alt="Storyboard Page" id="book-page-img">
+        </div>
+      </div>
+
+      <!-- Book Navigation Controls (Flip Next / Previous Page) -->
+      <div class="book-bottom-nav">
+        <button class="btn-celestial ghost" id="book-prev-btn">
+          <span>&larr; Flip Previous</span>
+        </button>
+        <button class="btn-celestial primary" id="book-next-btn">
+          <span>Flip Next &rarr;</span>
+          <span class="btn-sparkle">✦</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal for Other Works (No specs, no copy link) -->
+  <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-close-overlay"></div>
+    <div class="lightbox-dialog glass-panel" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close modal">✕</button>
+      <div class="lightbox-layout">
+        <div class="lightbox-media-side">
+          <img src="" alt="Artifact preview" id="lightbox-img" class="lightbox-image">
+          <video src="" id="lightbox-video" class="lightbox-image" controls autoplay style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
+        </div>
+        <div class="lightbox-details-side">
+          <span class="modal-category" id="lightbox-category">STORYBOARD</span>
+          <h3 class="modal-title" id="lightbox-title">Artifact Title</h3>
+          <p class="modal-desc" id="lightbox-desc">Detailed breakdown.</p>
+
+          <div class="modal-palette">
+            <h4>COLOR PROFILE</h4>
+            <div class="modal-swatches" id="lightbox-swatches"></div>
+          </div>
+
+          <div class="modal-actions" id="lightbox-actions-container">
+            <!-- Dynamically injected links without copy button -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-sparkle">✦</span>
+        <span>ELLAIZA ROSE B. PESONS &bull; MASTER GALLERY</span>
+      </div>
+      <p class="footer-copy">Curated portfolio &copy; 2026. All rights reserved.</p>
+      <a href="index.html" class="footer-back-to-top">
+        <span>&larr; Return to Home</span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Single-Page Storyboard Flipbook Engine with 3D Page Flip Transitions
+    document.addEventListener('DOMContentLoaded', () => {
+      const bookModal = document.getElementById('book-modal');
+      const bookCloseBtn = document.getElementById('book-close-btn');
+      const bookBackdrop = document.getElementById('book-backdrop');
+      const bookPrevBtn = document.getElementById('book-prev-btn');
+      const bookNextBtn = document.getElementById('book-next-btn');
+      const bookTitle = document.getElementById('book-title');
+      const bookPageWrap = document.getElementById('book-page-wrap');
+      const bookPageImg = document.getElementById('book-page-img');
+
+      // Storyboard pages (pure images only, no text/chapters/page numbers)
+      const storyboards = {
+        nyx: {
+          title: "Nyx & The Magic Hat",
+          // Generates ['assets/images/NyxStoryboard/1.png', ... '51.png']
+          pages: Array.from({ length: 51 }, (_, i) => `assets/images/NyxStoryboard/${i + 1}.png`)
+        }
+      };
+
+
+      let activeStoryboardKey = 'nyx';
+      let currentPageIndex = 0;
+      let isFlipping = false;
+
+      function renderPage(direction = 'none') {
+        const sb = storyboards[activeStoryboardKey] || storyboards.nyx;
+        const total = sb.pages.length;
+        const targetSrc = sb.pages[currentPageIndex];
+
+        bookTitle.innerHTML = sb.title;
+        bookPrevBtn.disabled = currentPageIndex === 0;
+        bookNextBtn.disabled = currentPageIndex === total - 1;
+        bookPrevBtn.style.opacity = currentPageIndex === 0 ? '0.35' : '1';
+        bookNextBtn.style.opacity = currentPageIndex === total - 1 ? '0.35' : '1';
+
+        if (direction === 'none') {
+          bookPageImg.src = targetSrc;
+          return;
+        }
+
+        if (isFlipping) return;
+        isFlipping = true;
+
+        // 3D Page Flip Transition
+        const exitClass = direction === 'next' ? 'flip-next-exit' : 'flip-prev-exit';
+        const enterClass = direction === 'next' ? 'flip-next-enter' : 'flip-prev-enter';
+
+        bookPageWrap.classList.add(exitClass);
+
+        setTimeout(() => {
+          bookPageImg.src = targetSrc;
+          bookPageWrap.classList.remove(exitClass);
+          bookPageWrap.classList.add(enterClass);
+
+          // Force reflow
+          void bookPageWrap.offsetWidth;
+
+          bookPageWrap.classList.remove(enterClass);
+          setTimeout(() => {
+            isFlipping = false;
+          }, 450);
+        }, 220);
+      }
+
+      function flipNext() {
+        const sb = storyboards[activeStoryboardKey] || storyboards.nyx;
+        if (currentPageIndex < sb.pages.length - 1 && !isFlipping) {
+          currentPageIndex++;
+          renderPage('next');
+        }
+      }
+
+      function flipPrev() {
+        if (currentPageIndex > 0 && !isFlipping) {
+          currentPageIndex--;
+          renderPage('prev');
+        }
+      }
+
+      document.querySelectorAll('.btn-open-book').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeStoryboardKey = btn.getAttribute('data-book-id') || 'nyx';
+          currentPageIndex = 0;
+          renderPage('none');
+          bookModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeBook() {
+        bookModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (bookCloseBtn) bookCloseBtn.addEventListener('click', closeBook);
+      if (bookBackdrop) bookBackdrop.addEventListener('click', closeBook);
+      if (bookPrevBtn) bookPrevBtn.addEventListener('click', flipPrev);
+      if (bookNextBtn) bookNextBtn.addEventListener('click', flipNext);
+
+      // Keyboard arrow flip support
+      window.addEventListener('keydown', (e) => {
+        if (!bookModal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeBook();
+        if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+          flipNext();
+        }
+        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          flipPrev();
+        }
+      });
+
+      // Swipe support on the single-page storyboard modal
+      let touchStartX = 0;
+      let touchEndX = 0;
+      if (bookPageWrap) {
+        bookPageWrap.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        bookPageWrap.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchStartX - touchEndX > 45) flipNext();
+          if (touchEndX - touchStartX > 45) flipPrev();
+        }, { passive: true });
+      }
+
+      // Prevent native browser image drag across the entire page
+      document.querySelectorAll('img').forEach((img) => {
+        img.setAttribute('draggable', 'false');
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+      });
+
+      // ======================================================================
+      // CLICKABLE ILLUSTRATIONS: VIEW FULL ORIGINAL IMAGE IN LIGHTBOX
+      // (Only triggers on clean click, not after a drag/swipe gesture)
+      // ======================================================================
+      let wasDragged = false;
+
+      document.querySelectorAll('.illustration-pure-item').forEach((item) => {
+        item.style.cursor = 'none';
+        item.addEventListener('click', (e) => {
+          if (wasDragged) {
+            wasDragged = false;
+            return;
+          }
+          const img = item.querySelector('img');
+          if (!img) return;
+          const fullSrc = img.getAttribute('src');
+
+          const modal = document.getElementById('lightbox-modal');
+          const modalImg = document.getElementById('lightbox-img');
+          const modalVideo = document.getElementById('lightbox-video');
+          const modalTitle = document.getElementById('lightbox-title');
+          const modalCategory = document.getElementById('lightbox-category');
+          const modalDesc = document.getElementById('lightbox-desc');
+          const swatchesContainer = document.getElementById('lightbox-swatches');
+          const actionsContainer = document.getElementById('lightbox-actions-container');
+
+          if (modal && modalImg) {
+            if (modalVideo) {
+              modalVideo.pause();
+              modalVideo.style.display = 'none';
+            }
+            modalImg.style.display = 'block';
+            modalImg.src = fullSrc;
+            if (modalTitle) modalTitle.textContent = item.dataset.title || 'Digital Illustration Artwork';
+            if (modalCategory) modalCategory.textContent = item.dataset.category || 'ORIGINAL RESOLUTION';
+            if (modalDesc) modalDesc.textContent = item.dataset.desc || 'Full high-definition original artwork render.';
+            // Auto-extract dominant colors from artwork image or fallback to data-colors
+            if (swatchesContainer) {
+              swatchesContainer.innerHTML = '';
+
+              if (item.dataset.colors) {
+                // If manual data-colors attribute is specified, prioritize it
+                const colors = item.dataset.colors.split(',');
+                colors.forEach(col => {
+                  const swatch = document.createElement('div');
+                  swatch.className = 'modal-swatch';
+                  swatch.style.background = col.trim();
+                  swatch.title = col.trim();
+                  swatchesContainer.appendChild(swatch);
+                });
+              } else {
+                // Automatically extract the top 5 distinct harmonious colors using an off-screen canvas
+                extractPaletteFromImage(fullSrc, 5, (colors) => {
+                  swatchesContainer.innerHTML = '';
+                  colors.forEach(col => {
+                    const swatch = document.createElement('div');
+                    swatch.className = 'modal-swatch';
+                    swatch.style.background = col;
+                    swatch.title = col;
+                    swatchesContainer.appendChild(swatch);
+                  });
+                });
+              }
+            }
+
+            if (actionsContainer) {
+              actionsContainer.innerHTML = `
+                <a href="${fullSrc}" target="_blank" class="btn-celestial primary">
+                  <span class="btn-sparkle">✦</span>
+                  <span>Open Full Image in New Tab ↗</span>
+                </a>
+              `;
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      // CLICKABLE VIDEOS / CLIPS: PLAY FULL VIDEO IN LIGHTBOX
+      document.querySelectorAll('.video-pure-item').forEach((item) => {
+        item.style.cursor = 'none';
+        item.addEventListener('click', (e) => {
+          if (wasDragged) {
+            wasDragged = false;
+            return;
+          }
+          const videoEl = item.querySelector('video') || item.querySelector('img');
+          const videoSrc = item.dataset.video || (videoEl ? videoEl.getAttribute('src') : '');
+          if (!videoSrc) return;
+
+          const modal = document.getElementById('lightbox-modal');
+          const modalImg = document.getElementById('lightbox-img');
+          const modalVideo = document.getElementById('lightbox-video');
+          const modalTitle = document.getElementById('lightbox-title');
+          const modalCategory = document.getElementById('lightbox-category');
+          const modalDesc = document.getElementById('lightbox-desc');
+          const swatchesContainer = document.getElementById('lightbox-swatches');
+          const actionsContainer = document.getElementById('lightbox-actions-container');
+
+          if (modal && modalVideo) {
+            if (modalImg) modalImg.style.display = 'none';
+            modalVideo.style.display = 'block';
+            modalVideo.src = videoSrc;
+            modalVideo.currentTime = 0;
+            modalVideo.play().catch(() => {});
+
+            if (modalTitle) modalTitle.textContent = item.dataset.title || 'Animation Clip';
+            if (modalCategory) modalCategory.textContent = item.dataset.category || 'ANIMATION / VIDEO';
+            if (modalDesc) modalDesc.textContent = item.dataset.desc || 'Short sequence animation clip.';
+            if (swatchesContainer) swatchesContainer.innerHTML = '';
+
+            if (actionsContainer) {
+              actionsContainer.innerHTML = `
+                <a href="${videoSrc}" target="_blank" class="btn-celestial primary">
+                  <span class="btn-sparkle">✦</span>
+                  <span>Open Video in New Tab ↗</span>
+                </a>
+              `;
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      // Color extraction engine using HTML5 canvas
+      function extractPaletteFromImage(src, colorCount, callback) {
+        const tempImg = new Image();
+        tempImg.crossOrigin = 'Anonymous';
+        tempImg.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            // Sample image at low res for instant performance
+            const sampleSize = 64;
+            canvas.width = sampleSize;
+            canvas.height = sampleSize;
+            ctx.drawImage(tempImg, 0, 0, sampleSize, sampleSize);
+            const imgData = ctx.getImageData(0, 0, sampleSize, sampleSize).data;
+
+            const colorBuckets = {};
+            for (let i = 0; i < imgData.length; i += 16) {
+              const r = imgData[i];
+              const g = imgData[i + 1];
+              const b = imgData[i + 2];
+              const a = imgData[i + 3];
+              if (a < 128) continue; // Skip transparency
+
+              // Quantize to bucket similar shades
+              const qr = Math.round(r / 28) * 28;
+              const qg = Math.round(g / 28) * 28;
+              const qb = Math.round(b / 28) * 28;
+              const key = `${qr},${qg},${qb}`;
+              colorBuckets[key] = (colorBuckets[key] || 0) + 1;
+            }
+
+            const sorted = Object.entries(colorBuckets)
+              .sort((a, b) => b[1] - a[1])
+              .map(entry => {
+                const [r, g, b] = entry[0].split(',').map(Number);
+                const toHex = (c) => Math.min(255, Math.max(0, c)).toString(16).padStart(2, '0');
+                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+              });
+
+            // Filter for distinct colors (avoid near duplicates)
+            const distinct = [];
+            for (const hex of sorted) {
+              if (distinct.length >= colorCount) break;
+              distinct.push(hex);
+            }
+            callback(distinct.length ? distinct : ['#9b6cfa', '#f5b544', '#1f1338', '#ffffff']);
+          } catch (e) {
+            callback(['#9b6cfa', '#f5b544', '#1f1338', '#ffffff']);
+          }
+        };
+        tempImg.onerror = () => {
+          callback(['#9b6cfa', '#f5b544', '#1f1338', '#ffffff']);
+        };
+        tempImg.src = src;
+      }
+
+      // ======================================================================
+      // CONTINUOUS AUTO-SLIDING ENGINE WITH DRAGGING & SEAMLESS RESUME
+      // ======================================================================
+      document.querySelectorAll('.showcase-slider-wrap').forEach((slider) => {
+        const track = slider.querySelector('.showcase-track, .showcase-track-reverse');
+        if (!track) return;
+
+        const isReverse = track.classList.contains('showcase-track-reverse');
+        let speed = isReverse ? 0.75 : -0.75; // Direction & auto-slide speed
+        let offset = 0;
+        let isDown = false;
+        let isHovered = false;
+        let startX = 0;
+        let dragStartOffset = 0;
+        let moveDistance = 0;
+
+        slider.addEventListener('mouseenter', () => { isHovered = true; });
+        slider.addEventListener('mouseleave', () => {
+          isHovered = false;
+          if (isDown) {
+            isDown = false;
+            slider.classList.remove('user-dragging');
+          }
+        });
+
+        slider.addEventListener('mousedown', (e) => {
+          if (e.button !== 0) return;
+          isDown = true;
+          moveDistance = 0;
+          slider.classList.add('user-dragging');
+          startX = e.pageX;
+          dragStartOffset = offset;
+        });
+
+        window.addEventListener('mouseup', () => {
+          if (!isDown) return;
+          isDown = false;
+          slider.classList.remove('user-dragging');
+          if (moveDistance > 8) {
+            wasDragged = true;
+            setTimeout(() => { wasDragged = false; }, 150);
+          }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          const diff = e.pageX - startX;
+          moveDistance = Math.abs(diff);
+          offset = dragStartOffset + diff;
+        });
+
+        // Touch support for mobile / touchpads
+        slider.addEventListener('touchstart', (e) => {
+          slider.classList.add('user-dragging');
+          startX = e.touches[0].pageX;
+          dragStartOffset = offset;
+        }, { passive: true });
+
+        slider.addEventListener('touchmove', (e) => {
+          const diff = e.touches[0].pageX - startX;
+          offset = dragStartOffset + diff;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', () => {
+          slider.classList.remove('user-dragging');
+        }, { passive: true });
+
+        // Continuous silky animation loop
+        function tick() {
+          const halfWidth = track.scrollWidth / 2;
+          const hasOverflow = track.children.length > 3 && track.scrollWidth > slider.clientWidth;
+
+          if (hasOverflow) {
+            // Only auto-slide when not dragging and not hovering
+            if (!isDown && !isHovered) {
+              offset += speed;
+            }
+
+            // Infinite seamless wraparound
+            if (halfWidth > 0) {
+              while (offset <= -halfWidth) offset += halfWidth;
+              while (offset > 0) offset -= halfWidth;
+            }
+
+            track.style.transform = `translateX(${offset}px)`;
+          } else {
+            // Keep centered when items don't overflow
+            track.style.transform = '';
+          }
+
+          requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      });
+    });
+  </script>
+</body>
+
+</html>
