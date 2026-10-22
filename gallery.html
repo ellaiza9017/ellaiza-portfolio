@@ -278,11 +278,9 @@
       <div class="showcase-slider-wrap" data-reveal>
         <div class="showcase-track">
 
-          <div class="video-pure-item"
-               data-title="Simple 4-Page Animation"
-               data-category="PROCREATE ANIMATION"
-               data-desc="Hand-drawn 4-page sequence animated directly on Procreate."
-               data-video="assets/videos/Procreate-4Page.mp4">
+          <div class="video-pure-item" data-title="Simple 4-Page Animation" data-category="PROCREATE ANIMATION"
+            data-desc="Hand-drawn 4-page sequence animated directly on Procreate."
+            data-video="assets/videos/Procreate-4Page.mp4">
             <video src="assets/videos/Procreate-4Page.mp4" autoplay loop muted playsinline></video>
             <div class="video-play-indicator">
               <div class="video-play-btn">▶</div>
@@ -410,7 +408,8 @@
       <div class="lightbox-layout">
         <div class="lightbox-media-side">
           <img src="" alt="Artifact preview" id="lightbox-img" class="lightbox-image">
-          <video src="" id="lightbox-video" class="lightbox-image" controls autoplay style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
+          <video src="" id="lightbox-video" class="lightbox-image" controls autoplay
+            style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
         <div class="lightbox-details-side">
           <span class="modal-category" id="lightbox-category">STORYBOARD</span>
@@ -682,7 +681,7 @@
             modalVideo.style.display = 'block';
             modalVideo.src = videoSrc;
             modalVideo.currentTime = 0;
-            modalVideo.play().catch(() => {});
+            modalVideo.play().catch(() => { });
 
             if (modalTitle) modalTitle.textContent = item.dataset.title || 'Animation Clip';
             if (modalCategory) modalCategory.textContent = item.dataset.category || 'ANIMATION / VIDEO';
