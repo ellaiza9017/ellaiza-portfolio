@@ -709,9 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 11. CONTACT FORM HANDLER
   // ==========================================================================
-  // Web3Forms access key (public by design — safe to ship in client code).
-  // Get one free at https://web3forms.com using the inbox that should receive messages.
-  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+  const WEB3FORMS_ACCESS_KEY = '60d71fb8-9841-4fd3-8f01-5269099cf2c1';
 
   const form = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
