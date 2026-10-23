@@ -262,7 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const liveImg = document.getElementById('live2d-img');
   const stage = document.querySelector('.live2d-stage-wrapper');
 
-  if (liveCard && stage) {
+  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+  if (liveCard && stage && isFinePointer) {
     stage.addEventListener('mousemove', (e) => {
       // Pause autonomous float during active user mouse inspection
       liveCard.classList.remove('auto-hover-float');
