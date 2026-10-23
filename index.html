@@ -239,16 +239,28 @@
               <div class="card-dust cd-3">✦</div>
             </div>
 
-            <!-- Card Bottom Spotify / Lo-Fi Player Plate -->
-            <div class="live2d-footer music-player-plate" id="card-music-toggle">
-              <button class="player-play-btn" id="card-play-btn" aria-label="Toggle Lo-fi Music">
-                <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                  <path d="M8 5v14l11-7z" id="card-play-path" />
-                </svg>
-              </button>
-              <div class="footer-meta">
-                <span class="name">Good Night &bull; Cozy Lo-Fi</span>
-                <span class="sub">Chill Study &amp; Coding Vibes &bull; FASSounds</span>
+            <!-- Card Bottom Purple Spotify / Lo-Fi Player Plate with Prev, Play, Next -->
+            <div class="live2d-footer music-player-plate">
+              <div class="player-controls">
+                <button class="player-nav-btn" id="player-prev-btn" aria-label="Previous Track" title="Previous Track">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                  </svg>
+                </button>
+                <button class="player-play-btn" id="card-play-btn" aria-label="Toggle Lo-fi Music">
+                  <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M8 5v14l11-7z" id="card-play-path" />
+                  </svg>
+                </button>
+                <button class="player-nav-btn" id="player-next-btn" aria-label="Next Track" title="Next Track">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="footer-meta" id="player-info-meta">
+                <span class="name" id="player-track-name">Good Night &bull; Cozy Lo-Fi</span>
+                <span class="sub" id="player-track-sub">Chill Study &amp; Coding Vibes &bull; FASSounds</span>
               </div>
               <div class="footer-sound-wave" title="Audio frequency" id="card-sound-wave">
                 <span class="bar b1"></span>

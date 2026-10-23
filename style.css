@@ -1057,48 +1057,83 @@ body,
 }
 
 .music-player-plate {
-  cursor: pointer;
   transition: background 0.25s ease;
 }
 
 .music-player-plate:hover {
-  background: rgba(18, 12, 33, 0.98);
+  background: rgba(22, 14, 40, 0.98);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.player-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(162, 130, 240, 0.2);
+  color: var(--accent-lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-nav-btn:hover {
+  background: rgba(155, 108, 250, 0.2);
+  color: #fff;
+  border-color: var(--primary);
+  transform: scale(1.1);
+}
+
+.player-nav-btn:active {
+  transform: scale(0.95);
 }
 
 .player-play-btn {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #1db954;
-  color: #0b0714;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(29, 185, 84, 0.4);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.5), 0 0 10px rgba(168, 85, 247, 0.3);
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 .player-play-btn:hover {
   transform: scale(1.08);
-  background: #1ed760;
-  box-shadow: 0 6px 20px rgba(29, 185, 84, 0.6);
+  background: linear-gradient(135deg, #9b6cfa 0%, #c084fc 100%);
+  box-shadow: 0 6px 22px rgba(155, 108, 250, 0.7), 0 0 15px rgba(216, 194, 255, 0.4);
+}
+
+.player-play-btn:active {
+  transform: scale(0.95);
 }
 
 .spotify-badge {
-  color: #a7f3d0 !important;
-  border-color: rgba(29, 185, 84, 0.4) !important;
-  background: rgba(14, 25, 20, 0.88) !important;
+  color: var(--accent-lavender) !important;
+  border-color: rgba(186, 155, 255, 0.35) !important;
+  background: rgba(20, 12, 38, 0.88) !important;
 }
 
 .spotify-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #1db954;
-  box-shadow: 0 0 8px #1db954;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
   animation: pulseDot 1.8s infinite ease-in-out;
 }
 
@@ -2923,9 +2958,67 @@ body,
     padding: 0.85rem 1.2rem;
   }
 
+  .hero-section {
+    padding-top: 5.5rem !important;
+    padding-bottom: 2.5rem !important;
+    min-height: auto !important;
+  }
+
   .hero-container {
-    padding-top: 5rem;
-    gap: 2rem;
+    padding-top: 1rem !important;
+    gap: 2.2rem !important;
+  }
+
+  .hero-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.8rem !important;
+    padding-top: 1.2rem !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .metric-divider {
+    display: none !important;
+  }
+
+  .metric-value {
+    font-size: 0.88rem !important;
+  }
+
+  .metric-label {
+    font-size: 0.65rem !important;
+  }
+
+  .live2d-stage-wrapper {
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+  }
+
+  .live2d-footer {
+    padding: 0.9rem 1rem !important;
+    gap: 0.6rem !important;
+  }
+
+  .footer-meta .name {
+    font-size: 0.82rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .footer-meta .sub {
+    font-size: 0.68rem !important;
+  }
+
+  .interaction-hint {
+    margin-top: 1rem !important;
+    font-size: 0.78rem !important;
+    text-align: center !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .scroll-down-pill {
+    margin-top: 1.5rem !important;
   }
 
   .title-line-2 {

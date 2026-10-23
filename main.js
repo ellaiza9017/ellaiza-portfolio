@@ -627,6 +627,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const LOFI_PLAYLIST = [
+    {
+      name: 'Good Night • Cozy Lo-Fi',
+      sub: 'Chill Study & Coding Vibes • FASSounds',
+      src: 'assets/Music/fassounds-good-night-lofi-cozy-chill-music-160166.mp3'
+    },
+    {
+      name: 'Bedroom Window • Outlands',
+      sub: 'Lo-Fi Chill & Coffee Warmth • Aeris CC0',
+      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/bedroom-window-outlands.mp3'
+    },
+    {
+      name: 'Colder Air • Midnight Study',
+      sub: 'Warm Melodic Lo-Fi Pads • Aeris CC0',
+      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/colder-air.mp3'
+    },
+    {
+      name: 'Quiet Room • Rain & Beats',
+      sub: 'Ambient Late Night Lo-Fi • Aeris CC0',
+      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/quiet-room.mp3'
+    }
+  ];
+
+  let currentTrackIdx = 0;
+  const playerPrevBtn = document.getElementById('player-prev-btn');
+  const playerNextBtn = document.getElementById('player-next-btn');
+  const cardPlayBtn = document.getElementById('card-play-btn');
+  const playerTrackName = document.getElementById('player-track-name');
+  const playerTrackSub = document.getElementById('player-track-sub');
+
+  function loadTrack(idx, autoPlay = true) {
+    currentTrackIdx = (idx + LOFI_PLAYLIST.length) % LOFI_PLAYLIST.length;
+    const track = LOFI_PLAYLIST[currentTrackIdx];
+
+    if (playerTrackName) playerTrackName.textContent = track.name;
+    if (playerTrackSub) playerTrackSub.textContent = track.sub;
+
+    bgAudio.src = track.src;
+    bgAudio.load();
+
+    if (autoPlay) {
+      bgAudio.play().then(() => {
+        updateMusicUI(true);
+      }).catch(() => {
+        updateMusicUI(false);
+      });
+    }
+  }
+
   // Header Logo: Vinyl player toggle & modal viewer
   const logoBtn = document.getElementById('btn-view-logo');
   if (bgAudio) {
@@ -674,9 +723,31 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (cardMusicToggle) {
-      cardMusicToggle.addEventListener('click', toggleMusic);
+    if (cardPlayBtn) {
+      cardPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMusic();
+      });
     }
+
+    if (playerPrevBtn) {
+      playerPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadTrack(currentTrackIdx - 1, true);
+      });
+    }
+
+    if (playerNextBtn) {
+      playerNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadTrack(currentTrackIdx + 1, true);
+      });
+    }
+
+    // Automatically transition to next song when current track finishes
+    bgAudio.addEventListener('ended', () => {
+      loadTrack(currentTrackIdx + 1, true);
+    });
   }
 
   inspectBtns.forEach((btn) => {
