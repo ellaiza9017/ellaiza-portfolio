@@ -219,8 +219,9 @@
             <!-- Ambient Card Glow Ring -->
             <div class="live2d-aura"></div>
 
-            <div class="holo-tag tag-bottom-left">
-              <span>NYX &bull; COMPANION</span>
+            <div class="holo-tag tag-bottom-left spotify-badge">
+              <span class="spotify-dot"></span>
+              <span>LO-FI PLAYLIST &bull; CHILL VIBES</span>
             </div>
 
             <!-- Character Viewport -->
@@ -238,16 +239,18 @@
               <div class="card-dust cd-3">✦</div>
             </div>
 
-            <!-- Card Bottom Bio Plate -->
-            <div class="live2d-footer">
-              <div class="avatar-mini">
-                <img src="assets/images/ellaiza-logo.png" alt="Logo avatar">
-              </div>
+            <!-- Card Bottom Spotify / Lo-Fi Player Plate -->
+            <div class="live2d-footer music-player-plate" id="card-music-toggle">
+              <button class="player-play-btn" id="card-play-btn" aria-label="Toggle Lo-fi Music">
+                <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M8 5v14l11-7z" id="card-play-path" />
+                </svg>
+              </button>
               <div class="footer-meta">
-                <span class="name">Ellaiza &amp; Nyx</span>
-                <span class="sub">Night sky companion</span>
+                <span class="name">Good Night &bull; Cozy Lo-Fi</span>
+                <span class="sub">Chill Study &amp; Coding Vibes &bull; FASSounds</span>
               </div>
-              <div class="footer-sound-wave" title="Audio frequency">
+              <div class="footer-sound-wave" title="Audio frequency" id="card-sound-wave">
                 <span class="bar b1"></span>
                 <span class="bar b2"></span>
                 <span class="bar b3"></span>
@@ -256,8 +259,8 @@
             </div>
           </div>
           <div class="interaction-hint">
-            <span class="hint-icon">✧</span>
-            <span>Card floats gently in orbit &bull; Move cursor to tilt perspective</span>
+            <span class="hint-icon">☕</span>
+            <span>I live for chilly breeze, lofi music, cats and coffee</span>
           </div>
         </div>
 

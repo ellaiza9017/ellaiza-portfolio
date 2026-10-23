@@ -593,7 +593,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgAudio = document.getElementById('bg-audio');
   const vinylDisc = document.getElementById('vinyl-disc');
   const musicText = document.getElementById('music-text');
+  const cardMusicToggle = document.getElementById('card-music-toggle');
+  const cardPlayPath = document.getElementById('card-play-path');
+  const cardSoundWave = document.getElementById('card-sound-wave');
   let isMusicPlaying = false;
+
+  const PATH_PLAY = 'M8 5v14l11-7z';
+  const PATH_PAUSE = 'M6 19h4V5H6v14zm8-14v14h4V5h-4z';
+
+  function updateMusicUI(playing) {
+    isMusicPlaying = playing;
+    if (vinylDisc) {
+      if (playing) {
+        vinylDisc.classList.remove('vinyl-paused');
+        vinylDisc.classList.add('vinyl-spin');
+      } else {
+        vinylDisc.classList.remove('vinyl-spin');
+        vinylDisc.classList.add('vinyl-paused');
+      }
+    }
+    if (musicText) {
+      musicText.textContent = playing ? 'Now Playing' : 'Vinyl Muted';
+    }
+    if (cardPlayPath) {
+      cardPlayPath.setAttribute('d', playing ? PATH_PAUSE : PATH_PLAY);
+    }
+    if (cardSoundWave) {
+      if (playing) {
+        cardSoundWave.classList.remove('paused');
+      } else {
+        cardSoundWave.classList.add('paused');
+      }
+    }
+  }
 
   // Header Logo: Vinyl player toggle & modal viewer
   const logoBtn = document.getElementById('btn-view-logo');
@@ -603,44 +635,43 @@ document.addEventListener('DOMContentLoaded', () => {
     function startMusic() {
       if (!isMusicPlaying) {
         bgAudio.play().then(() => {
-          isMusicPlaying = true;
-          if (vinylDisc) {
-            vinylDisc.classList.remove('vinyl-paused');
-            vinylDisc.classList.add('vinyl-spin');
-          }
-          if (musicText) musicText.textContent = 'Now Playing';
+          updateMusicUI(true);
         }).catch(() => { });
+      }
+    }
+
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        bgAudio.pause();
+        updateMusicUI(false);
+      } else {
+        startMusic();
       }
     }
 
     // Try playing immediately
     startMusic();
 
-    // Start immediately on ANY user activity (movement, pointer, scroll, or hover - no click required!)
+    // Start immediately on ANY first user touch, tap, scroll, key, or pointer interaction
     const autoPlayOnActivity = () => {
       startMusic();
       if (isMusicPlaying) {
-        ['pointerdown', 'mousemove', 'mouseover', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
+        ['pointerdown', 'mousemove', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
           window.removeEventListener(evt, autoPlayOnActivity);
         });
       }
     };
-    ['pointerdown', 'mousemove', 'mouseover', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
+    ['pointerdown', 'mousemove', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
       window.addEventListener(evt, autoPlayOnActivity, { passive: true });
     });
 
-    if (logoBtn && vinylDisc) {
-      logoBtn.addEventListener('click', (e) => {
-        if (isMusicPlaying) {
-          bgAudio.pause();
-          isMusicPlaying = false;
-          vinylDisc.classList.remove('vinyl-spin');
-          vinylDisc.classList.add('vinyl-paused');
-          if (musicText) musicText.textContent = 'Vinyl Muted';
-        } else {
-          startMusic();
-        }
-      });
+    if (logoBtn) {
+      logoBtn.addEventListener('click', toggleMusic);
+    }
+
+    if (cardMusicToggle) {
+      cardMusicToggle.addEventListener('click', toggleMusic);
+    }
 
       // Right click on logo allows inspecting the full art
       logoBtn.addEventListener('contextmenu', (e) => {
