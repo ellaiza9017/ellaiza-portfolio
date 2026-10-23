@@ -2864,11 +2864,14 @@ body,
 }
 
 @media (max-width: 768px) {
-  html, body {
+
+  html,
+  body {
     cursor: auto !important;
   }
 
-  .star-cursor, .cursor-glow {
+  .star-cursor,
+  .cursor-glow {
     display: none !important;
   }
 
