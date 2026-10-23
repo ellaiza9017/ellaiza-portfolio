@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/ellaiza", "permanent": true },
+    { "source": "/", "destination": "/ellaiza", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/ellaiza", "destination": "/index.html" }
+  ]
+}

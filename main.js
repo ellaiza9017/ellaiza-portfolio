@@ -709,23 +709,68 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 11. CONTACT FORM HANDLER
   // ==========================================================================
+  // Web3Forms access key (public by design — safe to ship in client code).
+  // Get one free at https://web3forms.com using the inbox that should receive messages.
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+
   const form = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
   if (form && formStatus) {
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const defaultBtnHTML = submitBtn.innerHTML;
+    const subjectLabels = {
+      ojt: 'OJT / Internship Opportunity',
+      freelance: '3D / Multimedia Freelance Commission',
+      other: 'General Inquiry'
+    };
+
+    const showStatus = (message, type) => {
+      formStatus.textContent = message;
+      formStatus.className = `form-notification ${type}`;
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"]');
+
+      // Honeypot: bots fill hidden fields, humans don't.
+      if (form.querySelector('[name="botcheck"]')?.checked) return;
+
+      const data = new FormData(form);
+      const name = data.get('name');
+      const subjectKey = data.get('subject');
+
+      data.append('access_key', WEB3FORMS_ACCESS_KEY);
+      data.set('subject', `Portfolio: ${subjectLabels[subjectKey] || 'New Message'} — from ${name}`);
+      data.append('from_name', 'Ellaiza Portfolio');
+      data.set('inquiry_type', subjectLabels[subjectKey] || subjectKey);
+      data.append('replyto', data.get('email'));
+
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending Message...</span>';
+      formStatus.className = 'form-notification';
 
-      setTimeout(() => {
-        formStatus.textContent = 'Thank you! Your message has been sent to Ellaiza. I will get back to you shortly.';
-        formStatus.className = 'form-notification success';
-        form.reset();
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data
+        });
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          showStatus('Thank you! Your message has been sent to Ellaiza. I will get back to you shortly.', 'success');
+          form.reset(); // only clear on confirmed delivery
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.error('Contact form error:', err);
+        showStatus('Sorry, your message could not be sent. Please try again or email pesonsellaiza@gmail.com directly.', 'error');
+      } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="btn-sparkle">✦</span><span>Send Message</span>';
-      }, 1000);
+        submitBtn.innerHTML = defaultBtnHTML;
+      }
     });
   }
 
