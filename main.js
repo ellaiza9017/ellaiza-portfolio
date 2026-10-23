@@ -667,17 +667,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (logoBtn) {
       logoBtn.addEventListener('click', toggleMusic);
-    }
-
-    if (cardMusicToggle) {
-      cardMusicToggle.addEventListener('click', toggleMusic);
-    }
-
       // Right click on logo allows inspecting the full art
       logoBtn.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         openModal('6');
       });
+    }
+
+    if (cardMusicToggle) {
+      cardMusicToggle.addEventListener('click', toggleMusic);
     }
   }
 
