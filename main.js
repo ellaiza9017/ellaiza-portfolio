@@ -1056,7 +1056,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 18. WORKS CARDS REVEAL (TRIGGERED AFTER SELECTED WORKS TITLE IS VISIBLE)
   // ==========================================================================
-  const archGallery = document.querySelector('.arch-gallery');
+  const archGallery = document.querySelector('.arch-gallery, .arch-gallery-5');
   const worksTitleBlock = document.querySelector('.works-title-block');
   if (archGallery) {
     archGallery.classList.add('works-hidden');

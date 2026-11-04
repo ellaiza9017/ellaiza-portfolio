@@ -3981,13 +3981,13 @@ body,
 }
 
 /* Works cards hidden until title animates */
-.arch-gallery.works-hidden .arch-card {
+.arch-gallery.works-hidden .arch-card, .arch-gallery-5.works-hidden .arch-card {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.arch-gallery.works-revealed .arch-card {
+.arch-gallery.works-revealed .arch-card, .arch-gallery-5.works-revealed .arch-card {
   opacity: 1;
   transform: translateY(0px);
 }
@@ -4113,4 +4113,355 @@ body,
   .arch-card .card-media-wrap { height: 280px !important; }
   .contact-sparkles-left { display: none; }
   .contact-swash { display: none; }
+}
+
+
+/* ==========================================================================
+   SKETCH ACCURACY & 5 ARCH WORKS CARDS UPDATE
+   ========================================================================== */
+
+/* Hero name spanning guide line */
+.hero-name-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  position: relative;
+  margin-top: -2.2rem;
+  z-index: 10;
+  width: 100%;
+}
+
+.hero-name-wrap::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(155, 108, 250, 0.4) 15%, #9b6cfa 50%, rgba(155, 108, 250, 0.4) 85%, transparent 100%);
+  box-shadow: 0 0 10px rgba(155, 108, 250, 0.8), 0 0 20px rgba(216, 194, 255, 0.4);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-fullname {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+/* About Me header matching sketch */
+.about-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--accent-lavender);
+  margin-bottom: 0.6rem;
+}
+
+.about-eyebrow .eyebrow-line {
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background: rgba(162, 130, 240, 0.4);
+}
+
+.sketch-about-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.arch-bg-card {
+  border-radius: 120px 120px 20px 20px !important;
+  background: rgba(18, 12, 33, 0.65) !important;
+  border: 1.5px solid rgba(162, 130, 240, 0.3) !important;
+  padding: 3.5rem 2.5rem 2.5rem 2.5rem !important;
+  position: relative;
+}
+
+.palette-bar-under-bg {
+  margin-top: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.palette-bar-under-bg .palette-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+}
+
+.palette-bar-under-bg .swatch {
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.palette-bar-under-bg .swatch:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Education card with vertical spine */
+.education-sketch-card {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 1.5rem;
+  background: rgba(18, 12, 33, 0.65) !important;
+  border: 1.5px solid rgba(162, 130, 240, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 2.5rem !important;
+  position: relative;
+}
+
+.edu-content-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.edu-heading-bracket {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  letter-spacing: 0.15em;
+  color: var(--accent-lavender);
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.edu-major {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.2rem;
+}
+
+.edu-vertical-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 1.2rem;
+  border-left: 1px solid rgba(162, 130, 240, 0.25);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-lavender);
+  user-select: none;
+}
+
+/* 5 Staggered Arch Cards (Canva layout) */
+.arch-gallery-5 {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 1.2rem !important;
+  align-items: flex-end !important;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3.5rem;
+}
+
+.arch-card-1 { align-self: flex-end; }
+.arch-card-1 .card-media-wrap { height: 290px !important; }
+
+.arch-card-2 { align-self: flex-start; }
+.arch-card-2 .card-media-wrap { height: 480px !important; }
+
+.arch-card-3 { align-self: center; }
+.arch-card-3 .card-media-wrap { height: 410px !important; }
+
+.arch-card-4 { align-self: flex-start; }
+.arch-card-4 .card-media-wrap { height: 480px !important; }
+
+.arch-card-5 { align-self: flex-end; }
+.arch-card-5 .card-media-wrap { height: 330px !important; }
+
+.arch-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.4rem 1rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(10, 6, 20, 0.95) 0%, rgba(10, 6, 20, 0.75) 70%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  z-index: 5;
+}
+
+.arch-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+}
+
+.arch-card-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-lavender);
+}
+
+.arch-card-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(155, 108, 250, 0.35);
+  border: 1px solid rgba(216, 194, 255, 0.5);
+  color: #fff;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  margin-top: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.arch-card-pill-btn:hover {
+  background: var(--primary);
+  box-shadow: 0 0 15px var(--primary);
+  transform: translateY(-2px);
+}
+
+.works-action-row {
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1080px) {
+  .arch-gallery-5 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .arch-card-1 .card-media-wrap,
+  .arch-card-2 .card-media-wrap,
+  .arch-card-3 .card-media-wrap,
+  .arch-card-4 .card-media-wrap,
+  .arch-card-5 .card-media-wrap {
+    height: 380px !important;
+  }
+  .sketch-about-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .arch-gallery-5 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .arch-card .card-media-wrap {
+    height: 340px !important;
+  }
+  .education-sketch-card {
+    flex-direction: column !important;
+  }
+  .edu-vertical-spine {
+    flex-direction: row !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(162, 130, 240, 0.25) !important;
+    padding-left: 0 !important;
+    padding-top: 0.8rem !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ==========================================================================
+   CANVA SVG GRADIENT RENDERING & PLACEMENT
+   ========================================================================== */
+.canva-gradient-line {
+  pointer-events: none;
+  background: linear-gradient(135deg, #ffffff 0%, #d8c2ff 45%, #9b6cfa 100%);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.canva-svg-white {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(155, 108, 250, 0.7));
+  pointer-events: none;
+}
+
+.works-deco-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.works-curve-left {
+  position: absolute;
+  top: 15%;
+  left: -5%;
+  width: 450px;
+  height: 400px;
+  -webkit-mask-image: url('assets/SVG/curveLine2.svg');
+  mask-image: url('assets/SVG/curveLine2.svg');
+  opacity: 0.65;
+}
+
+.works-curve-right {
+  position: absolute;
+  bottom: 8%;
+  right: -5%;
+  width: 500px;
+  height: 450px;
+  -webkit-mask-image: url('assets/SVG/curveLine3.svg');
+  mask-image: url('assets/SVG/curveLine3.svg');
+  opacity: 0.65;
+}
+
+.about-curve-accent {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 180px;
+  height: 180px;
+  -webkit-mask-image: url('assets/SVG/curveLine1.svg');
+  mask-image: url('assets/SVG/curveLine1.svg');
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.contact-squigly-accent {
+  position: absolute;
+  top: -1.5rem;
+  right: -1rem;
+  width: 260px;
+  height: 110px;
+  -webkit-mask-image: url('assets/SVG/singleSquiglyLine.svg');
+  mask-image: url('assets/SVG/singleSquiglyLine.svg');
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .works-curve-left,
+  .works-curve-right,
+  .about-curve-accent,
+  .contact-squigly-accent {
+    display: none !important;
+  }
 }
