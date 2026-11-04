@@ -5874,8 +5874,10 @@ body,
 
 
 
+
+
 /* ==========================================================================
-   SELECTED WORKS: CELESTIAL ARCH GRID (Pixel-Perfect Canva Alignment)
+   SELECTED WORKS: EXACT SVG FRAMES & CANVA PROPORTIONS
    ========================================================================== */
 
 .gallery-section {
@@ -5886,49 +5888,25 @@ body,
 
 .works-title-block {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
 }
 
-.works-title-wrap {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 0.5rem;
+.works-svg-title-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.8rem;
 }
 
-.works-big-title {
-  font-family: 'Cinzel', serif;
-  font-weight: 900;
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  letter-spacing: 0.08em;
-  line-height: 1;
-  background: linear-gradient(135deg, #ffffff 0%, #D4B8FF 40%, #9b6cfa 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.works-script-overlay {
-  position: absolute;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  color: #EADCFE;
-  text-shadow: 0 0 20px rgba(155, 108, 250, 0.8);
-  top: -0.55em;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 2;
+.works-svg-title-img {
+  max-width: 440px;
+  width: 90%;
+  height: auto;
+  filter: drop-shadow(0 0 25px rgba(155, 108, 250, 0.45));
   pointer-events: none;
-}
-
-.works-swash {
-  display: block;
-  margin: 0.4rem auto 1.2rem auto;
-  max-width: 280px;
-  width: 100%;
+  user-select: none;
 }
 
 .gallery-section .section-subtitle {
@@ -5937,219 +5915,103 @@ body,
   letter-spacing: 0.04em;
 }
 
-/* 5 Arch Columns Container */
-.celestial-works-grid {
+/* 5 Arch SVG Frames Row */
+.gallery-frames-row {
   display: flex !important;
-  justify-content: center !important;
   align-items: flex-start !important;
-  gap: 1.5rem !important;
-  max-width: 1240px;
-  margin: 0 auto 3rem auto;
-  padding: 0 1.5rem;
+  justify-content: center !important;
   position: relative;
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
   z-index: 2;
 }
 
-/* Base Arch Column */
-.cworks-col {
-  flex: 1;
-  max-width: 215px;
-  display: flex;
-  flex-direction: column;
+.works-frame-col {
   position: relative;
-}
-
-/* Vertical Stagger to match Canva layout:
-   Card 1: Sits low at bottom
-   Card 2: Sits high at top
-   Card 3: Sits in middle
-   Card 4: Sits high at top
-   Card 5: Sits high at top with deco below
-*/
-.cworks-col-1 {
-  margin-top: 175px !important;
-}
-
-.cworks-col-2 {
-  margin-top: 0px !important;
-}
-
-.cworks-col-3 {
-  margin-top: 85px !important;
-}
-
-.cworks-col-4 {
-  margin-top: 15px !important;
-}
-
-.cworks-col-5 {
-  margin-top: 0px !important;
-}
-
-/* Arch Card Container */
-.cworks-card {
-  width: 100%;
   cursor: pointer;
-  position: relative;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+  outline: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.cworks-card:hover {
+.works-frame-col:hover,
+.works-frame-col:focus-visible {
   transform: translateY(-12px) scale(1.025);
-  filter: drop-shadow(0 15px 30px rgba(155, 108, 250, 0.5));
+  filter: drop-shadow(0 15px 35px rgba(155, 108, 250, 0.5)) drop-shadow(0 0 20px rgba(212, 184, 255, 0.4));
+  z-index: 10 !important;
 }
 
-.cworks-card:hover .cworks-arch {
-  border-color: #ffffff;
-  box-shadow: 0 0 25px rgba(212, 184, 255, 0.6), 0 20px 40px rgba(0, 0, 0, 0.8);
-}
-
-/* Arch Shape with Glowing Border */
-.cworks-arch {
+.works-frame-svg {
   width: 100%;
-  border-radius: 999px 999px 12px 12px;
-  border: 1.5px solid rgba(212, 184, 255, 0.65);
-  box-shadow: 0 0 18px rgba(155, 108, 250, 0.25), 0 10px 30px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  background: #080512;
-  position: relative;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Exact Card Heights matching Canva proportions */
-.cworks-card-1 .cworks-arch {
-  height: 310px;
-}
-
-.cworks-card-2 .cworks-arch {
-  height: 480px;
-}
-
-.cworks-card-3 .cworks-arch {
-  height: 400px;
-}
-
-.cworks-card-4 .cworks-arch {
-  height: 480px;
-}
-
-.cworks-card-5 .cworks-arch {
-  height: 310px;
-}
-
-/* Image & Video Content inside Arch */
-.cworks-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   display: block;
   user-select: none;
   pointer-events: none;
 }
 
-.cworks-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-  background: #000;
-}
-
-/* Decorative Overlays (Sparkles, Curves, Dots) */
-.cworks-sparkle-deco {
-  position: absolute;
-  color: #D4B8FF;
-  font-size: 1.1rem;
-  pointer-events: none;
-  z-index: 3;
-  animation: celestialTwinkle 4s ease-in-out infinite alternate;
-}
-
-.cworks-sparkle-deco.top-left {
-  top: -10px;
-  left: -8px;
-}
-
-.cworks-sparkle-deco.top-right {
-  top: -10px;
-  right: -8px;
-}
-
-.cworks-sparkle-deco.bottom-left {
-  bottom: -10px;
-  left: -12px;
-}
-
-.cworks-dots-deco {
-  position: absolute;
-  color: #D4B8FF;
-  letter-spacing: 0.25em;
-  font-size: 0.95rem;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.cworks-dots-deco.top-right {
-  top: -18px;
-  right: -12px;
-}
-
-/* Card 5 Sub Decoration (vertical dots + sparkle) */
-.cworks-sub-deco {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 1.2rem;
-  color: #D4B8FF;
-}
-
-.cworks-dots-vert {
-  writing-mode: vertical-rl;
-  letter-spacing: 0.25em;
-  font-size: 0.95rem;
-  opacity: 0.85;
-}
-
-.cworks-sparkle-sm {
-  font-size: 0.85rem;
-  color: #D4B8FF;
-  animation: celestialTwinkle 3s ease-in-out infinite alternate;
-}
-
-/* Decorative Curves */
-.cworks-curve {
-  position: absolute;
-  pointer-events: none;
+/* Specific Staggers and Flex Ratios to match Canva reference layout */
+.works-col-cat {
+  flex: 0 0 21%;
+  margin-top: 140px;
   z-index: 1;
 }
 
-.cworks-curve-left {
-  bottom: -20px;
-  left: -40px;
-  width: 90px;
-  height: auto;
+.works-col-luminang {
+  flex: 0 0 17%;
+  margin-left: -2%;
+  margin-top: 0px;
+  z-index: 2;
 }
 
-.cworks-curve-bottom {
-  bottom: -35px;
-  left: 20%;
-  width: 170px;
-  height: auto;
+.works-col-video {
+  flex: 0 0 21%;
+  margin-left: -1%;
+  margin-top: 60px;
+  z-index: 3;
 }
 
-@keyframes celestialTwinkle {
-  0% { opacity: 0.4; transform: scale(0.85); }
-  50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 8px #D4B8FF); }
-  100% { opacity: 0.4; transform: scale(0.85); }
+.video-frame-inner {
+  position: relative;
+  width: 100%;
 }
 
-/* Coming Soon Button Wrapper */
+.video-frame-inner .arch-video-bg {
+  position: absolute;
+  top: 3.6%;
+  left: 11.4%;
+  width: 88.5%;
+  height: 94.1%;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+  z-index: 1;
+  background: #000;
+  pointer-events: none;
+}
+
+.video-frame-inner .works-frame-svg {
+  position: relative;
+  z-index: 2;
+}
+
+.works-col-fullbody {
+  flex: 0 0 26%;
+  margin-left: -3%;
+  margin-top: 5px;
+  z-index: 2;
+}
+
+.works-col-purplegirl {
+  flex: 0 0 18%;
+  margin-left: -7%;
+  margin-top: 0px;
+  z-index: 4;
+}
+
+/* Coming Soon Button & Tooltip */
 .works-action-row {
   text-align: center;
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   position: relative;
   z-index: 3;
 }
@@ -6409,33 +6271,28 @@ body,
 
 /* Responsive adjustments */
 @media (max-width: 1080px) {
-  .celestial-works-grid {
+  .gallery-frames-row {
     flex-wrap: wrap !important;
     gap: 1.5rem !important;
   }
-  .cworks-col {
+  .works-frame-col {
     flex: 1 1 30% !important;
     max-width: 260px !important;
+    margin-left: 0 !important;
     margin-top: 0 !important;
   }
 }
 
 @media (max-width: 768px) {
-  .celestial-works-grid {
+  .gallery-frames-row {
     flex-direction: column !important;
     align-items: center !important;
     gap: 2.5rem !important;
   }
-  .cworks-col {
+  .works-frame-col {
     width: 80% !important;
-    max-width: 300px !important;
+    max-width: 320px !important;
+    margin-left: 0 !important;
     margin-top: 0 !important;
-  }
-  .cworks-card-1 .cworks-arch,
-  .cworks-card-2 .cworks-arch,
-  .cworks-card-3 .cworks-arch,
-  .cworks-card-4 .cworks-arch,
-  .cworks-card-5 .cworks-arch {
-    height: 380px !important;
   }
 }
