@@ -5278,24 +5278,27 @@ body,
 .garamond-heading {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(1.4rem, 2.1vw, 2.2rem) !important;
+  font-size: clamp(2.3rem, 3.8vw, 3.8rem) !important; /* BIGGER - matching screenshot 2 */
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
-  text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
+  -webkit-text-stroke: 1.2px rgba(212, 184, 255, 0.95) !important;
+  text-stroke: 1.2px rgba(212, 184, 255, 0.95) !important;
   background: none !important;
   background-clip: unset !important;
   -webkit-background-clip: unset !important;
-  margin-bottom: 1.1rem !important;
-  line-height: 1.1 !important;
+  margin-bottom: 0 !important;
+  line-height: 1 !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: 0.45rem !important;
-  width: 100% !important;
-  text-align: center !important;
+  justify-content: flex-start !important;
+  gap: 0.5rem !important;
+  white-space: nowrap !important;
+  /* Pushed further to the left so 'B' overlaps the left arch outline, exactly like draft */
+  margin-left: -14% !important;
+  width: max-content !important;
+  text-align: left !important;
 }
 
 .garamond-heading .bg-plus {
@@ -5304,18 +5307,18 @@ body,
   font-weight: 400 !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
-  text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
+  -webkit-text-stroke: 1.2px rgba(212, 184, 255, 0.95) !important;
+  text-stroke: 1.2px rgba(212, 184, 255, 0.95) !important;
   line-height: 1 !important;
   display: inline-block !important;
 }
 
-/* EDUCATION vertical spine – same outline serif font & size */
+/* EDUCATION vertical spine – compact, NOT stretched or too long/tall */
 .garamond-heading-spine {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(1.4rem, 2.1vw, 2.2rem) !important;
-  letter-spacing: 0.15em !important;
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem) !important;
+  letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
@@ -5332,7 +5335,7 @@ body,
 }
 
 /* ============================================================
-   ABOUT GRID: both columns stretch to match height
+   ABOUT GRID: both columns align center
    ============================================================ */
 .sketch-about-grid {
   display: grid !important;
@@ -5350,7 +5353,7 @@ body,
   width: 100% !important;
   max-width: none !important;
   height: 0 !important;
-  padding-bottom: 108.6% !important;   /* matches SVG aspect ratio */
+  padding-bottom: 108.6% !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -5371,19 +5374,11 @@ body,
 }
 
 /* ============================================================
-   ARCH INNER — EXACT SVG arch coordinates:
-   SVG viewBox 613.5 w x 666 h
-   Arch left vertical line:  x = 148.4  (24.2%)
-   Arch right vertical line: x = 506.4  (82.5%)
-   Arch width: 358px (58.4%)
-   Arch center: x = 327.4 (53.4%)
-   Dome apex: y = 3.8 (0.6%)
-   Dome curve descends to vertical line around y = 100-214 (15%-32%)
-   Content starts at top: 16% (just under the dome apex, exactly like draft)
+   ARCH INNER & PARAGRAPHS
    ============================================================ */
 .about-sketch-arch-inner {
   position: absolute !important;
-  top: 16% !important;
+  top: 15% !important;
   left: 24.2% !important;
   width: 58.4% !important;
   height: auto !important;
@@ -5391,20 +5386,29 @@ body,
   z-index: 2 !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
   box-sizing: border-box !important;
   overflow: visible !important;
 }
 
+/* Contents pushed further center (more to the right and bottom) */
+.about-paragraphs-wrap {
+  margin-top: 2.2rem !important;
+  margin-left: 2.2rem !important;
+  margin-right: -0.6rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.about-paragraphs-wrap .body-text,
 .about-sketch-arch-inner .body-text {
   font-family: var(--font-body), sans-serif !important;
-  font-size: clamp(0.7rem, 0.82vw, 0.82rem) !important;
-  line-height: 1.62 !important;
+  font-size: clamp(0.72rem, 0.84vw, 0.85rem) !important;
+  line-height: 1.68 !important;
   color: rgba(240, 236, 250, 0.9) !important;
-  margin-bottom: 0.85rem !important;
+  margin-bottom: 0.95rem !important;
   text-align: center !important;
-  padding: 0 1rem !important;
+  padding: 0 0.8rem !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -5433,13 +5437,13 @@ body,
 }
 
 /* ============================================================
-   EDUCATION SIDE: vertically centered with the EDUCATION spine
+   EDUCATION SIDE: compact vertical spine, vertically centered
    ============================================================ */
 .education-sketch-col {
   display: flex !important;
   flex-direction: row !important;
-  align-items: stretch !important;
-  gap: 2.2rem !important;
+  align-items: center !important; /* Centers both items-wrap & spine together */
+  gap: 2.5rem !important;
   height: 100% !important;
   padding-top: 0 !important;
 }
@@ -5448,19 +5452,21 @@ body,
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important; /* VERTICALLY CENTERS COLLEGE & SHS! */
-  gap: 3.5rem !important;
-  padding-bottom: 2rem !important;
+  justify-content: center !important;
+  gap: 3rem !important;
 }
 
+/* Compact EDUCATION spine - not stretched out */
 .edu-vertical-spine.garamond-heading-spine {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-around !important;
+  justify-content: center !important;
   align-items: center !important;
-  padding: 1.5rem 0.8rem 1.5rem 1.2rem !important;
+  gap: clamp(0.25rem, 0.55vw, 0.45rem) !important; /* Compact gaps between letters */
+  padding: 1rem 0.8rem 1rem 1.2rem !important;
   border-left: 1.5px solid rgba(186, 155, 255, 0.35) !important;
   user-select: none !important;
+  height: auto !important; /* NOT 100% height - prevents excessive tallness */
 }
 
 /* Education titles */
@@ -5483,6 +5489,12 @@ body,
     grid-template-columns: 1.1fr 0.9fr !important;
     gap: 2.5rem !important;
   }
+  .garamond-heading {
+    margin-left: -10% !important;
+  }
+  .about-paragraphs-wrap {
+    margin-left: 1.6rem !important;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -5500,6 +5512,14 @@ body,
     left: 24.2% !important;
     width: 58.4% !important;
   }
+  .garamond-heading {
+    font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+    margin-left: -8% !important;
+  }
+  .about-paragraphs-wrap {
+    margin-left: 1.4rem !important;
+    margin-top: 1.8rem !important;
+  }
   .education-sketch-col {
     max-width: 520px !important;
     margin: 0 auto !important;
@@ -5516,13 +5536,20 @@ body,
     left: 24.2% !important;
     width: 58.4% !important;
   }
+  .garamond-heading {
+    font-size: clamp(1.5rem, 5.5vw, 2.2rem) !important;
+    margin-left: -6% !important;
+  }
+  .about-paragraphs-wrap {
+    margin-left: 0.8rem !important;
+    margin-top: 1.4rem !important;
+    margin-right: 0 !important;
+  }
+  .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
     font-size: 0.72rem !important;
     line-height: 1.55 !important;
     padding: 0 0.5rem !important;
-  }
-  .garamond-heading {
-    font-size: clamp(1.2rem, 4.5vw, 1.8rem) !important;
   }
   .education-sketch-col {
     flex-direction: column !important;
@@ -5545,7 +5572,7 @@ body,
     font-size: 1.2rem !important;
     letter-spacing: 0.2em !important;
     justify-content: center !important;
-    gap: 0.5rem !important;
+    gap: 0.4rem !important;
   }
 }
 
@@ -5555,10 +5582,15 @@ body,
     left: 24.2% !important;
     width: 58.4% !important;
   }
-  .about-sketch-arch-inner .garamond-heading {
-    font-size: 1.15rem !important;
-    margin-bottom: 0.5rem !important;
+  .garamond-heading {
+    font-size: 1.35rem !important;
+    margin-left: -4% !important;
   }
+  .about-paragraphs-wrap {
+    margin-left: 0.4rem !important;
+    margin-top: 1rem !important;
+  }
+  .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
     font-size: 0.68rem !important;
     line-height: 1.5 !important;
