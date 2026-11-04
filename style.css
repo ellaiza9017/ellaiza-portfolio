@@ -6315,8 +6315,8 @@ body,
 
 /* Card 4: Full Body (tall, top-aligned) */
 .works-col-fullbody {
-  width: 370px;
-  margin-top: -45px;
+  width: 420px;
+  margin-top: 10px;
   margin-left: 0 !important;
   z-index: 2;
 }
@@ -6325,7 +6325,7 @@ body,
 .works-col-purplegirl {
   width: 205px;
   margin-top: -27px;
-  margin-left: -80px !important;
+  margin-left: -125px !important;
   z-index: 4;
 }
 
