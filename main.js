@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sparkleAudio = new Audio('assets/Music/sparklele.mp3');
   sparkleAudio.loop = true;
   sparkleAudio.volume = 0; // Starts silent
-  const SPARKLE_TARGET_VOLUME = 0.04; // Barely audible, delicate whisper of stardust
+  const SPARKLE_TARGET_VOLUME = 0.02; // Barely audible, delicate whisper of stardust
 
   let isSparklePlaying = false;
   let sparkleStopTimer = null;
@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '2': {
       title: 'Starlight Maiden & Nyx',
       category: 'ILLUSTRATION & CHARACTER ART',
-      image: 'assets/images/girl-and-cat.png',
+      image: 'assets/images/Illustrations/PurpleGirl.png',
       desc: 'A signature character portrait study exploring purple night tones, soft lighting, and companion black cat Nyx with gentle ambient breathing motion.',
       specs: [
         'High-resolution digital illustration',
@@ -634,19 +634,19 @@ document.addEventListener('DOMContentLoaded', () => {
       src: 'assets/Music/fassounds-good-night-lofi-cozy-chill-music-160166.mp3'
     },
     {
-      name: 'Bedroom Window • Outlands',
-      sub: 'Lo-Fi Chill & Coffee Warmth • Aeris CC0',
-      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/bedroom-window-outlands.mp3'
+      name: 'Vinyl Teapot • Cozy Lo-Fi',
+      sub: 'Chill Lo-Fi Acoustic • Ornave',
+      src: 'assets/Music/ornave-lofi-vinyl-teapot-553356.mp3'
     },
     {
-      name: 'Colder Air • Midnight Study',
-      sub: 'Warm Melodic Lo-Fi Pads • Aeris CC0',
-      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/colder-air.mp3'
+      name: 'Chill Lo-Fi Beat',
+      sub: 'Mellow Atmosphere • Velario Music',
+      src: 'assets/Music/velariomusic-chill-lofi-616929.mp3'
     },
     {
-      name: 'Quiet Room • Rain & Beats',
-      sub: 'Ambient Late Night Lo-Fi • Aeris CC0',
-      src: 'https://raw.githubusercontent.com/farmmer938-lgtm/aeris-cc0-music/main/tracks/quiet-room.mp3'
+      name: 'Midnight Breeze',
+      sub: 'Peaceful Focus Vibes • Zephira Music',
+      src: 'assets/Music/zephiramusic-chill-lofi-585360.mp3'
     }
   ];
 
@@ -697,6 +697,9 @@ document.addEventListener('DOMContentLoaded', () => {
         startMusic();
       }
     }
+
+    // Preload track 0 metadata
+    loadTrack(0, false);
 
     // Try playing immediately
     startMusic();
@@ -901,6 +904,242 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuToggle.classList.remove('active');
         mobileNavDrawer.classList.remove('active');
       }
+    });
+  }
+
+
+  // ==========================================================================
+  // 13. SCROLL DOWN INDICATOR HIDE ON SCROLL
+  // ==========================================================================
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  window.addEventListener('scroll', () => {
+    if (scrollIndicator) {
+      if (window.scrollY > 20) {
+        scrollIndicator.classList.add('hidden');
+      } else {
+        scrollIndicator.classList.remove('hidden');
+      }
+    }
+  }, { passive: true });
+
+  // ==========================================================================
+  // 14. TYPING ANIMATION (AI driven workflow | Hand drawn illustrations | Inspired creative designs)
+  // ==========================================================================
+  const typingEl = document.getElementById('typing-text');
+  if (typingEl) {
+    const phrases = [
+      'AI driven workflow',
+      'Hand drawn illustrations',
+      'Inspired creative designs'
+    ];
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    function typeNext() {
+      const current = phrases[phraseIdx];
+      if (isDeleting) {
+        charIdx--;
+        typingEl.textContent = current.slice(0, charIdx);
+        if (charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(typeNext, 450);
+          return;
+        }
+        setTimeout(typeNext, 35);
+      } else {
+        charIdx++;
+        typingEl.textContent = current.slice(0, charIdx);
+        if (charIdx === current.length) {
+          isDeleting = true;
+          setTimeout(typeNext, 2000);
+          return;
+        }
+        setTimeout(typeNext, 65);
+      }
+    }
+    typeNext();
+  }
+
+  // ==========================================================================
+  // 15. SIDE REVEAL OBSERVER (SLIDE FROM SIDES FOR ABOUT SECTION)
+  // ==========================================================================
+  const revealSideElements = document.querySelectorAll('[data-reveal-left], [data-reveal-right]');
+  const sideRevealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        } else {
+          entry.target.classList.remove('revealed');
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -30px 0px' }
+  );
+  revealSideElements.forEach((el) => sideRevealObserver.observe(el));
+
+  // ==========================================================================
+  // 16. SKILL BOX OPEN ANIMATION (SPLIT OPEN FROM CENTER LINE)
+  // ==========================================================================
+  const skillBoxes = document.querySelectorAll('[data-box-open]');
+  const skillBoxObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = Array.from(skillBoxes).indexOf(entry.target) * 160;
+        setTimeout(() => {
+          entry.target.classList.add('box-opened');
+        }, delay);
+      } else {
+        entry.target.classList.remove('box-opened');
+      }
+    });
+  }, { threshold: 0.15 });
+  skillBoxes.forEach((box) => skillBoxObserver.observe(box));
+
+  // ==========================================================================
+  // 17. SKILL EXPLANATION POPUP PANEL
+  // ==========================================================================
+  const skillDescriptions = {
+    'java-cs': { title: 'Java • C#', desc: 'Foundational object-oriented programming in Java and C# game scripting in Unity for Luminang capstone mechanics and interactive elements.' },
+    'react-flutter': { title: 'React • Flutter', desc: 'Frontend web component development with React and cross-platform mobile application development with Flutter.' },
+    'html-css': { title: 'HTML5 & CSS3', desc: 'Modern responsive web layouts, custom animations, celestial design systems, and semantic markup.' },
+    'unity': { title: 'Unity Engine', desc: 'Scene construction, mobile touch controls, minigame mechanics, audio integration, and Android exports in Luminang.' },
+    'git': { title: 'Git • GitHub', desc: 'Version control, repository management, and collaboration workflows (@ellaiza9017).' },
+    'mysql-oracle': { title: 'MySQL • Oracle', desc: 'Relational database schema modeling, SQL querying, constraints, and academic database management systems.' },
+    'supabase-firebase': { title: 'Supabase • Firebase', desc: 'Cloud backend services, user authentication, realtime database listeners, and storage integration.' },
+    'schema': { title: 'Schema Design', desc: 'Entity-relationship diagrams (ERD), normalization (1NF-3NF), and database architecture structuring.' },
+    'json-api': { title: 'JSON • REST APIs', desc: 'Data structuring, JSON vocabulary formatting for games, and RESTful API consumption.' },
+    'qa': { title: 'Android QA Testing', desc: 'Manual system testing on Android devices to catch UI overflow, scene transition glitches, and performance hiccups.' },
+    'blender': { title: 'Blender 3D', desc: 'Low-poly 3D modeling, UV unwrapping, prop creation, texturing, and asset optimization for mobile game engines.' },
+    'procreate-krita': { title: 'Procreate • Krita', desc: 'Hand-drawn digital illustrations, character concept design, line art, and custom artwork creations.' },
+    'canva-capcut': { title: 'Canva • CapCut', desc: 'Graphic design layouts, branding assets, presentation mockups, and video reel editing with timing and effects.' },
+    'uiux': { title: 'UI/UX Wireframing', desc: 'User flow mapping, mobile wireframes, intuitive layout prototyping, and accessible component hierarchies.' },
+    'ai-tooling': { title: 'Generative AI Tooling', desc: 'Utilizing Claude, ChatGPT, GitHub Copilot, and Antigravity IDE to streamline coding workflows, debugging, and ideation.' }
+  };
+
+  const skillPopup = document.getElementById('skill-popup');
+  const skillPopupTitle = document.getElementById('skill-popup-title');
+  const skillPopupDesc = document.getElementById('skill-popup-desc');
+  const skillPopupClose = document.getElementById('skill-popup-close');
+
+  document.querySelectorAll('.skill-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute('data-skill-id');
+      const data = skillDescriptions[id];
+      if (data && skillPopup) {
+        skillPopupTitle.textContent = data.title;
+        skillPopupDesc.textContent = data.desc;
+        skillPopup.classList.add('active');
+        skillPopup.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+
+  if (skillPopupClose) {
+    skillPopupClose.addEventListener('click', () => {
+      skillPopup.classList.remove('active');
+      skillPopup.setAttribute('aria-hidden', 'true');
+    });
+  }
+  if (skillPopup) {
+    skillPopup.addEventListener('click', (e) => {
+      if (e.target === skillPopup) {
+        skillPopup.classList.remove('active');
+        skillPopup.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 18. WORKS CARDS REVEAL (TRIGGERED AFTER SELECTED WORKS TITLE IS VISIBLE)
+  // ==========================================================================
+  const archGallery = document.querySelector('.arch-gallery');
+  const worksTitleBlock = document.querySelector('.works-title-block');
+  if (archGallery) {
+    archGallery.classList.add('works-hidden');
+  }
+  if (worksTitleBlock && archGallery) {
+    const worksObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              archGallery.classList.remove('works-hidden');
+              archGallery.classList.add('works-revealed');
+              archGallery.querySelectorAll('.arch-card').forEach((card, i) => {
+                card.style.transitionDelay = (i * 0.15) + 's';
+              });
+            }, 550);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    worksObserver.observe(worksTitleBlock);
+  }
+
+  // ==========================================================================
+  // 19. GRADIENT TITLE CURSOR SPOTLIGHT (DARK INVERT ON TOUCHED SPOT)
+  // ==========================================================================
+  const isFinePointerDevice = window.matchMedia('(pointer: fine)').matches;
+  if (isFinePointerDevice) {
+    document.querySelectorAll('.gradient-title, .section-title').forEach((titleEl) => {
+      const spotlight = document.createElement('span');
+      spotlight.className = 'title-spotlight';
+      spotlight.textContent = titleEl.textContent;
+      spotlight.setAttribute('aria-hidden', 'true');
+      titleEl.appendChild(spotlight);
+
+      titleEl.addEventListener('mousemove', (e) => {
+        const rect = titleEl.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        spotlight.style.setProperty('--mx', mx + 'px');
+        spotlight.style.setProperty('--my', my + 'px');
+      });
+
+      titleEl.addEventListener('mouseleave', () => {
+        spotlight.style.setProperty('--mx', '-500px');
+        spotlight.style.setProperty('--my', '-500px');
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 20. SECTION NAVIGATION INDICATOR (LEFT FIXED DOTS & SPARKLES)
+  // ==========================================================================
+  const navIndicator = document.querySelector('.section-nav-indicator');
+  if (navIndicator) {
+    const indDots = navIndicator.querySelectorAll('.nav-ind-dot');
+    const sectionIds = ['home', 'about', 'skills', 'works', 'contact'];
+
+    function updateIndDots() {
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+      let activeIdx = 0;
+      sectionIds.forEach((id, i) => {
+        const sec = document.getElementById(id);
+        if (sec && scrollPos >= sec.offsetTop) {
+          activeIdx = i;
+        }
+      });
+      indDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIdx);
+      });
+    }
+
+    window.addEventListener('scroll', updateIndDots, { passive: true });
+    updateIndDots();
+
+    indDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const target = document.getElementById(sectionIds[i]);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     });
   }
 
