@@ -6267,7 +6267,7 @@ body,
 
 /* Card 1: Cat (short, sits low on baseline) */
 .works-col-cat {
-  width: 275px;
+  width: 215px;
   margin-top: 175px;
   margin-left: 0 !important;
   z-index: 1;
@@ -6315,8 +6315,8 @@ body,
 
 /* Card 4: Full Body (tall, top-aligned) */
 .works-col-fullbody {
-  width: 450px;
-  margin-top: 110px;
+  width: 370px;
+  margin-top: -45px;
   margin-left: 0 !important;
   z-index: 2;
 }
@@ -6324,8 +6324,8 @@ body,
 /* Card 5: Purple Girl (short, top-aligned) */
 .works-col-purplegirl {
   width: 205px;
-  margin-top: 0px;
-  margin-left: -230px !important;
+  margin-top: -27px;
+  margin-left: -80px !important;
   z-index: 4;
 }
 
