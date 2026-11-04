@@ -5412,21 +5412,6 @@ body,
 }
 
 /* Palette bar: positioned under the arch wrap */
-.palette-bar-under-bg {
-  margin-top: 1.4rem !important;
-  margin-left: 0 !important;
-  width: 100% !important;
-  max-width: none !important;
-  display: flex !important;
-  justify-content: flex-start !important;
-}
-
-.palette-bar-under-bg .palette-swatches {
-  display: flex !important;
-  width: clamp(220px, 55%, 380px) !important;
-  gap: 0 !important;
-}
-
 /* About left col */
 .about-left-col {
   position: relative !important;
@@ -5435,12 +5420,12 @@ body,
 }
 
 /* ============================================================
-   EDUCATION SIDE: compact vertical spine, vertically centered
+   EDUCATION SIDE: items-wrap with College, SHS, and Palette at bottom
    ============================================================ */
 .education-sketch-col {
   display: flex !important;
   flex-direction: row !important;
-  align-items: center !important; /* Centers both items-wrap & spine together */
+  align-items: stretch !important; /* Matches full height of arch column */
   gap: 2.5rem !important;
   height: 100% !important;
   padding-top: 0 !important;
@@ -5450,21 +5435,60 @@ body,
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
-  gap: 3rem !important;
+  justify-content: flex-start !important;
+  gap: 2.2rem !important;
+  height: 100% !important;
 }
 
-/* Compact EDUCATION spine - not stretched out */
+/* Compact EDUCATION spine - vertically centered in the column */
 .edu-vertical-spine.garamond-heading-spine {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: clamp(0.7rem, 1.1vw, 1.1rem) !important; /* Taller spacing */
+  align-self: center !important; /* Vertically centered spine */
+  gap: clamp(0.7rem, 1.1vw, 1.1rem) !important;
   padding: 1.6rem 1rem 1.6rem 1.4rem !important;
   border-left: 1.5px solid rgba(186, 155, 255, 0.35) !important;
   user-select: none !important;
   height: auto !important;
+}
+
+/* Color Palette: below SHS education, inline with bottom of background frame */
+.palette-bar-edu {
+  margin-top: auto !important; /* Pushes to bottom of edu column, inline with arch bottom */
+  padding-top: 1.6rem !important;
+  margin-bottom: 0.2rem !important;
+  width: 100% !important;
+  max-width: none !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+
+.palette-bar-edu .palette-swatches {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important; /* EXACT GAPS FROM DRAFT */
+  width: auto !important;
+  max-width: none !important;
+}
+
+.palette-bar-edu .swatch {
+  width: clamp(38px, 3.2vw, 48px) !important;
+  height: clamp(26px, 2.2vw, 32px) !important;
+  flex: none !important;
+  border-radius: 2px !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer;
+  background-color: var(--c) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.palette-bar-edu .swatch:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 4px 14px rgba(212, 184, 255, 0.45) !important;
+  z-index: 5 !important;
 }
 
 /* Education titles */
@@ -5554,6 +5578,17 @@ body,
     gap: 1.8rem !important;
     padding-top: 1rem !important;
   }
+  .palette-bar-edu {
+    margin-top: 2rem !important;
+    justify-content: center !important;
+  }
+  .palette-bar-edu .palette-swatches {
+    gap: 8px !important;
+  }
+  .palette-bar-edu .swatch {
+    width: 36px !important;
+    height: 24px !important;
+  }
   .edu-items-wrap {
     justify-content: flex-start !important;
     gap: 2rem !important;
@@ -5587,6 +5622,13 @@ body,
   .about-paragraphs-wrap {
     margin-left: 0.4rem !important;
     margin-top: 1rem !important;
+  }
+  .palette-bar-edu .palette-swatches {
+    gap: 6px !important;
+  }
+  .palette-bar-edu .swatch {
+    width: 30px !important;
+    height: 22px !important;
   }
   .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
