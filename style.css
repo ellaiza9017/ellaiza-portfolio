@@ -5915,15 +5915,16 @@ body,
   letter-spacing: 0.04em;
 }
 
-/* 5 Arch SVG Frames Row */
+/* 5 Arch SVG Frames Row — Exact Canva Positioning & Generous Breathing Room */
 .gallery-frames-row {
   display: flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
+  gap: clamp(1.6rem, 2.8vw, 3.2rem) !important;
   position: relative;
-  max-width: 1220px;
-  width: 100%;
-  margin: 0 auto 3rem auto;
+  max-width: 1380px;
+  width: 95%;
+  margin: 0 auto 3.5rem auto;
   padding: 0 1rem;
   z-index: 2;
 }
@@ -5933,6 +5934,7 @@ body,
   cursor: pointer;
   outline: none;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  flex-shrink: 0;
 }
 
 .works-frame-col:hover,
@@ -5950,24 +5952,27 @@ body,
   pointer-events: none;
 }
 
-/* Specific Staggers and Flex Ratios to match Canva reference layout */
+/* Card 1: Cat (short, sits low on baseline) */
 .works-col-cat {
-  flex: 0 0 21%;
-  margin-top: 140px;
+  width: clamp(150px, 13vw, 190px);
+  margin-top: clamp(120px, 12vw, 165px);
+  margin-left: 0 !important;
   z-index: 1;
 }
 
+/* Card 2: Luminang (tall, top-aligned) */
 .works-col-luminang {
-  flex: 0 0 17%;
-  margin-left: -2%;
+  width: clamp(160px, 14vw, 200px);
   margin-top: 0px;
+  margin-left: 0 !important;
   z-index: 2;
 }
 
+/* Card 3: Video (mid-height, center stagger) */
 .works-col-video {
-  flex: 0 0 21%;
-  margin-left: -1%;
-  margin-top: 60px;
+  width: clamp(190px, 16.5vw, 235px);
+  margin-top: clamp(50px, 5.5vw, 75px);
+  margin-left: 0 !important;
   z-index: 3;
 }
 
@@ -5994,291 +5999,33 @@ body,
   z-index: 2;
 }
 
+/* Card 4: Full Body (tall, top-aligned) */
 .works-col-fullbody {
-  flex: 0 0 26%;
-  margin-left: -3%;
-  margin-top: 5px;
+  width: clamp(190px, 16.5vw, 240px);
+  margin-top: 8px;
+  margin-left: 0 !important;
   z-index: 2;
 }
 
+/* Card 5: Purple Girl (short, top-aligned) */
 .works-col-purplegirl {
-  flex: 0 0 18%;
-  margin-left: -7%;
+  width: clamp(155px, 13.5vw, 195px);
   margin-top: 0px;
+  margin-left: 0 !important;
   z-index: 4;
 }
 
-/* Coming Soon Button & Tooltip */
-.works-action-row {
-  text-align: center;
-  margin-top: 3rem;
-  position: relative;
-  z-index: 3;
-}
-
-.coming-soon-btn-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-coming-soon {
-  cursor: not-allowed !important;
-  opacity: 0.9;
-}
-
-.coming-soon-bubble {
-  position: absolute;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  background: rgba(14, 10, 26, 0.95);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(162, 130, 240, 0.5);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.3);
-  color: #D4B8FF;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  padding: 0.4rem 0.95rem;
-  border-radius: 999px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-  z-index: 100;
-}
-
-.coming-soon-btn-wrapper:hover .coming-soon-bubble,
-.coming-soon-btn-wrapper:focus-within .coming-soon-bubble {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Header Nav Disabled Item */
-.nav-item--disabled {
-  position: relative;
-  opacity: 0.45;
-  cursor: not-allowed !important;
-}
-
-.nav-item--disabled::after {
-  content: '✦ Coming Soon';
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-6px);
-  background: rgba(14, 10, 26, 0.95);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(162, 130, 240, 0.5);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.3);
-  color: #D4B8FF;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-  z-index: 100;
-}
-
-.nav-item--disabled:hover::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Celestial Toast Notification */
-.coming-soon-toast {
-  position: fixed;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(40px);
-  background: rgba(14, 10, 26, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(162, 130, 240, 0.5);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(155, 108, 250, 0.35);
-  padding: 0.8rem 1.8rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
-  z-index: 10000;
-  pointer-events: none;
-}
-
-.coming-soon-toast.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.toast-sparkle {
-  color: #D4B8FF;
-  font-size: 1.05rem;
-  animation: spinSlow 6s linear infinite;
-}
-
-/* Video Lightbox Modal */
-.video-lightbox-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s;
-}
-
-.video-lightbox-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.video-lightbox-dialog {
-  position: relative;
-  max-width: 900px;
-  width: 90%;
-  max-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  border-radius: 24px;
-  background: rgba(10, 6, 20, 0.9) !important;
-  border: 1px solid rgba(162, 130, 240, 0.45) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(155, 108, 250, 0.35);
-  z-index: 2;
-}
-
-.modal-video-player {
-  max-width: 100%;
-  max-height: 75vh;
-  border-radius: 16px;
-  outline: none;
-  background: #000;
-}
-
-/* SVG Frame Full-Image Lightbox Modal */
-.svgframe-lightbox-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s;
-}
-
-.svgframe-lightbox-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.svgframe-lb-dialog {
-  position: relative;
-  max-width: 850px;
-  width: 90%;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  border-radius: 24px;
-  background: rgba(10, 6, 20, 0.94) !important;
-  border: 1px solid rgba(162, 130, 240, 0.45) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(155, 108, 250, 0.4);
-  z-index: 2;
-}
-
-.svgframe-lb-img {
-  max-width: 100%;
-  max-height: 72vh;
-  object-fit: contain;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.svgframe-lb-actions {
-  margin-top: 1.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-/* Luminang Gradient Link */
-.luminang-gradient-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  background: linear-gradient(135deg, #ffffff 0%, #D4B8FF 45%, #9b6cfa 85%, #ffffff 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease;
-  animation: shimmerGradient 4s ease infinite;
-}
-
-.luminang-gradient-link svg {
-  color: #D4B8FF;
-  stroke: #D4B8FF;
-  transition: transform 0.25s ease;
-}
-
-.luminang-gradient-link:hover {
-  filter: drop-shadow(0 0 14px rgba(212, 184, 255, 0.9));
-}
-
-.luminang-gradient-link:hover svg {
-  transform: translate(3px, -3px);
-}
-
-@keyframes shimmerGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Responsive adjustments */
 @media (max-width: 1080px) {
   .gallery-frames-row {
     flex-wrap: wrap !important;
-    gap: 1.5rem !important;
+    gap: 2rem !important;
   }
-  .works-frame-col {
-    flex: 1 1 30% !important;
-    max-width: 260px !important;
-    margin-left: 0 !important;
+  .works-col-cat,
+  .works-col-luminang,
+  .works-col-video,
+  .works-col-fullbody,
+  .works-col-purplegirl {
+    width: 220px !important;
     margin-top: 0 !important;
   }
 }
@@ -6287,12 +6034,15 @@ body,
   .gallery-frames-row {
     flex-direction: column !important;
     align-items: center !important;
-    gap: 2.5rem !important;
+    gap: 3rem !important;
   }
-  .works-frame-col {
+  .works-col-cat,
+  .works-col-luminang,
+  .works-col-video,
+  .works-col-fullbody,
+  .works-col-purplegirl {
     width: 80% !important;
     max-width: 320px !important;
-    margin-left: 0 !important;
     margin-top: 0 !important;
   }
 }
