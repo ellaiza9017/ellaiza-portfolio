@@ -5294,7 +5294,7 @@ body,
   white-space: nowrap !important;
   /* Hard shift to the left using position: relative so 'B' clearly sits outside/across the left arch outline like the draft */
   position: relative !important;
-  left: clamp(-5rem, -4.8vw, -3.5rem) !important;
+  left: clamp(-8.5rem, -8vw, -6.5rem) !important; /* Shifted further left to completely clear the SVG frame star */
   width: max-content !important;
   text-align: left !important;
 }
@@ -5488,7 +5488,7 @@ body,
     gap: 2.5rem !important;
   }
   .garamond-heading {
-    left: clamp(-4.2rem, -4vw, -2.8rem) !important;
+    left: clamp(-7.5rem, -7vw, -5.5rem) !important;
   }
   .about-paragraphs-wrap {
     margin-left: 1.6rem !important;
@@ -5512,7 +5512,7 @@ body,
   }
   .garamond-heading {
     font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
-    left: -2.5rem !important;
+    left: clamp(-5.5rem, -5.5vw, -4rem) !important;
   }
   .about-paragraphs-wrap {
     margin-left: 1.4rem !important;
@@ -5536,7 +5536,7 @@ body,
   }
   .garamond-heading {
     font-size: clamp(1.5rem, 5.5vw, 2.2rem) !important;
-    left: -1.5rem !important;
+    left: clamp(-4rem, -4.5vw, -2.8rem) !important;
   }
   .about-paragraphs-wrap {
     margin-left: 0.8rem !important;
@@ -5582,7 +5582,7 @@ body,
   }
   .garamond-heading {
     font-size: 1.35rem !important;
-    left: -0.8rem !important;
+    left: clamp(-2.8rem, -3.5vw, -1.8rem) !important;
   }
   .about-paragraphs-wrap {
     margin-left: 0.4rem !important;
