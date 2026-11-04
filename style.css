@@ -5344,11 +5344,11 @@ body,
 }
 
 /* ============================================================
-   ARCH INNER & PARAGRAPHS
+   ARCH INNER & PARAGRAPHS - Shifted Higher for Clean Bottom Margin
    ============================================================ */
 .about-sketch-arch-inner {
   position: absolute !important;
-  top: 15% !important;
+  top: 8.5% !important; /* Lifted higher into arch dome */
   left: 24.2% !important;
   width: 58.4% !important;
   height: auto !important;
@@ -5360,9 +5360,8 @@ body,
   overflow: visible !important;
 }
 
-/* Contents pushed further center (more to the right and bottom) */
 .about-paragraphs-wrap {
-  margin-top: 1rem !important;
+  margin-top: 0.7rem !important;
   margin-left: 2.2rem !important;
   margin-right: -0.6rem !important;
   display: flex !important;
@@ -5373,11 +5372,11 @@ body,
 .about-paragraphs-wrap .body-text,
 .about-sketch-arch-inner .body-text {
   font-family: var(--font-body), sans-serif !important;
-  font-size: clamp(0.85rem, 1.05vw, 1.02rem) !important; /* Bigger */
-  line-height: 1.72 !important;
+  font-size: clamp(0.85rem, 1.05vw, 1.02rem) !important;
+  line-height: 1.66 !important;
   color: rgba(240, 236, 250, 0.92) !important;
-  margin-bottom: 1.1rem !important;
-  text-align: justify !important; /* Justified */
+  margin-bottom: 0.85rem !important;
+  text-align: justify !important;
   text-justify: inter-word !important;
   padding: 0 0.8rem !important;
   width: 100% !important;
@@ -5532,7 +5531,7 @@ body,
     margin: 0 auto !important;
   }
   .about-sketch-arch-inner {
-    top: 15% !important;
+    top: 8.5% !important;
     left: 24.2% !important;
     width: 58.4% !important;
   }
@@ -5556,7 +5555,7 @@ body,
     max-width: 420px !important;
   }
   .about-sketch-arch-inner {
-    top: 14% !important;
+    top: 8.5% !important;
     left: 24.2% !important;
     width: 58.4% !important;
   }
@@ -5614,7 +5613,7 @@ body,
 
 @media (max-width: 480px) {
   .about-sketch-arch-inner {
-    top: 13% !important;
+    top: 8.5% !important;
     left: 24.2% !important;
     width: 58.4% !important;
   }
