@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Pinyon+Script&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -75,7 +75,18 @@
   <!-- MINIMALIST NAVIGATION HEADER (Screenshot 2 Match) -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#home" class="brand-logo-text" id="btn-view-logo" title="Ellaiza">Logo</a>
+      <a href="javascript:void(0)" class="brand-crest" id="btn-view-logo"
+        title="Click to toggle lo-fi soundtrack">
+        <img src="assets/images/ellaiza-logo.png" alt="Ellaiza Logo" class="brand-crest-img vinyl-spin"
+          id="vinyl-disc">
+        <div class="brand-info">
+          <span class="brand-name">ELLAIZA</span>
+          <div class="brand-music-badge" id="music-badge">
+            <span class="music-wave"></span>
+            <span id="music-text">Now Playing</span>
+          </div>
+        </div>
+      </a>
       <audio id="bg-audio" preload="auto"></audio>
 
       <nav class="nav-links">
@@ -137,9 +148,19 @@
         </div>
         <!-- Full Name Bar pinned along the bottom edge of the eyecrop -->
         <div class="hero-name-bar">
-          <span class="hero-name-sparkle">✦</span>
-          <h1 class="hero-fullname gradient-title">ELLAIZA ROSE PESONS</h1>
-          <span class="hero-name-sparkle">✦</span>
+          <svg class="hero-name-sparkle-svg" viewBox="0 0 60 60" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30 4 C30 4 31 22 30 30 C29 22 30 4 30 4Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M30 30 C30 30 48 29 56 30 C48 31 30 30 30 30Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M30 56 C30 56 29 38 30 30 C31 38 30 56 30 56Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M4 30 C4 30 22 31 30 30 C22 29 4 30 4 30Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+          <h1 class="hero-fullname">Ellaiza Rose Pesons</h1>
+          <svg class="hero-name-sparkle-svg" viewBox="0 0 60 60" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30 4 C30 4 31 22 30 30 C29 22 30 4 30 4Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M30 30 C30 30 48 29 56 30 C48 31 30 30 30 30Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M30 56 C30 56 29 38 30 30 C31 38 30 56 30 56Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M4 30 C4 30 22 31 30 30 C22 29 4 30 4 30Z" stroke="#FFD666" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
         </div>
       </div>
 
@@ -148,11 +169,15 @@
         <!-- Left: Text -->
         <div class="hero-narrative">
           <p class="hero-greeting">Hi, I'm Ellaiza</p>
-          <p class="hero-description">I live life full of daydreams, cats, coffee, and music. Creativity may not like me very much but I sure like to chase it.</p>
+          <p class="hero-description">I live life full of daydreams, cats, coffee, and music. Creativity may not like me
+            very much but I sure like to chase it.</p>
           <p class="hero-typing-line"><span id="typing-text"></span><span class="typing-cursor">|</span></p>
           <div class="hero-actions">
             <a href="#works" class="hero-pill pill-cta">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
               view works
             </a>
             <span class="hero-pill pill-static">BSIT 4th year</span>
@@ -166,7 +191,8 @@
             <div class="live2d-aura"></div>
             <!-- Character Viewport -->
             <div class="live2d-viewport">
-              <img src="assets/images/Illustrations/PurpleGirl.png" alt="Purple Girl Illustration" class="live2d-character-image" id="live2d-img">
+              <img src="assets/images/Illustrations/PurpleGirl.png" alt="Purple Girl Illustration"
+                class="live2d-character-image" id="live2d-img">
               <div class="live2d-shimmer-pass"></div>
               <div class="card-dust cd-1">✦</div>
               <div class="card-dust cd-2">✧</div>
@@ -183,13 +209,19 @@
               </div>
               <div class="player-controls">
                 <button class="player-nav-btn" id="player-prev-btn" aria-label="Previous Track">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                  </svg>
                 </button>
                 <button class="player-play-btn" id="card-play-btn" aria-label="Toggle Music">
-                  <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z" id="card-play-path"/></svg>
+                  <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M8 5v14l11-7z" id="card-play-path" />
+                  </svg>
                 </button>
                 <button class="player-nav-btn" id="player-next-btn" aria-label="Next Track">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                  </svg>
                 </button>
               </div>
               <div class="footer-meta" id="player-info-meta">
@@ -205,7 +237,8 @@
       <a href="#about" class="scroll-down-pill" id="scroll-indicator" aria-label="Scroll down">
         <span class="pill-text">SCROLL DOWN</span>
         <svg class="scroll-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
       </a>
     </section>
@@ -216,7 +249,7 @@
     <section id="about" class="section about-section">
       <div class="section-container">
 
-                <div class="section-header about-header" data-reveal>
+        <div class="section-header about-header" data-reveal>
           <div class="about-eyebrow">
             <span class="sparkle">✦</span>
             <span class="eyebrow-line"></span>
@@ -227,23 +260,29 @@
           <h2 class="section-title">WHO I AM</h2>
         </div>
 
-                <div class="about-grid sketch-about-grid">
+        <div class="about-grid sketch-about-grid">
           <!-- Left: Background & Aspirations Card + Palette below (matching sketch) -->
           <div class="about-left-col" data-reveal-left>
-            <div class="story-card arch-bg-card">
+            <div class="story-card arch-bg-card" style="position:relative;overflow:visible;">
+              <!-- Background frame SVG (uploaded Canva frame) -->
+              <img src="assets/SVG/backgroundFrame.svg" alt="" class="bg-card-frame-svg" aria-hidden="true">
               <div class="canva-gradient-line about-curve-accent" aria-hidden="true"></div>
               <h3 class="card-heading">BACKGROUND ✦</h3>
               <p class="body-text">
                 I am a <strong>4th-year Bachelor of Science in Information Technology (BSIT)</strong> student at
-                <strong>National University – Dasmariñas</strong> with foundational experience in general programming, web
+                <strong>National University – Dasmariñas</strong> with foundational experience in general programming,
+                web
                 and mobile development, and database systems built through hands-on academic coursework and school
                 projects.
               </p>
               <p class="body-text">
                 Through our capstone project, I gained proven hands-on experience and AI assisted workflow in
-                <strong>low-poly 3D modeling in Blender</strong>, <strong>Unity development</strong>, and mobile UI layouts.
-                I consider myself an adaptable, diligent, and proactive team player eager to apply core IT skills, learn from
-                industry mentors, and contribute to team workflows during an <strong>On-the-Job Training (OJT) internship</strong>
+                <strong>low-poly 3D modeling in Blender</strong>, <strong>Unity development</strong>, and mobile UI
+                layouts.
+                I consider myself an adaptable, diligent, and proactive team player eager to apply core IT skills, learn
+                from
+                industry mentors, and contribute to team workflows during an <strong>On-the-Job Training (OJT)
+                  internship</strong>
                 and creative projects.
               </p>
             </div>
@@ -252,10 +291,13 @@
             <div class="palette-bar-under-bg">
               <div class="palette-swatches">
                 <button class="swatch" data-hex="#0A0813" style="--c: #0A0813;" title="Abyssal Deep: #0A0813"></button>
-                <button class="swatch" data-hex="#181329" style="--c: #181329;" title="Obsidian Night: #181329"></button>
+                <button class="swatch" data-hex="#181329" style="--c: #181329;"
+                  title="Obsidian Night: #181329"></button>
                 <button class="swatch" data-hex="#3D2968" style="--c: #3D2968;" title="Nebula Indigo: #3D2968"></button>
-                <button class="swatch" data-hex="#8E63DB" style="--c: #8E63DB;" title="Starlight Violet: #8E63DB"></button>
-                <button class="swatch" data-hex="#D4B8FF" style="--c: #D4B8FF;" title="Ethereal Lavender: #D4B8FF"></button>
+                <button class="swatch" data-hex="#8E63DB" style="--c: #8E63DB;"
+                  title="Starlight Violet: #8E63DB"></button>
+                <button class="swatch" data-hex="#D4B8FF" style="--c: #D4B8FF;"
+                  title="Ethereal Lavender: #D4B8FF"></button>
                 <button class="swatch" data-hex="#F4EFFF" style="--c: #F4EFFF;" title="Pure Stardust: #F4EFFF"></button>
               </div>
             </div>
@@ -309,9 +351,10 @@
     <section id="skills" class="section skills-section">
       <div class="section-container">
 
-                <div class="section-header skills-header" data-reveal>
+        <div class="section-header skills-header" data-reveal>
           <h2 class="section-title">TECHNICAL SKILLS &amp; TOOLS<span class="typing-cursor-inline">|</span></h2>
-          <p class="section-subtitle">A list of all programming languages, engines, frameworks, database management, and creative tools I have interacted with. Click for details.</p>
+          <p class="section-subtitle">A list of all programming languages, engines, frameworks, database management, and
+            creative tools I have interacted with. Click for details.</p>
         </div>
 
         <div class="skills-showcase">
@@ -322,11 +365,16 @@
               <h3>Development &amp; Engines</h3>
             </div>
             <div class="skill-pills">
-              <button class="skill-tag skill-btn" data-skill-id="java-cs"><span class="tag-star">✦</span> <strong>Java • C#</strong> (Core Programming)</button>
-              <button class="skill-tag skill-btn" data-skill-id="react-flutter"><span class="tag-star">✦</span> <strong>React • Flutter</strong> (Web &amp; Mobile)</button>
-              <button class="skill-tag skill-btn" data-skill-id="html-css"><span class="tag-star">✦</span> <strong>HTML5 &amp; CSS3</strong> (Frontend Design)</button>
-              <button class="skill-tag skill-btn" data-skill-id="unity"><span class="tag-star">✦</span> <strong>Unity Engine</strong> (Game Development)</button>
-              <button class="skill-tag skill-btn" data-skill-id="git"><span class="tag-star">✦</span> <strong>Git • GitHub</strong> (Version Control)</button>
+              <button class="skill-tag skill-btn" data-skill-id="java-cs"><span class="tag-star">✦</span> <strong>Java •
+                  C#</strong> (Core Programming)</button>
+              <button class="skill-tag skill-btn" data-skill-id="react-flutter"><span class="tag-star">✦</span>
+                <strong>React • Flutter</strong> (Web &amp; Mobile)</button>
+              <button class="skill-tag skill-btn" data-skill-id="html-css"><span class="tag-star">✦</span> <strong>HTML5
+                  &amp; CSS3</strong> (Frontend Design)</button>
+              <button class="skill-tag skill-btn" data-skill-id="unity"><span class="tag-star">✦</span> <strong>Unity
+                  Engine</strong> (Game Development)</button>
+              <button class="skill-tag skill-btn" data-skill-id="git"><span class="tag-star">✦</span> <strong>Git •
+                  GitHub</strong> (Version Control)</button>
             </div>
           </div>
 
@@ -337,11 +385,16 @@
               <h3>Database &amp; Backend</h3>
             </div>
             <div class="skill-pills">
-              <button class="skill-tag skill-btn" data-skill-id="mysql-oracle"><span class="tag-star">✦</span> <strong>MySQL • Oracle</strong> (Relational SQL)</button>
-              <button class="skill-tag skill-btn" data-skill-id="supabase-firebase"><span class="tag-star">✦</span> <strong>Supabase • Firebase</strong> (Cloud &amp; Auth)</button>
-              <button class="skill-tag skill-btn" data-skill-id="schema"><span class="tag-star">✦</span> <strong>Schema Design</strong> (ERD &amp; Modeling)</button>
-              <button class="skill-tag skill-btn" data-skill-id="json-api"><span class="tag-star">✦</span> <strong>JSON • REST APIs</strong> (Data Structuring)</button>
-              <button class="skill-tag skill-btn" data-skill-id="qa"><span class="tag-star">✦</span> <strong>Android QA Testing</strong> (Manual Verification)</button>
+              <button class="skill-tag skill-btn" data-skill-id="mysql-oracle"><span class="tag-star">✦</span>
+                <strong>MySQL • Oracle</strong> (Relational SQL)</button>
+              <button class="skill-tag skill-btn" data-skill-id="supabase-firebase"><span class="tag-star">✦</span>
+                <strong>Supabase • Firebase</strong> (Cloud &amp; Auth)</button>
+              <button class="skill-tag skill-btn" data-skill-id="schema"><span class="tag-star">✦</span> <strong>Schema
+                  Design</strong> (ERD &amp; Modeling)</button>
+              <button class="skill-tag skill-btn" data-skill-id="json-api"><span class="tag-star">✦</span> <strong>JSON
+                  • REST APIs</strong> (Data Structuring)</button>
+              <button class="skill-tag skill-btn" data-skill-id="qa"><span class="tag-star">✦</span> <strong>Android QA
+                  Testing</strong> (Manual Verification)</button>
             </div>
           </div>
 
@@ -352,11 +405,16 @@
               <h3>Creative &amp; AI</h3>
             </div>
             <div class="skill-pills">
-              <button class="skill-tag skill-btn" data-skill-id="blender"><span class="tag-star">✦</span> <strong>Blender 3D</strong> (Low-Poly Modeling &amp; UVs)</button>
-              <button class="skill-tag skill-btn" data-skill-id="procreate-krita"><span class="tag-star">✦</span> <strong>Procreate • Krita</strong> (Digital Illustration)</button>
-              <button class="skill-tag skill-btn" data-skill-id="canva-capcut"><span class="tag-star">✦</span> <strong>Canva • CapCut</strong> (Design &amp; Video)</button>
-              <button class="skill-tag skill-btn" data-skill-id="uiux"><span class="tag-star">✦</span> <strong>UI/UX Wireframing</strong> (Interface Layouts)</button>
-              <button class="skill-tag skill-btn" data-skill-id="ai-tooling"><span class="tag-star">✦</span> <strong>Generative AI</strong> (Claude, ChatGPT, Copilot)</button>
+              <button class="skill-tag skill-btn" data-skill-id="blender"><span class="tag-star">✦</span>
+                <strong>Blender 3D</strong> (Low-Poly Modeling &amp; UVs)</button>
+              <button class="skill-tag skill-btn" data-skill-id="procreate-krita"><span class="tag-star">✦</span>
+                <strong>Procreate • Krita</strong> (Digital Illustration)</button>
+              <button class="skill-tag skill-btn" data-skill-id="canva-capcut"><span class="tag-star">✦</span>
+                <strong>Canva • CapCut</strong> (Design &amp; Video)</button>
+              <button class="skill-tag skill-btn" data-skill-id="uiux"><span class="tag-star">✦</span> <strong>UI/UX
+                  Wireframing</strong> (Interface Layouts)</button>
+              <button class="skill-tag skill-btn" data-skill-id="ai-tooling"><span class="tag-star">✦</span>
+                <strong>Generative AI</strong> (Claude, ChatGPT, Copilot)</button>
             </div>
           </div>
         </div>
@@ -405,11 +463,12 @@
             <h2 class="works-big-title gradient-title">WORKS</h2>
           </div>
           <svg class="works-swash" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 50 Q80 10 160 30 Q220 45 280 15" stroke="url(#swashGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M20 50 Q80 10 160 30 Q220 45 280 15" stroke="url(#swashGrad)" stroke-width="2" fill="none"
+              stroke-linecap="round" />
             <defs>
               <linearGradient id="swashGrad" x1="0" y1="0" x2="300" y2="0">
-                <stop offset="0%" stop-color="#D4B8FF"/>
-                <stop offset="100%" stop-color="#9b6cfa"/>
+                <stop offset="0%" stop-color="#D4B8FF" />
+                <stop offset="100%" stop-color="#9b6cfa" />
               </linearGradient>
             </defs>
           </svg>
@@ -420,7 +479,7 @@
         </div>
 
         <!-- ARCH WORKS CARDS -->
-                <!-- 5 STAGGERED ARCH WORKS CARDS (Canva Draft Layout) -->
+        <!-- 5 STAGGERED ARCH WORKS CARDS (Canva Draft Layout) -->
         <div class="parallax-gallery-container arch-gallery-5" id="gallery-container">
 
           <!-- Frame 1: Short Left -->
@@ -444,11 +503,13 @@
           <!-- Frame 3: Center Featured with Capstone Info & Link -->
           <article class="gallery-card arch-card arch-card-3" data-category="3d" data-artifact="3" data-works-card>
             <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Luminang Mobile Game Artwork" class="gallery-img">
+              <img src="assets/images/Illustrations/bunnygirl.png" alt="Luminang Mobile Game Artwork"
+                class="gallery-img">
               <div class="arch-card-overlay">
                 <h4 class="arch-card-title">Luminang: Language Learning Mobile Game</h4>
                 <p class="arch-card-sub">CAPSTONE PROJECT &bull; 2025 &ndash; 2026</p>
-                <a href="https://luminang.com" target="_blank" rel="noopener noreferrer" class="arch-card-pill-btn">Visit Luminang.com</a>
+                <a href="https://luminang.com" target="_blank" rel="noopener noreferrer"
+                  class="arch-card-pill-btn">Visit Luminang.com</a>
               </div>
             </div>
           </article>
@@ -456,7 +517,8 @@
           <!-- Frame 4: Tall -->
           <article class="gallery-card arch-card arch-card-4" data-category="art" data-artifact="1" data-works-card>
             <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Character Illustration Pose" class="gallery-img">
+              <img src="assets/images/Illustrations/bunnygirl.png" alt="Character Illustration Pose"
+                class="gallery-img">
             </div>
           </article>
 
@@ -486,7 +548,8 @@
 
         <div class="section-header contact-header" data-reveal>
           <p class="contact-eyebrow">Don't be a stranger</p>
-          <h2 class="contact-big-title gradient-title"><span class="contact-title-strikethrough">GET IN TOUCH</span></h2>
+          <h2 class="contact-big-title gradient-title"><span class="contact-title-strikethrough">GET IN TOUCH</span>
+          </h2>
           <div class="canva-gradient-line contact-squigly-accent" aria-hidden="true"></div>
         </div>
 

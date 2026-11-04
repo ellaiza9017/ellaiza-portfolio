@@ -264,39 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const isFinePointer = window.matchMedia('(pointer: fine)').matches;
 
-  if (liveCard && stage && isFinePointer) {
-    stage.addEventListener('mousemove', (e) => {
-      // Pause autonomous float during active user mouse inspection
-      liveCard.classList.remove('auto-hover-float');
-
-      const rect = liveCard.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -12;
-      const rotateY = ((x - centerX) / centerX) * 14;
-
-      liveCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-      if (liveImg) {
-        const transX = ((x - centerX) / centerX) * -8;
-        const transY = ((y - centerY) / centerY) * -6;
-        liveImg.style.transform = `translate(${transX}px, ${transY}px) scale(1.04)`;
-      }
-    });
-
-    stage.addEventListener('mouseleave', () => {
-      liveCard.style.transform = '';
-      if (liveImg) {
-        liveImg.style.transform = '';
-      }
-      // Re-enable autonomous hovering float when mouse leaves
-      liveCard.classList.add('auto-hover-float');
-    });
-  }
+  // Tilt disabled — floating only (no 3D mouse tilt on music player card)
+  // Card uses CSS auto-hover-float animation only.
 
   // ==========================================================================
   // 5. PARALLAX SCROLL CONTROLLER
