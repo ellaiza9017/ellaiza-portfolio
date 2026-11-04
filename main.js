@@ -1239,7 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 3. Bind click handlers to the 5 Arch Frame Cards
-  const frameCards = document.querySelectorAll('.svgframe-card');
+  const frameCards = document.querySelectorAll('[data-works-card]');
   frameCards.forEach((card) => {
     card.addEventListener('click', (e) => {
       // If clicking inside a link inside the card, let default happen

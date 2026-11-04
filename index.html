@@ -1472,77 +1472,109 @@
          WORKS SECTION: ARCH CARDS + GLAZING GRADIENT
          ======================================================== -->
     <section id="works" class="section gallery-section">
-      <!-- Canva Decorative Gradient Lines (Curving behind/around arch frames) -->
+      <!-- Decorative gradient lines curving behind/around arch frames -->
       <div class="works-deco-layer" aria-hidden="true">
         <div class="canva-gradient-line works-curve-left"></div>
         <div class="canva-gradient-line works-curve-right"></div>
       </div>
+
       <div class="section-container">
-
+        <!-- WORKS TITLE BLOCK -->
         <div class="works-title-block" data-reveal>
-          <div class="works-title-wrap works-svg-title-wrap">
-            <img src="assets/SVG/SelectedWorks.svg" alt="Selected Works" class="works-svg-title-img" />
+          <div class="works-title-wrap">
+            <span class="works-script-overlay">Selected</span>
+            <h2 class="works-big-title gradient-title">WORKS</h2>
           </div>
+          <svg class="works-swash" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 50 Q80 10 160 30 Q220 45 280 15" stroke="url(#swashGradWorks)" stroke-width="2" fill="none" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="swashGradWorks" x1="0" y1="0" x2="300" y2="0">
+                <stop offset="0%" stop-color="#D4B8FF" />
+                <stop offset="100%" stop-color="#9b6cfa" />
+              </linearGradient>
+            </defs>
+          </svg>
           <p class="section-subtitle">A curated sneak peek into my works.</p>
-          <div class="coming-soon-wrap" style="margin-top: 1.5rem; display: inline-flex;">
-            <button class="btn-celestial ghost btn-coming-soon" data-coming-soon aria-label="Explore Full Gallery - Coming Soon">
-              <span class="btn-sparkle">✦</span><span>Explore Full Gallery ↗</span>
-            </button>
-            <span class="coming-soon-tooltip">✦ Coming Soon</span>
+        </div>
+
+        <!-- 5 ARCH WORKS CARDS (Exact Canva rhythm: Low, High, Mid, High, High-Short) -->
+        <div class="celestial-works-grid" id="gallery-container">
+
+          <!-- Card 1: Cat Illustration (Short arch, bottom-aligned) -->
+          <div class="cworks-col cworks-col-1">
+            <!-- Decorative curve line on left -->
+            <svg class="cworks-curve cworks-curve-left" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+              <path d="M5 75 Q15 40 50 55 T95 20" stroke="#D4B8FF" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M90 15 L95 20 L100 15 L95 10 Z" fill="#D4B8FF"/>
+            </svg>
+            <article class="cworks-card cworks-card-1" data-works-card data-frame="cat">
+              <div class="cworks-arch">
+                <img src="assets/images/Works/celestial_cat.png" alt="Celestial Cat Illustration" class="cworks-img" loading="lazy" />
+              </div>
+            </article>
           </div>
+
+          <!-- Card 2: Luminang (Tall arch, top-aligned) -->
+          <div class="cworks-col cworks-col-2">
+            <span class="cworks-sparkle-deco top-left" aria-hidden="true">✦</span>
+            <article class="cworks-card cworks-card-2" data-works-card data-frame="luminang">
+              <div class="cworks-arch">
+                <img src="assets/images/Works/luminang_full.png" alt="Luminang Mobile Game Artwork" class="cworks-img" loading="lazy" />
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 3: Procreate Process Video (Mid arch, center) -->
+          <div class="cworks-col cworks-col-3">
+            <span class="cworks-dots-deco top-right" aria-hidden="true">...</span>
+            <span class="cworks-sparkle-deco bottom-left" aria-hidden="true">✦</span>
+            <article class="cworks-card cworks-card-3" data-works-card data-frame="video">
+              <div class="cworks-arch video-arch">
+                <video class="cworks-video" autoplay muted loop playsinline preload="auto">
+                  <source src="assets/videos/Procreate-4Page.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 4: Full Body Character (Tall arch, top-aligned) -->
+          <div class="cworks-col cworks-col-4">
+            <article class="cworks-card cworks-card-4" data-works-card data-frame="fullbody">
+              <div class="cworks-arch">
+                <img src="assets/images/Works/character_fullbody.png" alt="Character Full Body Art" class="cworks-img" loading="lazy" />
+              </div>
+            </article>
+            <!-- Decorative wave swooping under card 4 toward card 5 -->
+            <svg class="cworks-curve cworks-curve-bottom" viewBox="0 0 200 60" fill="none" aria-hidden="true">
+              <path d="M0 45 Q70 5 130 35 T200 20" stroke="#D4B8FF" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- Card 5: Purple Girl Close-up (Short arch, top-aligned) -->
+          <div class="cworks-col cworks-col-5">
+            <span class="cworks-sparkle-deco top-right" aria-hidden="true">✦</span>
+            <article class="cworks-card cworks-card-5" data-works-card data-frame="purplegirl">
+              <div class="cworks-arch">
+                <img src="assets/images/Works/purple_girl_full.png" alt="Character Close-up Portrait" class="cworks-img" loading="lazy" />
+              </div>
+            </article>
+            <!-- Vertical decorative dots & sparkle below card 5 -->
+            <div class="cworks-sub-deco" aria-hidden="true">
+              <span class="cworks-dots-vert">...</span>
+              <span class="cworks-sparkle-sm">✦</span>
+            </div>
+          </div>
+
         </div>
 
-        <!-- ARCH WORKS CARDS — SVG frames with real content -->
-        <div class="parallax-gallery-container arch-gallery-5" id="gallery-container">
-
-          <!-- Frame 1: Short Left — Cat illustration (click = lightbox) -->
-          <article class="gallery-card arch-card arch-card-1 svgframe-card" data-works-card data-frame="cat">
-            <div class="card-media-wrap svgframe-wrap">
-              <img src="assets/SVG/CatFrame.svg" alt="Celestial Cat Illustration" class="svgframe-img" draggable="false" />
-            </div>
-          </article>
-
-          <!-- Frame 2: Tall — Luminang game (click = lightbox + visit button) -->
-          <article class="gallery-card arch-card arch-card-2 svgframe-card" data-works-card data-frame="luminang">
-            <div class="card-media-wrap svgframe-wrap">
-              <img src="assets/SVG/LuminangFrame.svg" alt="Luminang: Language Learning Mobile Game" class="svgframe-img" draggable="false" />
-            </div>
-          </article>
-
-          <!-- Frame 3: Center — Procreate video (autoplay muted loop, click = video modal) -->
-          <article class="gallery-card arch-card arch-card-3 svgframe-card video-frame-card" data-works-card data-frame="video">
-            <div class="card-media-wrap svgframe-wrap video-svgframe-wrap">
-              <!-- SVG arch border overlay sits on top of the video -->
-              <img src="assets/SVG/MiddleVideoFrameOverlay.svg" alt="Procreate Art Process" class="svgframe-img svgframe-overlay" draggable="false" aria-hidden="true" />
-              <video class="arch-video-bg" autoplay muted loop playsinline preload="auto">
-                <source src="assets/videos/Procreate-4Page.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </article>
-
-          <!-- Frame 4: Tall — Full body character (click = lightbox) -->
-          <article class="gallery-card arch-card arch-card-4 svgframe-card" data-works-card data-frame="fullbody">
-            <div class="card-media-wrap svgframe-wrap">
-              <img src="assets/SVG/fullBodyFrame.svg" alt="Character Full Body Illustration" class="svgframe-img" draggable="false" />
-            </div>
-          </article>
-
-          <!-- Frame 5: Short Right — Purple girl close-up (click = lightbox) -->
-          <article class="gallery-card arch-card arch-card-5 svgframe-card" data-works-card data-frame="purplegirl">
-            <div class="card-media-wrap svgframe-wrap">
-              <img src="assets/SVG/PurpleGirlFrame.svg" alt="Character Close-up Illustration" class="svgframe-img" draggable="false" />
-            </div>
-          </article>
-
-        </div>
-
+        <!-- ACTION ROW: EXPLORE FULL GALLERY (COMING SOON) -->
         <div class="works-action-row" data-reveal>
-          <div class="coming-soon-wrap">
+          <div class="coming-soon-btn-wrapper">
             <button class="btn-celestial primary btn-coming-soon" data-coming-soon aria-label="Explore Full Gallery - Coming Soon">
               <span class="btn-sparkle">✦</span>
               <span>Explore Full Gallery ↗</span>
             </button>
-            <span class="coming-soon-tooltip">✦ Coming Soon</span>
+            <span class="coming-soon-bubble">✦ Coming Soon</span>
           </div>
         </div>
 

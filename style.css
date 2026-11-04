@@ -5872,126 +5872,289 @@ body,
 }
 
 
+
+
 /* ==========================================================================
-   SELECTED WORKS: SVG FRAMES, VIDEO INTEGRATION & COMING SOON UX
+   SELECTED WORKS: CELESTIAL ARCH GRID (Pixel-Perfect Canva Alignment)
    ========================================================================== */
 
-/* Works Title SVG */
-.works-svg-title-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.gallery-section {
+  position: relative;
+  padding: 5rem 0 6rem 0;
+  overflow: visible;
+}
+
+.works-title-block {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.works-title-wrap {
+  position: relative;
+  display: inline-block;
   margin-bottom: 0.5rem;
+}
+
+.works-big-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff 0%, #D4B8FF 40%, #9b6cfa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.works-script-overlay {
+  position: absolute;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  color: #EADCFE;
+  text-shadow: 0 0 20px rgba(155, 108, 250, 0.8);
+  top: -0.55em;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.works-swash {
+  display: block;
+  margin: 0.4rem auto 1.2rem auto;
+  max-width: 280px;
   width: 100%;
 }
 
-.works-svg-title-img {
-  max-width: 480px;
-  width: 85%;
-  height: auto;
-  filter: drop-shadow(0 0 25px rgba(155, 108, 250, 0.45));
-  pointer-events: none;
-  user-select: none;
+.gallery-section .section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
 }
 
-/* 5 Staggered Arch Gallery Cards */
-.arch-gallery-5 {
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
+/* 5 Arch Columns Container */
+.celestial-works-grid {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
   gap: 1.5rem !important;
-  align-items: flex-end !important;
+  max-width: 1240px;
+  margin: 0 auto 3rem auto;
+  padding: 0 1.5rem;
   position: relative;
   z-index: 2;
-  margin: 2.5rem auto 3.5rem auto;
-  max-width: 1200px;
-  padding: 0 1rem;
 }
 
-/* Vertical Stagger to match Canva layout */
-.arch-card-1 {
-  align-self: flex-end !important;
-  transform: translateY(0px);
-}
-.arch-card-2 {
-  align-self: flex-start !important;
-  transform: translateY(-20px);
-}
-.arch-card-3 {
-  align-self: center !important;
-  transform: translateY(-5px);
-}
-.arch-card-4 {
-  align-self: flex-start !important;
-  transform: translateY(-25px);
-}
-.arch-card-5 {
-  align-self: flex-end !important;
-  transform: translateY(-40px);
+/* Base Arch Column */
+.cworks-col {
+  flex: 1;
+  max-width: 215px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-/* Base styling for the SVG frame cards */
-.svgframe-card {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
+/* Vertical Stagger to match Canva layout:
+   Card 1: Sits low at bottom
+   Card 2: Sits high at top
+   Card 3: Sits in middle
+   Card 4: Sits high at top
+   Card 5: Sits high at top with deco below
+*/
+.cworks-col-1 {
+  margin-top: 175px !important;
+}
+
+.cworks-col-2 {
+  margin-top: 0px !important;
+}
+
+.cworks-col-3 {
+  margin-top: 85px !important;
+}
+
+.cworks-col-4 {
+  margin-top: 15px !important;
+}
+
+.cworks-col-5 {
+  margin-top: 0px !important;
+}
+
+/* Arch Card Container */
+.cworks-card {
+  width: 100%;
   cursor: pointer;
   position: relative;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
 }
 
-.svgframe-card:hover {
-  transform: translateY(-16px) scale(1.03) !important;
-  filter: drop-shadow(0 15px 35px rgba(155, 108, 250, 0.5)) drop-shadow(0 0 20px rgba(212, 184, 255, 0.3));
+.cworks-card:hover {
+  transform: translateY(-12px) scale(1.025);
+  filter: drop-shadow(0 15px 30px rgba(155, 108, 250, 0.5));
 }
 
-.svgframe-wrap {
+.cworks-card:hover .cworks-arch {
+  border-color: #ffffff;
+  box-shadow: 0 0 25px rgba(212, 184, 255, 0.6), 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Arch Shape with Glowing Border */
+.cworks-arch {
+  width: 100%;
+  border-radius: 999px 999px 12px 12px;
+  border: 1.5px solid rgba(212, 184, 255, 0.65);
+  box-shadow: 0 0 18px rgba(155, 108, 250, 0.25), 0 10px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  background: #080512;
   position: relative;
-  width: 100%;
-  height: auto !important;
-  overflow: visible !important;
-  border-radius: 0 !important;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.svgframe-img {
+/* Exact Card Heights matching Canva proportions */
+.cworks-card-1 .cworks-arch {
+  height: 310px;
+}
+
+.cworks-card-2 .cworks-arch {
+  height: 480px;
+}
+
+.cworks-card-3 .cworks-arch {
+  height: 400px;
+}
+
+.cworks-card-4 .cworks-arch {
+  height: 480px;
+}
+
+.cworks-card-5 .cworks-arch {
+  height: 310px;
+}
+
+/* Image & Video Content inside Arch */
+.cworks-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   user-select: none;
   pointer-events: none;
 }
 
-/* Center Video Frame Card */
-.video-frame-card .video-svgframe-wrap {
-  position: relative;
+.cworks-video {
   width: 100%;
-  overflow: visible;
-}
-
-.video-frame-card .arch-video-bg {
-  position: absolute;
-  top: 3.6%;
-  left: 11.4%;
-  width: 88.5%;
-  height: 94.1%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 999px 999px 0 0;
-  z-index: 1;
+  display: block;
   pointer-events: none;
   background: #000;
 }
 
-.video-frame-card .svgframe-overlay {
-  position: relative;
-  width: 100%;
-  height: auto;
-  z-index: 2;
+/* Decorative Overlays (Sparkles, Curves, Dots) */
+.cworks-sparkle-deco {
+  position: absolute;
+  color: #D4B8FF;
+  font-size: 1.1rem;
   pointer-events: none;
+  z-index: 3;
+  animation: celestialTwinkle 4s ease-in-out infinite alternate;
 }
 
-/* Coming Soon Tooltip Wrapper */
-.coming-soon-wrap {
+.cworks-sparkle-deco.top-left {
+  top: -10px;
+  left: -8px;
+}
+
+.cworks-sparkle-deco.top-right {
+  top: -10px;
+  right: -8px;
+}
+
+.cworks-sparkle-deco.bottom-left {
+  bottom: -10px;
+  left: -12px;
+}
+
+.cworks-dots-deco {
+  position: absolute;
+  color: #D4B8FF;
+  letter-spacing: 0.25em;
+  font-size: 0.95rem;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cworks-dots-deco.top-right {
+  top: -18px;
+  right: -12px;
+}
+
+/* Card 5 Sub Decoration (vertical dots + sparkle) */
+.cworks-sub-deco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  color: #D4B8FF;
+}
+
+.cworks-dots-vert {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.25em;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.cworks-sparkle-sm {
+  font-size: 0.85rem;
+  color: #D4B8FF;
+  animation: celestialTwinkle 3s ease-in-out infinite alternate;
+}
+
+/* Decorative Curves */
+.cworks-curve {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cworks-curve-left {
+  bottom: -20px;
+  left: -40px;
+  width: 90px;
+  height: auto;
+}
+
+.cworks-curve-bottom {
+  bottom: -35px;
+  left: 20%;
+  width: 170px;
+  height: auto;
+}
+
+@keyframes celestialTwinkle {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 8px #D4B8FF); }
+  100% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Coming Soon Button Wrapper */
+.works-action-row {
+  text-align: center;
+  margin-top: 3.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.coming-soon-btn-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -6000,24 +6163,24 @@ body,
 
 .btn-coming-soon {
   cursor: not-allowed !important;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-.coming-soon-tooltip {
+.coming-soon-bubble {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: rgba(14, 10, 26, 0.94);
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(14, 10, 26, 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(162, 130, 240, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.25);
+  border: 1px solid rgba(162, 130, 240, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.3);
   color: #D4B8FF;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.95rem;
   border-radius: 999px;
   white-space: nowrap;
   pointer-events: none;
@@ -6027,8 +6190,8 @@ body,
   z-index: 100;
 }
 
-.coming-soon-wrap:hover .coming-soon-tooltip,
-.coming-soon-wrap:focus-within .coming-soon-tooltip {
+.coming-soon-btn-wrapper:hover .coming-soon-bubble,
+.coming-soon-btn-wrapper:focus-within .coming-soon-bubble {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
@@ -6037,7 +6200,7 @@ body,
 /* Header Nav Disabled Item */
 .nav-item--disabled {
   position: relative;
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed !important;
 }
 
@@ -6047,11 +6210,11 @@ body,
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  background: rgba(14, 10, 26, 0.94);
+  background: rgba(14, 10, 26, 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(162, 130, 240, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.25);
+  border: 1px solid rgba(162, 130, 240, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.3);
   color: #D4B8FF;
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -6075,22 +6238,22 @@ body,
 /* Celestial Toast Notification */
 .coming-soon-toast {
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%) translateY(40px);
-  background: rgba(14, 10, 26, 0.92);
+  background: rgba(14, 10, 26, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(162, 130, 240, 0.5);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(155, 108, 250, 0.35);
-  padding: 0.75rem 1.6rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(155, 108, 250, 0.35);
+  padding: 0.8rem 1.8rem;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   letter-spacing: 0.04em;
   opacity: 0;
   visibility: hidden;
@@ -6107,7 +6270,7 @@ body,
 
 .toast-sparkle {
   color: #D4B8FF;
-  font-size: 1rem;
+  font-size: 1.05rem;
   animation: spinSlow 6s linear infinite;
 }
 
@@ -6140,9 +6303,9 @@ body,
   justify-content: center;
   padding: 1.5rem;
   border-radius: 24px;
-  background: rgba(10, 6, 20, 0.88) !important;
-  border: 1px solid rgba(162, 130, 240, 0.4) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(155, 108, 250, 0.3);
+  background: rgba(10, 6, 20, 0.9) !important;
+  border: 1px solid rgba(162, 130, 240, 0.45) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(155, 108, 250, 0.35);
   z-index: 2;
 }
 
@@ -6183,9 +6346,9 @@ body,
   justify-content: center;
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   border-radius: 24px;
-  background: rgba(10, 6, 20, 0.92) !important;
-  border: 1px solid rgba(162, 130, 240, 0.4) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(155, 108, 250, 0.35);
+  background: rgba(10, 6, 20, 0.94) !important;
+  border: 1px solid rgba(162, 130, 240, 0.45) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(155, 108, 250, 0.4);
   z-index: 2;
 }
 
@@ -6198,20 +6361,20 @@ body,
 }
 
 .svgframe-lb-actions {
-  margin-top: 1.2rem;
+  margin-top: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-/* Luminang Gradient Link — Just text with arrow, no background box, with moving/radiant gradient */
+/* Luminang Gradient Link */
 .luminang-gradient-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -6231,7 +6394,7 @@ body,
 }
 
 .luminang-gradient-link:hover {
-  filter: drop-shadow(0 0 12px rgba(212, 184, 255, 0.8));
+  filter: drop-shadow(0 0 14px rgba(212, 184, 255, 0.9));
 }
 
 .luminang-gradient-link:hover svg {
@@ -6244,19 +6407,35 @@ body,
   100% { background-position: 0% 50%; }
 }
 
+/* Responsive adjustments */
 @media (max-width: 1080px) {
-  .arch-gallery-5 {
-    grid-template-columns: repeat(3, 1fr) !important;
+  .celestial-works-grid {
+    flex-wrap: wrap !important;
     gap: 1.5rem !important;
+  }
+  .cworks-col {
+    flex: 1 1 30% !important;
+    max-width: 260px !important;
+    margin-top: 0 !important;
   }
 }
 
 @media (max-width: 768px) {
-  .arch-gallery-5 {
-    grid-template-columns: 1fr !important;
+  .celestial-works-grid {
+    flex-direction: column !important;
+    align-items: center !important;
     gap: 2.5rem !important;
   }
-  .arch-card-1, .arch-card-2, .arch-card-3, .arch-card-4, .arch-card-5 {
-    transform: none !important;
+  .cworks-col {
+    width: 80% !important;
+    max-width: 300px !important;
+    margin-top: 0 !important;
+  }
+  .cworks-card-1 .cworks-arch,
+  .cworks-card-2 .cworks-arch,
+  .cworks-card-3 .cworks-arch,
+  .cworks-card-4 .cworks-arch,
+  .cworks-card-5 .cworks-arch {
+    height: 380px !important;
   }
 }
