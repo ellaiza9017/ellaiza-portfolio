@@ -5411,14 +5411,25 @@ body,
   height: 100% !important;
 }
 
-/* College & Senior High School cards grouped in the vertical center of EDUCATION */
+/* College, SHS cards + palette grouped and vertically centered in EDUCATION */
 .edu-cards-group {
   display: flex !important;
   flex-direction: column !important;
   gap: 2.5rem !important;
   margin-top: auto !important;
-  margin-bottom: auto !important; /* Vertically centers the contents with EDUCATION */
+  margin-bottom: auto !important; /* Centers the whole block (cards + palette) */
 }
+/* Palette swatches: pure opacity fade only (no Y translation) */
+.palette-swatch-reveal[data-reveal] {
+  opacity: 0 !important;
+  transform: none !important;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.palette-swatch-reveal[data-reveal].revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 
 /* Compact EDUCATION spine - vertically centered in the column */
 .edu-vertical-spine.garamond-heading-spine {
@@ -5446,8 +5457,8 @@ body,
 /* Color Palette: below SHS education, inline with bottom of background frame */
 /* Color Palette: below SHS education, inline with bottom of background frame */
 .palette-bar-edu {
-  margin-top: 0 !important; /* Stays at bottom inline with arch frame bottom */
-  padding-top: 2rem !important;
+  margin-top: 0 !important;
+  padding-top: 0.5rem !important;
   margin-bottom: 0.1rem !important;
   width: 100% !important;
   max-width: none !important;
