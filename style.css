@@ -5278,7 +5278,7 @@ body,
 .garamond-heading {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(2.4rem, 4vw, 4rem) !important;
+  font-size: clamp(2rem, 3.5vw, 3.6rem) !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
   color: transparent !important;
@@ -5291,19 +5291,21 @@ body,
   margin-bottom: 1.2rem !important;
   line-height: 1.1 !important;
   display: block !important;
+  width: 100% !important;
+  text-align: center !important;
 }
 
 /* EDUCATION vertical spine – same outline serif font */
 .garamond-heading-spine {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: 1.5rem !important;
-  letter-spacing: 0.22em !important;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem) !important;
+  letter-spacing: 0.15em !important;
   text-transform: uppercase !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1px rgba(212, 184, 255, 0.75) !important;
-  text-stroke: 1px rgba(212, 184, 255, 0.75) !important;
+  -webkit-text-stroke: 1px rgba(212, 184, 255, 0.85) !important;
+  text-stroke: 1px rgba(212, 184, 255, 0.85) !important;
 }
 
 /* About eyebrow double stars */
@@ -5362,16 +5364,18 @@ body,
    ============================================================ */
 .about-sketch-arch-inner {
   position: absolute !important;
-  /* SVG panel box: x=27→385 (58.4% width), y=213→663 (32%→99.5% of height) */
-  /* Adding inner padding to stay clear of the drawn lines */
-  top: 33% !important;
-  left: 5% !important;
-  width: 57% !important;
+  /* Arch interior: x=121->385 of 613.5 viewBox => left=20%, width=43%  */
+  /* Arch dome starts at top of SVG, content begins below the curve     */
+  top: 12% !important;
+  left: 20% !important;
+  width: 43% !important;
   height: auto !important;
-  padding: 1rem 1.5rem 1rem 2rem !important;
+  padding: 0.5rem 1rem 1rem 1rem !important;
   z-index: 2 !important;
   display: flex !important;
   flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
   box-sizing: border-box !important;
   overflow: visible !important;
 }
@@ -5382,6 +5386,8 @@ body,
   line-height: 1.65 !important;
   color: rgba(240, 236, 250, 0.88) !important;
   margin-bottom: 0.75rem !important;
+  text-align: left !important;
+  width: 100% !important;
 }
 
 /* Palette bar: positioned under the arch wrap */
@@ -5428,8 +5434,9 @@ body,
     gap: 2rem !important;
   }
   .about-sketch-arch-inner {
-    left: 5% !important;
-    width: 57% !important;
+    top: 12% !important;
+    left: 20% !important;
+    width: 43% !important;
   }
 }
 
@@ -5443,9 +5450,9 @@ body,
     margin: 0 auto !important;
   }
   .about-sketch-arch-inner {
-    left: 5% !important;
-    width: 57% !important;
-    top: 33% !important;
+    top: 12% !important;
+    left: 20% !important;
+    width: 43% !important;
   }
 }
 
@@ -5454,10 +5461,10 @@ body,
     max-width: 420px !important;
   }
   .about-sketch-arch-inner {
-    top: 32% !important;
-    left: 5% !important;
-    width: 57% !important;
-    padding: 0.6rem 1rem 1rem 1.6rem !important;
+    top: 10% !important;
+    left: 18% !important;
+    width: 46% !important;
+    padding: 0.5rem 1rem 1rem 1rem !important;
   }
   .about-sketch-arch-inner .body-text {
     font-size: 0.72rem !important;
@@ -5480,10 +5487,10 @@ body,
 
 @media (max-width: 480px) {
   .about-sketch-arch-inner {
-    top: 30% !important;
-    left: 4% !important;
-    width: 59% !important;
-    padding: 0.4rem 0.8rem 0.8rem 1.2rem !important;
+    top: 8% !important;
+    left: 16% !important;
+    width: 48% !important;
+    padding: 0.4rem 0.8rem 0.8rem 0.8rem !important;
   }
   .about-sketch-arch-inner .garamond-heading {
     font-size: 1.4rem !important;
