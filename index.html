@@ -175,11 +175,16 @@
           </div>
         </div>
 
-        <!-- Right: Music Player Card -->
+        <!-- Right: Music Player Card (Matches Draft: Sharp Edge, Liquid Glass, Full-Span Art, Visualizer Ticks, No Text) -->
         <div class="live2d-stage-wrapper" data-reveal>
           <div class="live2d-card auto-hover-float" id="live2d-card">
+            <!-- Sparkles at top right corner as drawn in draft -->
+            <div class="player-draft-sparkles" aria-hidden="true">
+              <img src="assets/SVG/star-sparkle.png" class="p-sparkle-lg" alt="">
+              <img src="assets/SVG/star-sparkle.png" class="p-sparkle-sm" alt="">
+            </div>
             <div class="live2d-aura"></div>
-            <!-- Character Viewport -->
+            <!-- Character Viewport (Spans the entire card background) -->
             <div class="live2d-viewport">
               <img src="assets/images/Illustrations/PurpleGirl.png" alt="Purple Girl Illustration"
                 class="live2d-character-image" id="live2d-img">
@@ -188,19 +193,37 @@
               <div class="card-dust cd-2">✧</div>
               <div class="card-dust cd-3">✦</div>
             </div>
-            <!-- Music Player Footer -->
+            <!-- Music Player Overlay: Wavelength + Bottom Control Shelf -->
             <div class="live2d-footer music-player-plate">
-              <div class="player-waveform" id="card-sound-wave">
-                <span class="wbar"></span><span class="wbar"></span><span class="wbar"></span>
-                <span class="wbar"></span><span class="wbar"></span><span class="wbar"></span>
-                <span class="wbar"></span><span class="wbar"></span><span class="wbar"></span>
-                <span class="wbar"></span><span class="wbar"></span><span class="wbar"></span>
-                <span class="wbar"></span><span class="wbar"></span>
+              <!-- Wavelength Visualizer: Exact draft rhythm | · · · | · · · | · · · | · · · | · · · | -->
+              <div class="player-waveform" id="card-sound-wave" aria-label="Audio Visualizer">
+                <span class="wbar wbar-tall" style="--i: 0;"></span>
+                <span class="wbar wbar-dot"  style="--i: 1;"></span>
+                <span class="wbar wbar-dot"  style="--i: 2;"></span>
+                <span class="wbar wbar-dot"  style="--i: 3;"></span>
+                <span class="wbar wbar-tall" style="--i: 4;"></span>
+                <span class="wbar wbar-dot"  style="--i: 5;"></span>
+                <span class="wbar wbar-dot"  style="--i: 6;"></span>
+                <span class="wbar wbar-dot"  style="--i: 7;"></span>
+                <span class="wbar wbar-tall" style="--i: 8;"></span>
+                <span class="wbar wbar-dot"  style="--i: 9;"></span>
+                <span class="wbar wbar-dot"  style="--i: 10;"></span>
+                <span class="wbar wbar-dot"  style="--i: 11;"></span>
+                <span class="wbar wbar-tall" style="--i: 12;"></span>
+                <span class="wbar wbar-dot"  style="--i: 13;"></span>
+                <span class="wbar wbar-dot"  style="--i: 14;"></span>
+                <span class="wbar wbar-dot"  style="--i: 15;"></span>
+                <span class="wbar wbar-tall" style="--i: 16;"></span>
+                <span class="wbar wbar-dot"  style="--i: 17;"></span>
+                <span class="wbar wbar-dot"  style="--i: 18;"></span>
+                <span class="wbar wbar-dot"  style="--i: 19;"></span>
+                <span class="wbar wbar-tall" style="--i: 20;"></span>
               </div>
+              <!-- Bottom Controls Shelf: ◁◁  (||)  ▷▷ -->
               <div class="player-controls">
                 <button class="player-nav-btn" id="player-prev-btn" aria-label="Previous Track">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M11 18V6l-8.5 6 8.5 6zm10 0V6l-8.5 6 8.5 6z" />
                   </svg>
                 </button>
                 <button class="player-play-btn" id="card-play-btn" aria-label="Toggle Music">
@@ -209,12 +232,13 @@
                   </svg>
                 </button>
                 <button class="player-nav-btn" id="player-next-btn" aria-label="Next Track">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M4 6v12l8.5-6L4 6zm10 0v12l8.5-6L14 6z" />
                   </svg>
                 </button>
               </div>
-              <div class="footer-meta" id="player-info-meta">
+              <!-- Text metadata hidden strictly to match draft -->
+              <div class="footer-meta" id="player-info-meta" style="display: none !important;">
                 <span class="name" id="player-track-name">Good Night • Cozy Lo-Fi</span>
                 <span class="sub" id="player-track-sub">FASSounds</span>
               </div>
