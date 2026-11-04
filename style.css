@@ -4396,35 +4396,7 @@ body,
 }
 
 /* Color Palette: Centered, No Border, No Border Radius */
-.palette-bar-under-bg {
-  margin: 1.8rem auto 0 2.8rem;
-  width: 100%;
-  max-width: 340px;
-  display: flex;
-  justify-content: center;
-}
-
-.palette-bar-under-bg .palette-swatches {
-  display: flex;
-  width: 100%;
-  gap: 0 !important;
-}
-
-.palette-bar-under-bg .swatch {
-  flex: 1;
-  height: 42px;
-  border-radius: 0 !important;
-  border: none !important;
-  outline: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, z-index 0.2s ease;
-}
-
-.palette-bar-under-bg .swatch:hover {
-  transform: scale(1.12);
-  z-index: 5;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-}
+/* Legacy palette block removed */
 
 /* Right Column: Education (NO visible container box, clean lines) */
 .education-sketch-col {
@@ -5455,10 +5427,11 @@ body,
 }
 
 /* Color Palette: below SHS education, inline with bottom of background frame */
+/* Color Palette: below SHS education, inline with bottom of background frame */
 .palette-bar-edu {
-  margin-top: auto !important; /* Pushes to bottom of edu column, inline with arch bottom */
-  padding-top: 1.6rem !important;
-  margin-bottom: 0.2rem !important;
+  margin-top: auto !important; /* Pushes to bottom of edu column, inline with arch frame bottom */
+  padding-top: 2rem !important;
+  margin-bottom: 0.1rem !important;
   width: 100% !important;
   max-width: none !important;
   display: flex !important;
@@ -5468,16 +5441,16 @@ body,
 .palette-bar-edu .palette-swatches {
   display: flex !important;
   flex-direction: row !important;
-  gap: 12px !important; /* EXACT GAPS FROM DRAFT */
+  gap: 12px !important; /* Gaps between each box matching draft image 2 */
   width: auto !important;
   max-width: none !important;
 }
 
 .palette-bar-edu .swatch {
-  width: clamp(38px, 3.2vw, 48px) !important;
+  width: clamp(40px, 3.4vw, 50px) !important;
   height: clamp(26px, 2.2vw, 32px) !important;
   flex: none !important;
-  border-radius: 2px !important;
+  border-radius: 0 !important; /* Sharp rectangles matching draft image 2 */
   border: none !important;
   outline: none !important;
   cursor: pointer;
