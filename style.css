@@ -3927,18 +3927,19 @@ body,
 }
 
 /* Category title — ALL CAPS */
+/* Category title — ALL CAPS */
 .holo-category-title {
   font-family: "Cormorant Garamond", "Cinzel", serif !important;
-  font-size: clamp(0.95rem, 1.1vw, 1.15rem) !important;
+  font-size: clamp(1.35rem, 1.55vw, 1.65rem) !important;
   font-weight: 700 !important;
   font-style: italic !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
   text-align: center !important;
   color: #D4B8FF !important;
   margin: 0 0 1.8rem !important;
-  line-height: 1.4 !important;
-  text-shadow: 0 0 18px rgba(212, 184, 255, 0.55) !important;
+  line-height: 1.35 !important;
+  text-shadow: 0 0 20px rgba(212, 184, 255, 0.6) !important;
 }
 
 /* Skill list */
@@ -3951,34 +3952,72 @@ body,
   gap: 0.65rem !important;
 }
 
-/* Skill buttons */
+/* Skill buttons with animated holographic gradient border & translucent background */
+/* Skill buttons with animated holographic gradient border & translucent background */
 .holo-skill-btn {
+  position: relative !important;
   display: block !important;
   width: 100% !important;
-  background: rgba(61, 41, 104, 0.3) !important;
-  border: 1px solid rgba(142, 99, 219, 0.35) !important;
+  background: rgba(12, 8, 24, 0.18) !important; /* very translucent / more invisible */
+  border: none !important;
   border-radius: 6px !important;
   color: #EADCFE !important;
   font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-size: 0.82rem !important;
+  font-size: 0.84rem !important;
   font-weight: 500 !important;
   letter-spacing: 0.03em !important;
-  padding: 0.5rem 0.9rem !important;
+  padding: 0.55rem 0.9rem !important;
   text-align: center !important;
   cursor: pointer !important;
-  transition: background 0.25s ease, border-color 0.25s ease,
-              color 0.25s ease, box-shadow 0.25s ease,
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease,
               transform 0.2s ease !important;
   white-space: normal !important;
   line-height: 1.4 !important;
+  box-sizing: border-box !important;
 }
 
+/* Moving holographic gradient border via masked pseudo-element */
+.holo-skill-btn::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 6px !important;
+  padding: 1.2px !important;
+  background: linear-gradient(90deg, #3D2968 0%, #8E63DB 20%, #D4B8FF 40%, #FFFFFF 50%, #D4B8FF 60%, #8E63DB 80%, #3D2968 100%) !important;
+  background-size: 300% 100% !important;
+  animation: holo-skill-border 4.5s linear infinite !important;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+}
+
+@keyframes holo-skill-border {
+  0% {
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* Stagger button border animations for shimmering cascade effect */
+.holo-skill-list li:nth-child(1) .holo-skill-btn::before { animation-delay: 0s !important; }
+.holo-skill-list li:nth-child(2) .holo-skill-btn::before { animation-delay: -0.9s !important; }
+.holo-skill-list li:nth-child(3) .holo-skill-btn::before { animation-delay: -1.8s !important; }
+.holo-skill-list li:nth-child(4) .holo-skill-btn::before { animation-delay: -2.7s !important; }
+.holo-skill-list li:nth-child(5) .holo-skill-btn::before { animation-delay: -3.6s !important; }
+
 .holo-skill-btn:hover {
-  background: rgba(142, 99, 219, 0.45) !important;
-  border-color: #D4B8FF !important;
+  background: rgba(142, 99, 219, 0.22) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 0 14px rgba(212, 184, 255, 0.4) !important;
-  transform: scale(1.03) !important;
+  box-shadow: 0 0 16px rgba(212, 184, 255, 0.35) !important;
+  transform: scale(1.02) !important;
 }
 
 /* Skill popup modal */
