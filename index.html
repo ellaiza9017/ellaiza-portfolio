@@ -139,7 +139,7 @@
           </span>
           <span class="nav-text">Contact</span>
         </a>
-        <a href="gallery.html" class="nav-item">
+        <a href="#" class="nav-item nav-item--disabled" data-coming-soon aria-label="Gallery - Coming Soon">
           <span class="nav-active-star" aria-hidden="true">
             <svg viewBox="0 0 24 24" class="nav-star-spin-svg">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="url(#starGradNav)" />
@@ -1480,84 +1480,70 @@
       <div class="section-container">
 
         <div class="works-title-block" data-reveal>
-          <div class="works-title-wrap">
-            <span class="works-script-overlay">Selected</span>
-            <h2 class="works-big-title gradient-title">WORKS</h2>
+          <div class="works-title-wrap works-svg-title-wrap">
+            <img src="assets/SVG/SelectedWorks.svg" alt="Selected Works" class="works-svg-title-img" />
           </div>
-          <svg class="works-swash" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 50 Q80 10 160 30 Q220 45 280 15" stroke="url(#swashGrad)" stroke-width="2" fill="none"
-              stroke-linecap="round" />
-            <defs>
-              <linearGradient id="swashGrad" x1="0" y1="0" x2="300" y2="0">
-                <stop offset="0%" stop-color="#D4B8FF" />
-                <stop offset="100%" stop-color="#9b6cfa" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <p class="section-subtitle">A curated sneak peek into my works. Click any card for details.</p>
-          <a href="gallery.html" class="btn-celestial ghost" style="margin-top: 1.5rem; display: inline-flex;">
-            <span class="btn-sparkle">✦</span><span>Explore Full Gallery ↗</span>
-          </a>
+          <p class="section-subtitle">A curated sneak peek into my works.</p>
+          <div class="coming-soon-wrap" style="margin-top: 1.5rem; display: inline-flex;">
+            <button class="btn-celestial ghost btn-coming-soon" data-coming-soon aria-label="Explore Full Gallery - Coming Soon">
+              <span class="btn-sparkle">✦</span><span>Explore Full Gallery ↗</span>
+            </button>
+            <span class="coming-soon-tooltip">✦ Coming Soon</span>
+          </div>
         </div>
 
-        <!-- ARCH WORKS CARDS -->
-        <!-- 5 STAGGERED ARCH WORKS CARDS (Canva Draft Layout) -->
+        <!-- ARCH WORKS CARDS — SVG frames with real content -->
         <div class="parallax-gallery-container arch-gallery-5" id="gallery-container">
 
-          <!-- Frame 1: Short Left -->
-          <article class="gallery-card arch-card arch-card-1" data-category="art" data-artifact="1" data-works-card>
-            <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Character Art" class="gallery-img">
-              <div class="arch-card-overlay">
-                <h4 class="arch-card-title">Character Art</h4>
-                <p class="arch-card-sub">CAPSTONE PROJECT &bull; 2025 &ndash; 2026</p>
-              </div>
+          <!-- Frame 1: Short Left — Cat illustration (click = lightbox) -->
+          <article class="gallery-card arch-card arch-card-1 svgframe-card" data-works-card data-frame="cat">
+            <div class="card-media-wrap svgframe-wrap">
+              <img src="assets/SVG/CatFrame.svg" alt="Celestial Cat Illustration" class="svgframe-img" draggable="false" />
             </div>
           </article>
 
-          <!-- Frame 2: Tall -->
-          <article class="gallery-card arch-card arch-card-2" data-category="art" data-artifact="1" data-works-card>
-            <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Character Concept Study" class="gallery-img">
+          <!-- Frame 2: Tall — Luminang game (click = lightbox + visit button) -->
+          <article class="gallery-card arch-card arch-card-2 svgframe-card" data-works-card data-frame="luminang">
+            <div class="card-media-wrap svgframe-wrap">
+              <img src="assets/SVG/LuminangFrame.svg" alt="Luminang: Language Learning Mobile Game" class="svgframe-img" draggable="false" />
             </div>
           </article>
 
-          <!-- Frame 3: Center Featured with Capstone Info & Link -->
-          <article class="gallery-card arch-card arch-card-3" data-category="3d" data-artifact="3" data-works-card>
-            <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Luminang Mobile Game Artwork"
-                class="gallery-img">
-              <div class="arch-card-overlay">
-                <h4 class="arch-card-title">Luminang: Language Learning Mobile Game</h4>
-                <p class="arch-card-sub">CAPSTONE PROJECT &bull; 2025 &ndash; 2026</p>
-                <a href="https://luminang.com" target="_blank" rel="noopener noreferrer"
-                  class="arch-card-pill-btn">Visit Luminang.com</a>
-              </div>
+          <!-- Frame 3: Center — Procreate video (autoplay muted loop, click = video modal) -->
+          <article class="gallery-card arch-card arch-card-3 svgframe-card video-frame-card" data-works-card data-frame="video">
+            <div class="card-media-wrap svgframe-wrap video-svgframe-wrap">
+              <!-- SVG arch border overlay sits on top of the video -->
+              <img src="assets/SVG/MiddleVideoFrameOverlay.svg" alt="Procreate Art Process" class="svgframe-img svgframe-overlay" draggable="false" aria-hidden="true" />
+              <video class="arch-video-bg" autoplay muted loop playsinline preload="auto">
+                <source src="assets/videos/Procreate-4Page.mp4" type="video/mp4" />
+              </video>
             </div>
           </article>
 
-          <!-- Frame 4: Tall -->
-          <article class="gallery-card arch-card arch-card-4" data-category="art" data-artifact="1" data-works-card>
-            <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Character Illustration Pose"
-                class="gallery-img">
+          <!-- Frame 4: Tall — Full body character (click = lightbox) -->
+          <article class="gallery-card arch-card arch-card-4 svgframe-card" data-works-card data-frame="fullbody">
+            <div class="card-media-wrap svgframe-wrap">
+              <img src="assets/SVG/fullBodyFrame.svg" alt="Character Full Body Illustration" class="svgframe-img" draggable="false" />
             </div>
           </article>
 
-          <!-- Frame 5: Medium-Short Right -->
-          <article class="gallery-card arch-card arch-card-5" data-category="art" data-artifact="1" data-works-card>
-            <div class="card-media-wrap">
-              <img src="assets/images/Illustrations/bunnygirl.png" alt="Digital Art Concept" class="gallery-img">
+          <!-- Frame 5: Short Right — Purple girl close-up (click = lightbox) -->
+          <article class="gallery-card arch-card arch-card-5 svgframe-card" data-works-card data-frame="purplegirl">
+            <div class="card-media-wrap svgframe-wrap">
+              <img src="assets/SVG/PurpleGirlFrame.svg" alt="Character Close-up Illustration" class="svgframe-img" draggable="false" />
             </div>
           </article>
 
         </div>
 
         <div class="works-action-row" data-reveal>
-          <a href="gallery.html" class="btn-celestial primary">
-            <span class="btn-sparkle">✦</span>
-            <span>Explore Full Gallery ↗</span>
-          </a>
+          <div class="coming-soon-wrap">
+            <button class="btn-celestial primary btn-coming-soon" data-coming-soon aria-label="Explore Full Gallery - Coming Soon">
+              <span class="btn-sparkle">✦</span>
+              <span>Explore Full Gallery ↗</span>
+            </button>
+            <span class="coming-soon-tooltip">✦ Coming Soon</span>
+          </div>
         </div>
 
       </div>
@@ -1732,6 +1718,40 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <!-- ============================================================
+       VIDEO LIGHTBOX MODAL (for Procreate video frame)
+       ============================================================ -->
+  <div class="video-lightbox-modal" id="video-lightbox-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="video-lb-close-overlay"></div>
+    <div class="video-lightbox-dialog glass-panel" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="video-lb-close-btn" aria-label="Close video">&times;</button>
+      <video id="modal-video" class="modal-video-player" controls autoplay loop muted playsinline>
+        <source src="assets/videos/Procreate-4Page.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       COMING SOON TOAST NOTIFICATION
+       ============================================================ -->
+  <div class="coming-soon-toast" id="coming-soon-toast" aria-live="polite">
+    <span class="toast-sparkle">✦</span>
+    <span class="toast-text">Coming Soon</span>
+  </div>
+
+  <!-- ============================================================
+       WORKS CARD LIGHTBOX EXTENSION
+       (SVG-frame lightbox: show SVG full-screen, Luminang variant adds visit btn)
+       ============================================================ -->
+  <div class="svgframe-lightbox-modal" id="svgframe-lb-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="svgframe-lb-backdrop"></div>
+    <div class="svgframe-lb-dialog glass-panel" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="svgframe-lb-close" aria-label="Close">&times;</button>
+      <img id="svgframe-lb-img" src="" alt="" class="svgframe-lb-img" />
+      <div id="svgframe-lb-actions" class="svgframe-lb-actions"></div>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -1130,4 +1130,142 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // ==========================================================================
+  // WORKS SECTION: ARCH SVG FRAMES & COMING SOON UX
+  // ==========================================================================
+
+  // 1. Coming Soon Notification Toast
+  const comingSoonToast = document.getElementById('coming-soon-toast');
+  let toastTimer = null;
+
+  function showComingSoonToast() {
+    if (!comingSoonToast) return;
+    if (toastTimer) clearTimeout(toastTimer);
+    comingSoonToast.classList.add('active');
+    toastTimer = setTimeout(() => {
+      comingSoonToast.classList.remove('active');
+    }, 3200);
+  }
+
+  // Bind to all elements with data-coming-soon (nav link, explore buttons)
+  const comingSoonTriggers = document.querySelectorAll('[data-coming-soon]');
+  comingSoonTriggers.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      showComingSoonToast();
+    });
+  });
+
+  // 2. SVG Frame Lightbox & Video Lightbox Modals
+  const svgLbModal = document.getElementById('svgframe-lb-modal');
+  const svgLbImg = document.getElementById('svgframe-lb-img');
+  const svgLbActions = document.getElementById('svgframe-lb-actions');
+  const svgLbClose = document.getElementById('svgframe-lb-close');
+  const svgLbBackdrop = document.getElementById('svgframe-lb-backdrop');
+
+  const videoLbModal = document.getElementById('video-lightbox-modal');
+  const videoLbPlayer = document.getElementById('modal-video');
+  const videoLbClose = document.getElementById('video-lb-close-btn');
+  const videoLbBackdrop = document.getElementById('video-lb-close-overlay');
+
+  function openSvgLb(imgSrc, altText, isLuminang = false) {
+    if (!svgLbModal || !svgLbImg) return;
+    svgLbImg.src = imgSrc;
+    svgLbImg.alt = altText || '';
+
+    if (svgLbActions) {
+      svgLbActions.innerHTML = '';
+      if (isLuminang) {
+        const link = document.createElement('a');
+        link.href = 'https://luminang.com';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'luminang-gradient-link';
+        link.innerHTML = `
+          <span>visit luminang.com</span>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        `;
+        svgLbActions.appendChild(link);
+      }
+    }
+
+    svgLbModal.classList.add('active');
+    svgLbModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSvgLb() {
+    if (!svgLbModal) return;
+    svgLbModal.classList.remove('active');
+    svgLbModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function openVideoLb() {
+    if (!videoLbModal) return;
+    videoLbModal.classList.add('active');
+    videoLbModal.setAttribute('aria-hidden', 'false');
+    if (videoLbPlayer) {
+      videoLbPlayer.currentTime = 0;
+      videoLbPlayer.play();
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoLb() {
+    if (!videoLbModal) return;
+    if (videoLbPlayer) {
+      videoLbPlayer.pause();
+    }
+    videoLbModal.classList.remove('active');
+    videoLbModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (svgLbClose) svgLbClose.addEventListener('click', closeSvgLb);
+  if (svgLbBackdrop) svgLbBackdrop.addEventListener('click', closeSvgLb);
+  if (videoLbClose) videoLbClose.addEventListener('click', closeVideoLb);
+  if (videoLbBackdrop) videoLbBackdrop.addEventListener('click', closeVideoLb);
+
+  // Keyboard escape closes active modals
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSvgLb();
+      closeVideoLb();
+    }
+  });
+
+  // 3. Bind click handlers to the 5 Arch Frame Cards
+  const frameCards = document.querySelectorAll('.svgframe-card');
+  frameCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // If clicking inside a link inside the card, let default happen
+      if (e.target.closest('a')) return;
+
+      const frameType = card.getAttribute('data-frame');
+      switch (frameType) {
+        case 'cat':
+          openSvgLb('assets/images/Works/celestial_cat.png', 'Celestial Cat Illustration');
+          break;
+        case 'luminang':
+          openSvgLb('assets/images/Works/luminang_full.png', 'Luminang: Language Learning Mobile Game', true);
+          break;
+        case 'video':
+          openVideoLb();
+          break;
+        case 'fullbody':
+          openSvgLb('assets/images/Works/character_fullbody.png', 'Character Full Body Illustration');
+          break;
+        case 'purplegirl':
+          openSvgLb('assets/images/Works/purple_girl_full.png', 'Character Close-up Illustration');
+          break;
+        default:
+          break;
+      }
+    });
+  });
+
 });

@@ -5870,3 +5870,393 @@ body,
   0%   { transform: translateX(35px); }
   100% { transform: translateX(calc(-100% + 35px)); }
 }
+
+
+/* ==========================================================================
+   SELECTED WORKS: SVG FRAMES, VIDEO INTEGRATION & COMING SOON UX
+   ========================================================================== */
+
+/* Works Title SVG */
+.works-svg-title-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.works-svg-title-img {
+  max-width: 480px;
+  width: 85%;
+  height: auto;
+  filter: drop-shadow(0 0 25px rgba(155, 108, 250, 0.45));
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 5 Staggered Arch Gallery Cards */
+.arch-gallery-5 {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 1.5rem !important;
+  align-items: flex-end !important;
+  position: relative;
+  z-index: 2;
+  margin: 2.5rem auto 3.5rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+/* Vertical Stagger to match Canva layout */
+.arch-card-1 {
+  align-self: flex-end !important;
+  transform: translateY(0px);
+}
+.arch-card-2 {
+  align-self: flex-start !important;
+  transform: translateY(-20px);
+}
+.arch-card-3 {
+  align-self: center !important;
+  transform: translateY(-5px);
+}
+.arch-card-4 {
+  align-self: flex-start !important;
+  transform: translateY(-25px);
+}
+.arch-card-5 {
+  align-self: flex-end !important;
+  transform: translateY(-40px);
+}
+
+/* Base styling for the SVG frame cards */
+.svgframe-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+}
+
+.svgframe-card:hover {
+  transform: translateY(-16px) scale(1.03) !important;
+  filter: drop-shadow(0 15px 35px rgba(155, 108, 250, 0.5)) drop-shadow(0 0 20px rgba(212, 184, 255, 0.3));
+}
+
+.svgframe-wrap {
+  position: relative;
+  width: 100%;
+  height: auto !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+
+.svgframe-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Center Video Frame Card */
+.video-frame-card .video-svgframe-wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.video-frame-card .arch-video-bg {
+  position: absolute;
+  top: 3.6%;
+  left: 11.4%;
+  width: 88.5%;
+  height: 94.1%;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background: #000;
+}
+
+.video-frame-card .svgframe-overlay {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Coming Soon Tooltip Wrapper */
+.coming-soon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-coming-soon {
+  cursor: not-allowed !important;
+  opacity: 0.85;
+}
+
+.coming-soon-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(14, 10, 26, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(162, 130, 240, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.25);
+  color: #D4B8FF;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 100;
+}
+
+.coming-soon-wrap:hover .coming-soon-tooltip,
+.coming-soon-wrap:focus-within .coming-soon-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Header Nav Disabled Item */
+.nav-item--disabled {
+  position: relative;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.nav-item--disabled::after {
+  content: '✦ Coming Soon';
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(14, 10, 26, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(162, 130, 240, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(155, 108, 250, 0.25);
+  color: #D4B8FF;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 100;
+}
+
+.nav-item--disabled:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Celestial Toast Notification */
+.coming-soon-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  background: rgba(14, 10, 26, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(162, 130, 240, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(155, 108, 250, 0.35);
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.coming-soon-toast.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-sparkle {
+  color: #D4B8FF;
+  font-size: 1rem;
+  animation: spinSlow 6s linear infinite;
+}
+
+/* Video Lightbox Modal */
+.video-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s;
+}
+
+.video-lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-lightbox-dialog {
+  position: relative;
+  max-width: 900px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: rgba(10, 6, 20, 0.88) !important;
+  border: 1px solid rgba(162, 130, 240, 0.4) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(155, 108, 250, 0.3);
+  z-index: 2;
+}
+
+.modal-video-player {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 16px;
+  outline: none;
+  background: #000;
+}
+
+/* SVG Frame Full-Image Lightbox Modal */
+.svgframe-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s;
+}
+
+.svgframe-lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.svgframe-lb-dialog {
+  position: relative;
+  max-width: 850px;
+  width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 24px;
+  background: rgba(10, 6, 20, 0.92) !important;
+  border: 1px solid rgba(162, 130, 240, 0.4) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(155, 108, 250, 0.35);
+  z-index: 2;
+}
+
+.svgframe-lb-img {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.svgframe-lb-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Luminang Gradient Link — Just text with arrow, no background box, with moving/radiant gradient */
+.luminang-gradient-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ffffff 0%, #D4B8FF 45%, #9b6cfa 85%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+  animation: shimmerGradient 4s ease infinite;
+}
+
+.luminang-gradient-link svg {
+  color: #D4B8FF;
+  stroke: #D4B8FF;
+  transition: transform 0.25s ease;
+}
+
+.luminang-gradient-link:hover {
+  filter: drop-shadow(0 0 12px rgba(212, 184, 255, 0.8));
+}
+
+.luminang-gradient-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+@keyframes shimmerGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 1080px) {
+  .arch-gallery-5 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .arch-gallery-5 {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .arch-card-1, .arch-card-2, .arch-card-3, .arch-card-4, .arch-card-5 {
+    transform: none !important;
+  }
+}
