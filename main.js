@@ -993,17 +993,17 @@ document.addEventListener('DOMContentLoaded', () => {
     'react-flutter': { title: 'React • Flutter', desc: 'Frontend web component development with React and cross-platform mobile application development with Flutter.' },
     'html-css': { title: 'HTML5 & CSS3', desc: 'Modern responsive web layouts, custom animations, celestial design systems, and semantic markup.' },
     'unity': { title: 'Unity Engine', desc: 'Scene construction, mobile touch controls, minigame mechanics, audio integration, and Android exports in Luminang.' },
-    'git': { title: 'Git • GitHub', desc: 'Version control, repository management, and collaboration workflows (@ellaiza9017).' },
+    'git': { title: 'Git / GitHub', desc: 'Version control, repository management, and collaboration workflows (@ellaiza9017).' },
     'mysql-oracle': { title: 'MySQL • Oracle', desc: 'Relational database schema modeling, SQL querying, constraints, and academic database management systems.' },
     'supabase-firebase': { title: 'Supabase • Firebase', desc: 'Cloud backend services, user authentication, realtime database listeners, and storage integration.' },
-    'schema': { title: 'Schema Design', desc: 'Entity-relationship diagrams (ERD), normalization (1NF-3NF), and database architecture structuring.' },
-    'json-api': { title: 'JSON • REST APIs', desc: 'Data structuring, JSON vocabulary formatting for games, and RESTful API consumption.' },
-    'qa': { title: 'Android QA Testing', desc: 'Manual system testing on Android devices to catch UI overflow, scene transition glitches, and performance hiccups.' },
+    'schema': { title: 'Database Schema Design', desc: 'Entity-relationship diagrams (ERD), normalization (1NF-3NF), and database architecture structuring.' },
+    'json-api': { title: 'JSON & REST APIs', desc: 'Data structuring, JSON vocabulary formatting for games, and RESTful API consumption.' },
+    'qa': { title: 'QA Testing', desc: 'Manual QA system verification and testing across Android devices to catch UI overflow, scene transition glitches, and ensure responsive behavior.' },
     'blender': { title: 'Blender 3D', desc: 'Low-poly 3D modeling, UV unwrapping, prop creation, texturing, and asset optimization for mobile game engines.' },
     'procreate-krita': { title: 'Procreate • Krita', desc: 'Hand-drawn digital illustrations, character concept design, line art, and custom artwork creations.' },
-    'canva-capcut': { title: 'Canva • CapCut', desc: 'Graphic design layouts, branding assets, presentation mockups, and video reel editing with timing and effects.' },
-    'uiux': { title: 'UI/UX Wireframing', desc: 'User flow mapping, mobile wireframes, intuitive layout prototyping, and accessible component hierarchies.' },
-    'ai-tooling': { title: 'Generative AI Tooling', desc: 'Utilizing Claude, ChatGPT, GitHub Copilot, and Antigravity IDE to streamline coding workflows, debugging, and ideation.' }
+    'canva-capcut': { title: 'Canva • CapCut • Pinterest', desc: 'Graphic design layouts, branding assets, presentation mockups, creative moodboarding in Pinterest, and video reel editing with timing and effects.' },
+    'uiux': { title: 'UI/UX Layouts', desc: 'User flow mapping, mobile wireframes, intuitive layout prototyping, and accessible component hierarchies.' },
+    'ai-tooling': { title: 'AI Tooling (Claude, ChatGPT, Antigravity IDE)', desc: 'Utilizing Claude, ChatGPT, GitHub Copilot, and Antigravity IDE to streamline coding workflows, debugging, and ideation.' }
   };
 
   const skillPopup = document.getElementById('skill-popup');

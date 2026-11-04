@@ -2893,6 +2893,8 @@ body,
 
   .skills-showcase {
     grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto 3rem;
   }
 
   .parallax-gallery-container {
@@ -3832,54 +3834,162 @@ body,
   transform: translateX(0);
 }
 
-/* ===== SKILLS BOX OUTLINE (no fill, just border) ===== */
-.skill-box-outline {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border: 1.5px solid rgba(162, 130, 240, 0.4) !important;
-  border-radius: 20px;
-  padding: 2.2rem;
+/* ============================================================
+   SKILLS SECTION: Hologram Moving Gradient Panels (Draft Sketch)
+   ============================================================ */
+.skills-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+  margin-bottom: 3.5rem;
+  align-items: stretch;
+}
+
+.skill-holo-card {
+  position: relative !important;
+  background: rgba(14, 10, 26, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  height: 540px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 4px 25px rgba(5, 3, 10, 0.5) !important;
+  overflow: visible !important;
+  clip-path: inset(50% 0 50% 0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.skill-holo-card.box-opened {
+  clip-path: none !important;
+}
+
+.skill-holo-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 14px 40px rgba(142, 99, 219, 0.25) !important;
+}
+
+/* Hologram SVG Frame */
+.holo-svg-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 0 8px rgba(186, 155, 255, 0.4));
+  transition: filter 0.4s ease;
+}
+
+.skill-holo-card:hover .holo-svg-frame {
+  filter: drop-shadow(0 0 16px rgba(212, 184, 255, 0.7));
+}
+
+.holo-svg-frame svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hologram Card Inner Content */
+.holo-card-inner {
   position: relative;
-  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 4.5rem 1.6rem 2.8rem 1.6rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-/* Skill box open animation */
-.skill-box-outline {
-  clip-path: inset(50% 0 50% 0 round 20px);
-  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.skill-box-outline.box-opened {
-  clip-path: inset(0% 0 0% 0 round 20px);
-}
-
-.skill-box-outline .group-header,
-.skill-box-outline .skill-pills {
-  opacity: 0;
-  transition: opacity 0.4s ease 0.6s;
-}
-
-.skill-box-outline.box-opened .group-header,
-.skill-box-outline.box-opened .skill-pills {
+.skill-holo-card.box-opened .holo-card-inner {
   opacity: 1;
 }
 
+/* Category Header in ALL CAPS */
+.holo-category-header {
+  text-align: center;
+  margin-bottom: 2rem !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.holo-category-title {
+  font-family: var(--font-heading), 'Cinzel', serif !important;
+  font-size: clamp(1.15rem, 1.35vw, 1.4rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EADCFE 35%, #D4B8FF 70%, #B898FF 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 16px rgba(212, 184, 255, 0.4) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Skill List inside Panel */
+.holo-skill-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.1rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-grow: 1 !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+/* Clean Button Items matching Draft Sketch */
+.holo-skill-btn {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(162, 130, 240, 0.12) !important;
+  border-radius: 8px !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.88rem, 0.95vw, 0.98rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  padding: 0.65rem 1.1rem !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  max-width: 290px !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.35 !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform: none !important;
+}
+
+.holo-skill-btn:hover {
+  background: rgba(142, 99, 219, 0.16) !important;
+  border-color: rgba(212, 184, 255, 0.55) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 4px 18px rgba(142, 99, 219, 0.3) !important;
+}
+
 /* Stagger box open */
-.skills-showcase .skill-box-outline:nth-child(2) { transition-delay: 0.15s; }
-.skills-showcase .skill-box-outline:nth-child(3) { transition-delay: 0.3s; }
+.skills-showcase .skill-holo-card:nth-child(2) { transition-delay: 0.15s; }
+.skills-showcase .skill-holo-card:nth-child(3) { transition-delay: 0.3s; }
 
 /* Skill clickable tags */
 .skill-btn {
   cursor: pointer !important;
-  text-align: left;
+  text-align: center;
   width: 100%;
-}
-
-.skill-btn:hover {
-  background: rgba(155, 108, 250, 0.15) !important;
-  border-color: var(--primary) !important;
-  transform: translateX(5px);
 }
 
 /* Skill popup overlay */
