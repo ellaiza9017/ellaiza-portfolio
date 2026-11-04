@@ -6267,8 +6267,8 @@ body,
 
 /* Card 1: Cat (short, sits low on baseline) */
 .works-col-cat {
-  width: 175px;
-  margin-top: 140px;
+  width: 205px;
+  margin-top: 175px;
   margin-left: 0 !important;
   z-index: 1;
 }
@@ -6315,7 +6315,7 @@ body,
 
 /* Card 4: Full Body (tall, top-aligned) */
 .works-col-fullbody {
-  width: 265px;
+  width: 335px;
   margin-top: 12px;
   margin-left: 0 !important;
   z-index: 2;
