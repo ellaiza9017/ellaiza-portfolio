@@ -6267,7 +6267,7 @@ body,
 
 /* Card 1: Cat (short, sits low on baseline) */
 .works-col-cat {
-  width: 205px;
+  width: 275px;
   margin-top: 175px;
   margin-left: 0 !important;
   z-index: 1;
@@ -6276,7 +6276,7 @@ body,
 /* Card 2: Luminang (tall, top-aligned) */
 .works-col-luminang {
   width: 195px;
-  margin-top: 0px;
+  margin-top: -45px;
   margin-left: 0 !important;
   z-index: 2;
 }
@@ -6284,7 +6284,7 @@ body,
 /* Card 3: Video (mid-height, center stagger) */
 .works-col-video {
   width: 220px;
-  margin-top: 90px;
+  margin-top: 85px;
   margin-left: 0 !important;
   z-index: 3;
 }
@@ -6315,17 +6315,17 @@ body,
 
 /* Card 4: Full Body (tall, top-aligned) */
 .works-col-fullbody {
-  width: 335px;
-  margin-top: 12px;
+  width: 450px;
+  margin-top: 110px;
   margin-left: 0 !important;
   z-index: 2;
 }
 
 /* Card 5: Purple Girl (short, top-aligned) */
 .works-col-purplegirl {
-  width: 190px;
-  margin-top: -27px;
-  margin-left: 0 !important;
+  width: 205px;
+  margin-top: 0px;
+  margin-left: -230px !important;
   z-index: 4;
 }
 
