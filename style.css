@@ -3475,46 +3475,50 @@ body,
   display: none !important;
 }
 
-/* Horizontal Name Bar pinned directly along the bottom seam of the eyecrop banner */
+/* Full Name — 100% TRANSPARENT background matching sketch (overlaps bottom of eyecrop) */
 .hero-name-bar {
   width: 100%;
-  background: rgba(8, 4, 18, 0.80);
+  background: transparent !important;
   border: none !important;
-  padding: 0.5rem 1.5rem 0.8rem;
+  box-shadow: none !important;
+  margin-top: -2.2rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  z-index: 10;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  gap: 1.4rem;
+  z-index: 20;
+  position: relative;
+  pointer-events: none;
 }
 
 .hero-fullname {
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4.6vw, 3.8rem);
+  letter-spacing: 0.14em;
+  line-height: 1.1;
   margin: 0;
   text-align: center;
   white-space: nowrap;
-  background: linear-gradient(135deg, #ffffff 0%, #e8d8ff 35%, #c4a5ff 70%, #9b6cfa 100%);
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #ecdfff 45%, #bca5ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(155, 108, 250, 0.45));
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(155, 108, 250, 0.6));
 }
 
 /* Outline sparkle SVG beside full name */
 .hero-name-sparkle-svg {
   flex-shrink: 0;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 6px rgba(255, 214, 102, 0.75));
+  opacity: 0.95;
+  filter: drop-shadow(0 0 8px rgba(255, 214, 102, 0.85));
   animation: sparkleRotateFloat 4s ease-in-out infinite alternate;
 }
 
 @keyframes sparkleRotateFloat {
-  0% { transform: rotate(-8deg) scale(0.95); opacity: 0.8; }
+  0% { transform: rotate(-8deg) scale(0.95); opacity: 0.85; }
   100% { transform: rotate(8deg) scale(1.1); opacity: 1; }
 }
 
@@ -4237,24 +4241,72 @@ body,
   background: rgba(162, 130, 240, 0.4);
 }
 
+/* ===== ABOUT ME: DRAFT SKETCH ACCURATE (NO VISIBLE CONTAINER BOXES) ===== */
 .sketch-about-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.95fr;
-  gap: 2.5rem;
+  gap: 3.5rem;
   align-items: start;
 }
 
-.arch-bg-card {
-  border-radius: 120px 120px 20px 20px !important;
-  background: rgba(18, 12, 33, 0.65) !important;
-  border: 1.5px solid rgba(162, 130, 240, 0.3) !important;
-  padding: 3.5rem 2.5rem 2.5rem 2.5rem !important;
+/* Left Column: Canva Arch Frame (NO container box) */
+.about-sketch-arch-wrap {
   position: relative;
+  width: 100%;
+  max-width: 520px;
+  min-height: 540px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-sketch-arch-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 0 12px rgba(186, 155, 255, 0.35));
+}
+
+.about-sketch-arch-inner {
+  position: relative;
+  z-index: 2;
+  padding: 3.5rem 3.8rem 2.5rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-sketch-arch-inner .card-heading {
+  font-family: var(--font-heading), 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, #ffffff 0%, #e0d0ff 60%, #b898ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-sketch-arch-inner .body-text {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(240, 236, 250, 0.9);
+  margin-bottom: 1.1rem;
 }
 
 .palette-bar-under-bg {
   margin-top: 1.5rem;
   padding: 0.5rem 0;
+  max-width: 480px;
 }
 
 .palette-bar-under-bg .palette-swatches {
@@ -4276,39 +4328,95 @@ body,
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* Education card with vertical spine */
-.education-sketch-card {
+/* Right Column: Education (NO visible container box, clean lines) */
+.education-sketch-col {
   display: flex !important;
   flex-direction: row !important;
-  gap: 1.5rem;
-  background: rgba(18, 12, 33, 0.65) !important;
-  border: 1.5px solid rgba(162, 130, 240, 0.3) !important;
-  border-radius: 20px !important;
-  padding: 2.5rem !important;
-  position: relative;
+  align-items: stretch;
+  gap: 2.2rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-top: 1.5rem;
 }
 
-.edu-content-side {
+.edu-items-wrap {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3.2rem;
 }
 
-.edu-heading-bracket {
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  letter-spacing: 0.15em;
-  color: var(--accent-lavender);
-  display: inline-block;
-  margin-bottom: 0.4rem;
+.sketch-edu-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.edu-sketch-line-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.edu-sketch-bracket {
+  font-family: var(--font-heading), 'Cinzel', serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.edu-sketch-rule {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(186, 155, 255, 0.6) 0%, rgba(186, 155, 255, 0.2) 80%, transparent 100%);
+}
+
+.edu-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
 }
 
 .edu-major {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   font-style: italic;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.edu-school {
+  font-size: 0.9rem;
+  color: rgba(224, 208, 255, 0.85);
+  margin-bottom: 0.35rem;
+}
+
+.edu-date {
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  color: var(--accent-lavender);
+  letter-spacing: 0.05em;
+}
+
+.edu-vertical-spine {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  border-left: 1.5px solid rgba(186, 155, 255, 0.35);
+  font-family: var(--font-heading), 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--accent-lavender);
+  user-select: none;
 }
 
 .edu-vertical-spine {
@@ -4436,8 +4544,15 @@ body,
   .arch-card .card-media-wrap {
     height: 340px !important;
   }
-  .education-sketch-card {
+  .education-sketch-col {
     flex-direction: column !important;
+  }
+  .about-sketch-arch-wrap {
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+  .about-sketch-arch-inner {
+    padding: 2.8rem 2rem 2rem 1.8rem !important;
   }
   .edu-vertical-spine {
     flex-direction: row !important;
@@ -4532,30 +4647,7 @@ body,
   }
 }
 
-/* ===== BACKGROUND CARD FRAME SVG ===== */
-.bg-card-frame-svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110%;
-  height: 115%;
-  pointer-events: none;
-  opacity: 0.55;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(220deg) brightness(1.3);
-  z-index: 0;
-}
 
-.arch-bg-card {
-  position: relative;
-  overflow: visible !important;
-  z-index: 1;
-}
-
-.arch-bg-card > *:not(.bg-card-frame-svg) {
-  position: relative;
-  z-index: 2;
-}
 
 /* ===== HERO TEXT SIZE BOOST ===== */
 .hero-greeting {
