@@ -5278,7 +5278,7 @@ body,
 .garamond-heading {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(2.3rem, 3.8vw, 3.8rem) !important; /* BIGGER - matching screenshot 2 */
+  font-size: clamp(2.3rem, 3.8vw, 3.8rem) !important; /* prominent size */
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   color: transparent !important;
@@ -5293,10 +5293,9 @@ body,
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 0.5rem !important;
   white-space: nowrap !important;
-  /* Pushed further to the left so 'B' overlaps the left arch outline, exactly like draft */
-  margin-left: -14% !important;
+  /* Pushed further to the left so 'B' clearly overlaps the left arch outline like draft */
+  margin-left: -23% !important;
   width: max-content !important;
   text-align: left !important;
 }
@@ -5317,13 +5316,13 @@ body,
 .garamond-heading-spine {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(1.3rem, 1.8vw, 1.6rem) !important;
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem) !important; /* Bigger */
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1px rgba(212, 184, 255, 0.85) !important;
-  text-stroke: 1px rgba(212, 184, 255, 0.85) !important;
+  -webkit-text-stroke: 1.1px rgba(212, 184, 255, 0.9) !important;
+  text-stroke: 1.1px rgba(212, 184, 255, 0.9) !important;
 }
 
 /* About eyebrow double stars */
@@ -5462,11 +5461,11 @@ body,
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: clamp(0.25rem, 0.55vw, 0.45rem) !important; /* Compact gaps between letters */
-  padding: 1rem 0.8rem 1rem 1.2rem !important;
+  gap: clamp(0.55rem, 0.95vw, 0.9rem) !important; /* Slightly taller letter spacing */
+  padding: 1.4rem 0.9rem 1.4rem 1.4rem !important;
   border-left: 1.5px solid rgba(186, 155, 255, 0.35) !important;
   user-select: none !important;
-  height: auto !important; /* NOT 100% height - prevents excessive tallness */
+  height: auto !important;
 }
 
 /* Education titles */
@@ -5490,7 +5489,7 @@ body,
     gap: 2.5rem !important;
   }
   .garamond-heading {
-    margin-left: -10% !important;
+    margin-left: -18% !important;
   }
   .about-paragraphs-wrap {
     margin-left: 1.6rem !important;
@@ -5514,7 +5513,7 @@ body,
   }
   .garamond-heading {
     font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
-    margin-left: -8% !important;
+    margin-left: -14% !important;
   }
   .about-paragraphs-wrap {
     margin-left: 1.4rem !important;
