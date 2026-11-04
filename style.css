@@ -5647,9 +5647,11 @@ body,
 
 
 
+
 /* ============================================================
    SKILLS SECTION TITLE: Celestial Moving Laser & Highlight
-   100% locked highlight clipped directly to the scanning line
+   Crisp letter-only highlight (no blurry flashlight haze)
+   Theme colors: #3D2968 (resting base), #8E63DB (accent glow), #D4B8FF (highlight)
    ============================================================ */
 .skills-header .section-title.skills-title-scanner {
   background: none !important;
@@ -5679,49 +5681,51 @@ body,
   line-height: 1.25 !important;
 }
 
-/* Resting text: soft ambient translucent lilac/violet */
+/* Base resting text: Prominent deep #3D2968 with #8E63DB tone */
 .fx-scanner-base {
-  color: rgba(186, 155, 255, 0.28) !important;
+  color: #553A8A !important; /* Rich nebula purple derived from #3D2968 and #8E63DB */
   display: inline-block !important;
   user-select: none !important;
+  text-shadow: none !important;
 }
 
-/* Moving highlight window centered on the laser bar */
+/* Moving highlight window: 70px wide (covers ~1-2 letters), crisp feather */
 .fx-scanner-window {
   position: absolute !important;
   top: 0 !important;
   bottom: 0 !important;
-  width: 120px !important;
-  margin-left: -60px !important;
+  width: 70px !important;
+  margin-left: -35px !important;
   overflow: hidden !important;
   pointer-events: none !important;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 30%, black 70%, transparent 100%) !important;
-  mask-image: linear-gradient(90deg, transparent 0%, black 30%, black 70%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 25%, black 75%, transparent 100%) !important;
+  mask-image: linear-gradient(90deg, transparent 0%, black 25%, black 75%, transparent 100%) !important;
   animation: scanWindowMove 2.6s ease-in-out infinite alternate !important;
 }
 
-/* Glowing text inside window, counter-translated so it remains 0.00px locked with base text */
+/* Crisp illuminated text: ONLY the letterforms light up in #D4B8FF with #FFFFFF shine */
 .fx-scanner-lit {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   white-space: nowrap !important;
-  color: #FFFFFF !important;
-  text-shadow: 0 0 10px #D4B8FF, 0 0 20px #9B6CFA, 0 0 35px rgba(155, 108, 250, 0.9) !important;
+  color: #D4B8FF !important;
+  /* NO blurry flashlight text-shadow! Pure, sharp letter highlight */
+  text-shadow: none !important;
   animation: scanLitCounter 2.6s ease-in-out infinite alternate !important;
   user-select: none !important;
 }
 
-/* Physical glowing laser line */
+/* Clean laser bar: in prominent #D4B8FF with #8E63DB glow matching reference */
 .fx-scanner-line {
   position: absolute !important;
-  top: -5px !important;
-  bottom: -5px !important;
-  width: 3px !important;
-  margin-left: -1.5px !important;
-  border-radius: 2px !important;
-  background: #FFFFFF !important;
-  box-shadow: 0 0 8px #FFFFFF, 0 0 16px #D4B8FF, 0 0 28px #9B6CFA, 0 0 42px rgba(155, 108, 250, 0.9) !important;
+  top: -6px !important;
+  bottom: -6px !important;
+  width: 2.5px !important;
+  margin-left: -1.25px !important;
+  border-radius: 1px !important;
+  background: #D4B8FF !important;
+  box-shadow: 0 0 6px #8E63DB, 0 0 14px #8E63DB !important;
   animation: scanWindowMove 2.6s ease-in-out infinite alternate !important;
   pointer-events: none !important;
 }
@@ -5732,6 +5736,6 @@ body,
 }
 
 @keyframes scanLitCounter {
-  0%   { transform: translateX(60px); }
-  100% { transform: translateX(calc(-100% + 60px)); }
+  0%   { transform: translateX(35px); }
+  100% { transform: translateX(calc(-100% + 35px)); }
 }
