@@ -408,24 +408,75 @@ body,
    SITE HEADER & NAVIGATION
    ========================================================================== */
 .site-header {
-  position: fixed;
+  position: relative !important;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 50;
-  padding: 1.2rem 2.5rem;
+  padding: 1.5rem 3.5rem !important;
   transition: all var(--transition-med);
-  background: rgba(5, 3, 10, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(162, 130, 240, 0.08);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 .site-header.scrolled {
-  padding: 0.8rem 2.5rem;
-  background: rgba(5, 3, 10, 0.9);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 1.2rem 3.5rem !important;
+  background: rgba(5, 3, 10, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(162, 130, 240, 0.12) !important;
+}
+
+.brand-logo-text {
+  font-family: var(--font-heading), 'Cinzel', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.brand-logo-text:hover {
+  color: var(--accent-lavender);
+  text-shadow: 0 0 12px rgba(212, 184, 255, 0.8);
+}
+
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2.8rem !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.nav-item {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.95rem !important;
+  font-weight: 500;
+  color: #f0ecfa !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(212, 184, 255, 0.75);
+}
+
+.nav-dot {
+  display: none !important;
 }
 
 .header-inner {
@@ -3382,7 +3433,7 @@ body,
   .section-nav-indicator { display: none; }
 }
 
-/* ===== EYE CROP BANNER ===== */
+/* ===== SCREENSHOT 2 MATCH: EYE CROP BANNER & PINNED NAME BAR ===== */
 .hero-section {
   min-height: auto !important;
   padding: 0 !important;
@@ -3392,57 +3443,78 @@ body,
   position: relative !important;
 }
 
+.eyecrop-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 0.2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 .eyecrop-banner {
   position: relative;
   width: 100%;
-  height: 42vh;
-  min-height: 220px;
-  max-height: 480px;
+  height: 220px !important;
+  min-height: 180px !important;
+  max-height: 240px !important;
   overflow: hidden;
+  background: #05030a;
 }
 
 .eyecrop-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 25% !important;
   display: block;
+  filter: brightness(1.05) contrast(1.05);
 }
 
 .eyecrop-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(5,3,10,0.2) 0%, rgba(5,3,10,0.0) 50%, rgba(5,3,10,0.6) 100%);
-  pointer-events: none;
+  display: none !important;
 }
 
-/* ===== HERO FULL NAME (overlaps eye crop bottom) ===== */
-.hero-name-wrap {
+/* Horizontal Name Bar pinned directly along the bottom seam of the eyecrop banner */
+.hero-name-bar {
+  width: 100%;
+  background: rgba(8, 4, 18, 0.90);
+  border-top: 1px solid rgba(162, 130, 240, 0.35);
+  border-bottom: 1px solid rgba(162, 130, 240, 0.35);
+  padding: 0.65rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
-  position: relative;
-  margin-top: -2.2rem;
+  gap: 1.3rem;
   z-index: 10;
-  padding: 0 1rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.65);
 }
 
 .hero-fullname {
   font-family: 'Cinzel', serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+  margin: 0;
   text-align: center;
-  line-height: 1;
   white-space: nowrap;
+  background: linear-gradient(135deg, #ffffff 0%, #e0d0ff 40%, #ba9bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-name-sparkle {
-  font-size: 1.5rem;
-  color: var(--accent-gold);
-  text-shadow: 0 0 12px rgba(252, 232, 166, 0.8);
+  font-size: 1.25rem;
+  color: #ffd666;
+  text-shadow: 0 0 10px rgba(255, 214, 102, 0.85);
   flex-shrink: 0;
+}
+
+.hero-container {
+  margin-top: 2.5rem !important;
+  padding: 0 3.5rem !important;
 }
 
 /* ===== GRADIENT TITLE (all major section titles) ===== */
@@ -4097,9 +4169,13 @@ body,
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .hero-name-wrap { gap: 0.5rem; }
-  .hero-fullname { font-size: clamp(1.5rem, 7vw, 2.5rem) !important; white-space: normal; text-align: center; }
-  .hero-name-sparkle { display: none; }
+  .site-header { padding: 1.2rem 1.5rem !important; }
+  .nav-links { display: none !important; }
+  .mobile-menu-toggle { display: flex !important; }
+  .eyecrop-banner { height: 160px !important; min-height: 140px !important; }
+  .hero-name-bar { padding: 0.5rem 1rem !important; gap: 0.7rem !important; }
+  .hero-fullname { font-size: clamp(1.15rem, 5vw, 1.8rem) !important; white-space: normal; text-align: center; }
+  .hero-name-sparkle { font-size: 1rem !important; display: inline-block !important; }
   .hero-container {
     grid-template-columns: 1fr !important;
     padding: 0 1.5rem !important;
@@ -4107,7 +4183,6 @@ body,
     gap: 2rem !important;
   }
   .hero-actions { justify-content: center; }
-  .eyecrop-banner { height: 30vh; }
   .works-big-title { font-size: clamp(3rem, 8vw, 5rem); }
   .arch-gallery { grid-template-columns: 1fr !important; }
   .arch-card .card-media-wrap { height: 280px !important; }
@@ -4121,28 +4196,9 @@ body,
    ========================================================================== */
 
 /* Hero name spanning guide line */
-.hero-name-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2rem;
+/* Hero Name Bar styling matches Screenshot 2 */
+.hero-name-bar {
   position: relative;
-  margin-top: -2.2rem;
-  z-index: 10;
-  width: 100%;
-}
-
-.hero-name-wrap::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(155, 108, 250, 0.4) 15%, #9b6cfa 50%, rgba(155, 108, 250, 0.4) 85%, transparent 100%);
-  box-shadow: 0 0 10px rgba(155, 108, 250, 0.8), 0 0 20px rgba(216, 194, 255, 0.4);
-  z-index: 0;
-  pointer-events: none;
 }
 
 .hero-fullname {
