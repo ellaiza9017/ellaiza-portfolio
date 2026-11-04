@@ -5278,28 +5278,43 @@ body,
 .garamond-heading {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(2rem, 3.5vw, 3.6rem) !important;
-  letter-spacing: 0.1em !important;
+  font-size: clamp(1.4rem, 2.1vw, 2.2rem) !important;
+  letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1.2px rgba(212, 184, 255, 0.92) !important;
-  text-stroke: 1.2px rgba(212, 184, 255, 0.92) !important;
+  -webkit-text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
+  text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
   background: none !important;
   background-clip: unset !important;
   -webkit-background-clip: unset !important;
-  margin-bottom: 1.2rem !important;
+  margin-bottom: 1.1rem !important;
   line-height: 1.1 !important;
-  display: block !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
   width: 100% !important;
   text-align: center !important;
 }
 
-/* EDUCATION vertical spine – same outline serif font */
+.garamond-heading .bg-plus {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.1em !important;
+  font-weight: 400 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
+  text-stroke: 1.1px rgba(212, 184, 255, 0.95) !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+/* EDUCATION vertical spine – same outline serif font & size */
 .garamond-heading-spine {
   font-family: 'Cormorant Garamond', serif !important;
   font-weight: 500 !important;
-  font-size: clamp(1.6rem, 2.5vw, 2.4rem) !important;
+  font-size: clamp(1.4rem, 2.1vw, 2.2rem) !important;
   letter-spacing: 0.15em !important;
   text-transform: uppercase !important;
   color: transparent !important;
@@ -5317,18 +5332,18 @@ body,
 }
 
 /* ============================================================
-   ABOUT GRID: wider left column
+   ABOUT GRID: both columns stretch to match height
    ============================================================ */
 .sketch-about-grid {
   display: grid !important;
-  grid-template-columns: 1fr 0.75fr !important;
-  align-items: start !important;
-  gap: 3rem !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  align-items: stretch !important;
+  gap: 3.5rem !important;
 }
 
 /* ============================================================
    ARCH WRAP — padding-bottom trick to match SVG aspect ratio
-   ViewBox: 613.5 × 666  →  666/613.5 ≈ 108.6%
+   ViewBox: 613.5 x 666  ->  666 / 613.5 = 108.6%
    ============================================================ */
 .about-sketch-arch-wrap {
   position: relative !important;
@@ -5345,8 +5360,10 @@ body,
 /* SVG fills the full wrapper */
 .about-sketch-arch-svg {
   position: absolute !important;
-  top: 0 !important; left: 0 !important;
-  width: 100% !important; height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: fill !important;
   pointer-events: none !important;
   z-index: 1 !important;
@@ -5354,23 +5371,23 @@ body,
 }
 
 /* ============================================================
-   ARCH INNER — mapped from SVG coordinates
-   SVG viewBox 613.5 w × 666 h
-   Arch panel interior (approx): x=130→383, y=210→640
-   → left  = 130/613.5 = 21.2%
-   → top   = 210/666   = 31.5%
-   → width = (383-130)/613.5 = 41.2%
-   → height = (640-210)/666  = 64.6%
+   ARCH INNER — EXACT SVG arch coordinates:
+   SVG viewBox 613.5 w x 666 h
+   Arch left vertical line:  x = 148.4  (24.2%)
+   Arch right vertical line: x = 506.4  (82.5%)
+   Arch width: 358px (58.4%)
+   Arch center: x = 327.4 (53.4%)
+   Dome apex: y = 3.8 (0.6%)
+   Dome curve descends to vertical line around y = 100-214 (15%-32%)
+   Content starts at top: 16% (just under the dome apex, exactly like draft)
    ============================================================ */
 .about-sketch-arch-inner {
   position: absolute !important;
-  /* Arch interior: x=121->385 of 613.5 viewBox => left=20%, width=43%  */
-  /* Arch dome starts at top of SVG, content begins below the curve     */
-  top: 12% !important;
-  left: 20% !important;
-  width: 43% !important;
+  top: 16% !important;
+  left: 24.2% !important;
+  width: 58.4% !important;
   height: auto !important;
-  padding: 0.5rem 1rem 1rem 1rem !important;
+  padding: 0 !important;
   z-index: 2 !important;
   display: flex !important;
   flex-direction: column !important;
@@ -5382,12 +5399,14 @@ body,
 
 .about-sketch-arch-inner .body-text {
   font-family: var(--font-body), sans-serif !important;
-  font-size: clamp(0.72rem, 0.9vw, 0.85rem) !important;
-  line-height: 1.65 !important;
-  color: rgba(240, 236, 250, 0.88) !important;
-  margin-bottom: 0.75rem !important;
-  text-align: left !important;
+  font-size: clamp(0.7rem, 0.82vw, 0.82rem) !important;
+  line-height: 1.62 !important;
+  color: rgba(240, 236, 250, 0.9) !important;
+  margin-bottom: 0.85rem !important;
+  text-align: center !important;
+  padding: 0 1rem !important;
   width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Palette bar: positioned under the arch wrap */
@@ -5406,14 +5425,45 @@ body,
   gap: 0 !important;
 }
 
-/* About left col: needs position:relative for the absolute children */
+/* About left col */
 .about-left-col {
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-/* Education titles bigger */
+/* ============================================================
+   EDUCATION SIDE: vertically centered with the EDUCATION spine
+   ============================================================ */
+.education-sketch-col {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 2.2rem !important;
+  height: 100% !important;
+  padding-top: 0 !important;
+}
+
+.edu-items-wrap {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* VERTICALLY CENTERS COLLEGE & SHS! */
+  gap: 3.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.edu-vertical-spine.garamond-heading-spine {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  padding: 1.5rem 0.8rem 1.5rem 1.2rem !important;
+  border-left: 1.5px solid rgba(186, 155, 255, 0.35) !important;
+  user-select: none !important;
+}
+
+/* Education titles */
 .edu-title {
   font-size: clamp(1rem, 1.5vw, 1.25rem) !important;
   font-weight: 600 !important;
@@ -5430,13 +5480,8 @@ body,
 /* ---- RESPONSIVE ---- */
 @media (max-width: 1200px) {
   .sketch-about-grid {
-    grid-template-columns: 1fr 0.8fr !important;
-    gap: 2rem !important;
-  }
-  .about-sketch-arch-inner {
-    top: 12% !important;
-    left: 20% !important;
-    width: 43% !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 2.5rem !important;
   }
 }
 
@@ -5444,15 +5489,21 @@ body,
   .sketch-about-grid {
     grid-template-columns: 1fr !important;
     gap: 3rem !important;
+    align-items: start !important;
   }
   .about-sketch-arch-wrap {
-    max-width: 540px !important;
+    max-width: 520px !important;
     margin: 0 auto !important;
   }
   .about-sketch-arch-inner {
-    top: 12% !important;
-    left: 20% !important;
-    width: 43% !important;
+    top: 15% !important;
+    left: 24.2% !important;
+    width: 58.4% !important;
+  }
+  .education-sketch-col {
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    height: auto !important;
   }
 }
 
@@ -5461,40 +5512,57 @@ body,
     max-width: 420px !important;
   }
   .about-sketch-arch-inner {
-    top: 10% !important;
-    left: 18% !important;
-    width: 46% !important;
-    padding: 0.5rem 1rem 1rem 1rem !important;
+    top: 14% !important;
+    left: 24.2% !important;
+    width: 58.4% !important;
   }
   .about-sketch-arch-inner .body-text {
     font-size: 0.72rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.55 !important;
+    padding: 0 0.5rem !important;
   }
   .garamond-heading {
-    font-size: clamp(1.5rem, 6vw, 2.4rem) !important;
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem) !important;
+  }
+  .education-sketch-col {
+    flex-direction: column !important;
+    gap: 1.8rem !important;
+    padding-top: 1rem !important;
+  }
+  .edu-items-wrap {
+    justify-content: flex-start !important;
+    gap: 2rem !important;
+    padding-bottom: 0 !important;
   }
   .edu-vertical-spine.garamond-heading-spine {
     flex-direction: row !important;
     border-left: none !important;
     border-top: 1px solid rgba(162, 130, 240, 0.25) !important;
     padding-left: 0 !important;
-    padding-top: 0.8rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 0 !important;
     width: 100% !important;
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     letter-spacing: 0.2em !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
   }
 }
 
 @media (max-width: 480px) {
   .about-sketch-arch-inner {
-    top: 8% !important;
-    left: 16% !important;
-    width: 48% !important;
-    padding: 0.4rem 0.8rem 0.8rem 0.8rem !important;
+    top: 13% !important;
+    left: 24.2% !important;
+    width: 58.4% !important;
   }
   .about-sketch-arch-inner .garamond-heading {
-    font-size: 1.4rem !important;
-    margin-bottom: 0.6rem !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .about-sketch-arch-inner .body-text {
+    font-size: 0.68rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0 0.3rem !important;
   }
 }
-
