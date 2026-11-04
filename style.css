@@ -5463,7 +5463,7 @@ body,
   max-width: none !important;
 }
 
-/* Swatches: pure opacity fade-in, no translateY, no scale jump */
+/* Swatches: slow luxurious fade slide up (exact same animation as music player [data-reveal]), color by color */
 .palette-bar-edu .swatch {
   width: clamp(40px, 3.4vw, 50px) !important;
   height: clamp(26px, 2.2vw, 32px) !important;
@@ -5474,18 +5474,18 @@ body,
   cursor: pointer;
   background-color: var(--c) !important;
   opacity: 0;
-  transform: none !important;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, box-shadow 0.2s ease !important;
-  will-change: opacity;
+  transform: translateY(45px) scale(0.95);
+  transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease !important;
+  will-change: opacity, transform;
 }
 
-/* Staggered fade in one by one when palette enters viewport */
-.palette-bar-edu.revealed .swatch:nth-child(1) { opacity: 1 !important; transition-delay: 0.10s !important; }
-.palette-bar-edu.revealed .swatch:nth-child(2) { opacity: 1 !important; transition-delay: 0.26s !important; }
-.palette-bar-edu.revealed .swatch:nth-child(3) { opacity: 1 !important; transition-delay: 0.42s !important; }
-.palette-bar-edu.revealed .swatch:nth-child(4) { opacity: 1 !important; transition-delay: 0.58s !important; }
-.palette-bar-edu.revealed .swatch:nth-child(5) { opacity: 1 !important; transition-delay: 0.74s !important; }
-.palette-bar-edu.revealed .swatch:nth-child(6) { opacity: 1 !important; transition-delay: 0.90s !important; }
+/* Staggered fade slide up (slow 2.2s luxury motion) color by color */
+.palette-bar-edu.revealed .swatch:nth-child(1) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.10s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(2) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.26s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(3) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.42s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(4) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.58s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(5) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.74s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(6) { opacity: 1 !important; transform: translateY(0) scale(1) !important; transition-delay: 0.90s !important; }
 
 /* Micro-interaction on hover */
 .palette-bar-edu .swatch:hover {
