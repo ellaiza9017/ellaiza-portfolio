@@ -5645,6 +5645,7 @@ body,
 
 
 
+
 /* ============================================================
    SKILLS SECTION TITLE: One-Line Celestial Scanner Highlight Effect
    ============================================================ */
@@ -5675,16 +5676,18 @@ body,
   letter-spacing: 0.05em !important;
   white-space: nowrap !important; /* STRICTLY ONE LINE */
   line-height: 1.25 !important;
-  padding: 0.15rem 0.4rem !important;
+  padding: 0.15rem 0.5rem !important;
+  /* 200% gradient so 50% peak aligns exactly with 100% -> 0% background-position */
   background: linear-gradient(
     90deg,
-    rgba(180, 150, 245, 0.28) 0%,
-    rgba(212, 184, 255, 0.38) 35%,
-    #ffffff 50%,
-    #f4efff 54%,
-    rgba(212, 184, 255, 0.38) 65%,
-    rgba(180, 150, 245, 0.28) 100%
-  ) 0 0 / 300% 100% !important;
+    rgba(142, 99, 219, 0.22) 0%,
+    rgba(142, 99, 219, 0.22) 41%,
+    #D4B8FF 46%,
+    #FFFFFF 50%,
+    #D4B8FF 54%,
+    rgba(142, 99, 219, 0.22) 59%,
+    rgba(142, 99, 219, 0.22) 100%
+  ) 0 0 / 200% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -5693,17 +5696,17 @@ body,
 }
 
 .fx-skills-scanner::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  bottom: -4px;
+  content: "" !important;
+  position: absolute !important;
+  top: -4px !important;
+  bottom: -4px !important;
   left: 0;
-  width: 3px;
-  border-radius: 2px;
-  background: #EADCFE;
-  box-shadow: 0 0 10px #D4B8FF, 0 0 20px #9B6CFA, 0 0 32px rgba(142, 99, 219, 0.85);
-  animation: fxSkillsScanBar 2.6s ease-in-out infinite alternate;
-  pointer-events: none;
+  width: 3px !important;
+  border-radius: 2px !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 0 8px #FFFFFF, 0 0 16px #D4B8FF, 0 0 28px #9B6CFA, 0 0 40px rgba(142, 99, 219, 0.85) !important;
+  animation: fxSkillsScanBar 2.6s ease-in-out infinite alternate !important;
+  pointer-events: none !important;
 }
 
 @keyframes fxSkillsScanGlow {
