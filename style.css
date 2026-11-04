@@ -5434,6 +5434,15 @@ body,
   height: auto !important;
 }
 
+
+/* Palette swatches: staggered fade-up one by one */
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(1) { transition-delay: 0.0s; }
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(2) { transition-delay: 0.12s; }
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(3) { transition-delay: 0.24s; }
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(4) { transition-delay: 0.36s; }
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(5) { transition-delay: 0.48s; }
+.palette-bar-edu .palette-swatch-reveal[data-reveal]:nth-child(6) { transition-delay: 0.60s; }
+
 /* Color Palette: below SHS education, inline with bottom of background frame */
 /* Color Palette: below SHS education, inline with bottom of background frame */
 .palette-bar-edu {
