@@ -3496,13 +3496,12 @@ body,
 }
 
 .hero-fullname {
-  font-family: 'Ballet', cursive;
-  font-optical-sizing: auto;
+  font-family: "Fleur De Leah", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(3rem, 6.2vw, 5.2rem);
-  letter-spacing: 0.02em;
-  line-height: 1.15;
+  font-size: clamp(3.2rem, 6.8vw, 5.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   margin: 0;
   text-align: center;
   white-space: nowrap;
@@ -3511,7 +3510,7 @@ body,
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px rgba(212, 184, 255, 0.6));
+  filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px rgba(212, 184, 255, 0.65));
 }
 
 .hero-name-sparkle-img {
