@@ -5362,7 +5362,7 @@ body,
 
 /* Contents pushed further center (more to the right and bottom) */
 .about-paragraphs-wrap {
-  margin-top: 2.2rem !important;
+  margin-top: 1rem !important;
   margin-left: 2.2rem !important;
   margin-right: -0.6rem !important;
   display: flex !important;
