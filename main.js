@@ -14,6 +14,13 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Immediate intro reveal trigger for hero eyecrop slide-from-right
+  const eyecropWrap = document.querySelector('.eyecrop-wrapper');
+  if (eyecropWrap) {
+    setTimeout(() => {
+      eyecropWrap.classList.add('revealed');
+    }, 100);
+  }
 
   // Dedicated cursor sparkle audio: Plays ONLY while mouse is in motion, fades out immediately on stop
   const sparkleAudio = new Audio('assets/Music/sparklele.mp3');

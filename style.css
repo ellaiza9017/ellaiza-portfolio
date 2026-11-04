@@ -3450,6 +3450,31 @@ body,
   overflow: visible !important;
   display: block;
 }
+/* ===== EYE CROP INTRO SLIDE FROM RIGHT ANIMATION ===== */
+.eyecrop-wrapper[data-reveal-right] {
+  opacity: 0;
+  transform: translateX(65px);
+  transition: opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1), transform 1.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.eyecrop-wrapper[data-reveal-right].revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.eyecrop-wrapper[data-reveal-right] .hero-name-bar {
+  opacity: 0;
+  transform: translateY(-40%) translateX(25px);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+  will-change: opacity, transform;
+}
+
+.eyecrop-wrapper[data-reveal-right].revealed .hero-name-bar {
+  opacity: 1;
+  transform: translateY(-40%) translateX(0);
+}
+
 
 .eyecrop-banner {
   position: relative;
