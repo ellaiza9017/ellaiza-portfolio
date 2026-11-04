@@ -3632,6 +3632,11 @@ body,
   padding: 0 2.5rem !important;
 }
 
+.hero-narrative {
+  align-self: flex-start !important;
+  margin-top: -3.2rem !important; /* Pulls "Hi, I'm Ellaiza" and intro contents higher up */
+}
+
 .hero-greeting {
   font-family: var(--font-heading);
   font-size: 2rem;
