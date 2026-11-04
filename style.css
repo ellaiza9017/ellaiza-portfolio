@@ -5411,13 +5411,13 @@ body,
   height: 100% !important;
 }
 
-/* College, SHS cards + palette grouped and vertically centered in EDUCATION */
+/* College and SHS cards grouped in upper-center of EDUCATION */
 .edu-cards-group {
   display: flex !important;
   flex-direction: column !important;
   gap: 2.5rem !important;
   margin-top: auto !important;
-  margin-bottom: auto !important; /* Centers the whole block (cards + palette) */
+  margin-bottom: 0 !important;
 }
 
 /* Compact EDUCATION spine - vertically centered in the column */
@@ -5435,32 +5435,20 @@ body,
 }
 
 
-/* Palette: extracted outside sliding column, positioned absolutely in section-container */
-.about-section .section-container {
-  position: relative !important;
+/* ============================================================
+   PALETTE BAR: In line with letter 'O' of EDUCATION, fade in color by color
+   ============================================================ */
+/* Palette container itself stays firmly in place, no sliding, no jumping */
+.palette-bar-edu[data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-#palette-bar-about {
-  position: absolute !important;
-  bottom: clamp(2.5rem, 4vw, 4rem) !important;
-  left: 50% !important;
-  transform: translateX(-10%) !important;
-}
-
-/* Swatch stagger delays for independent data-reveal fade-up */
-#palette-bar-about .palette-swatch-reveal:nth-child(1) { transition-delay: 0.0s !important; }
-#palette-bar-about .palette-swatch-reveal:nth-child(2) { transition-delay: 0.15s !important; }
-#palette-bar-about .palette-swatch-reveal:nth-child(3) { transition-delay: 0.30s !important; }
-#palette-bar-about .palette-swatch-reveal:nth-child(4) { transition-delay: 0.45s !important; }
-#palette-bar-about .palette-swatch-reveal:nth-child(5) { transition-delay: 0.60s !important; }
-#palette-bar-about .palette-swatch-reveal:nth-child(6) { transition-delay: 0.75s !important; }
-
-/* Color Palette: below SHS education, inline with bottom of background frame */
-/* Color Palette: below SHS education, inline with bottom of background frame */
 .palette-bar-edu {
-  margin-top: 0 !important;
-  padding-top: 0.5rem !important;
-  margin-bottom: 0.1rem !important;
+  margin-top: auto !important;
+  margin-bottom: clamp(6.5rem, 10.3vw, 9.3rem) !important; /* Exactly aligned with letter 'O' */
+  padding-top: 0 !important;
   width: 100% !important;
   max-width: none !important;
   display: flex !important;
@@ -5470,30 +5458,42 @@ body,
 .palette-bar-edu .palette-swatches {
   display: flex !important;
   flex-direction: row !important;
-  gap: 12px !important; /* Gaps between each box matching draft image 2 */
+  gap: 12px !important;
   width: auto !important;
   max-width: none !important;
 }
 
+/* Swatches: pure opacity fade-in, no translateY, no scale jump */
 .palette-bar-edu .swatch {
   width: clamp(40px, 3.4vw, 50px) !important;
   height: clamp(26px, 2.2vw, 32px) !important;
   flex: none !important;
-  border-radius: 0 !important; /* Sharp rectangles matching draft image 2 */
+  border-radius: 0 !important;
   border: none !important;
   outline: none !important;
   cursor: pointer;
   background-color: var(--c) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  transform: none !important;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, box-shadow 0.2s ease !important;
+  will-change: opacity;
 }
 
+/* Staggered fade in one by one when palette enters viewport */
+.palette-bar-edu.revealed .swatch:nth-child(1) { opacity: 1 !important; transition-delay: 0.10s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(2) { opacity: 1 !important; transition-delay: 0.26s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(3) { opacity: 1 !important; transition-delay: 0.42s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(4) { opacity: 1 !important; transition-delay: 0.58s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(5) { opacity: 1 !important; transition-delay: 0.74s !important; }
+.palette-bar-edu.revealed .swatch:nth-child(6) { opacity: 1 !important; transition-delay: 0.90s !important; }
+
+/* Micro-interaction on hover */
 .palette-bar-edu .swatch:hover {
   transform: translateY(-3px) scale(1.08) !important;
   box-shadow: 0 4px 14px rgba(212, 184, 255, 0.45) !important;
   z-index: 5 !important;
 }
 
-/* Education titles */
 .edu-title {
   font-size: clamp(1rem, 1.5vw, 1.25rem) !important;
   font-weight: 600 !important;
