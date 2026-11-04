@@ -4155,21 +4155,9 @@ body,
 }
 
 /* Glazing shimmer background for works section */
+/* Seamless transition between skills and works — no hard box glaze */
 .gallery-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg,
-    rgba(216, 194, 255, 0) 0%,
-    rgba(216, 194, 255, 0.07) 30%,
-    rgba(255, 200, 240, 0.05) 50%,
-    rgba(216, 194, 255, 0.07) 70%,
-    rgba(216, 194, 255, 0) 100%
-  );
-  background-size: 200% 200%;
-  animation: sectionGlaze 8s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
+  display: none !important;
 }
 
 @keyframes sectionGlaze {
