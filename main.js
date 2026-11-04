@@ -14,12 +14,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Immediate intro reveal trigger for hero eyecrop slide-from-right
-  const eyecropWrap = document.querySelector('.eyecrop-wrapper');
-  if (eyecropWrap) {
+  // Immediate intro reveal trigger for hero eyecrop (slide right) & full name (fade up)
+  const eyecropBanner = document.querySelector('.eyecrop-banner[data-reveal-right]');
+  const heroNameBar = document.querySelector('.hero-name-bar[data-name-reveal]');
+  if (eyecropBanner) {
     setTimeout(() => {
-      eyecropWrap.classList.add('revealed');
+      eyecropBanner.classList.add('revealed');
     }, 100);
+  }
+  if (heroNameBar) {
+    setTimeout(() => {
+      heroNameBar.classList.add('revealed');
+    }, 150);
   }
 
   // Dedicated cursor sparkle audio: Plays ONLY while mouse is in motion, fades out immediately on stop
@@ -941,7 +947,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 15. SIDE REVEAL OBSERVER (SLIDE FROM SIDES FOR ABOUT SECTION)
   // ==========================================================================
-  const revealSideElements = document.querySelectorAll('[data-reveal-left], [data-reveal-right]');
+  const revealSideElements = document.querySelectorAll('[data-reveal-left], [data-reveal-right], [data-name-reveal]');
   const sideRevealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
