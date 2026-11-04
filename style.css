@@ -3447,7 +3447,7 @@ body,
   position: relative;
   width: 100%;
   margin-top: 0.2rem;
-  overflow: hidden;
+  overflow: visible !important;
   display: flex;
   flex-direction: column;
 }
@@ -3455,11 +3455,14 @@ body,
 .eyecrop-banner {
   position: relative;
   width: 100%;
-  height: 220px !important;
-  min-height: 180px !important;
-  max-height: 240px !important;
+  height: 230px !important;
+  min-height: 190px !important;
+  max-height: 260px !important;
   overflow: hidden;
-  background: #05030a;
+  background: transparent !important;
+  /* Smooth mask fade so bottom of eye crop melts seamlessly into the background with NO hard line */
+  -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 65%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000000 0%, #000000 65%, rgba(0, 0, 0, 0) 100%);
 }
 
 .eyecrop-img {
@@ -3475,20 +3478,22 @@ body,
   display: none !important;
 }
 
-/* Full Name — 100% TRANSPARENT background matching sketch (overlaps bottom of eyecrop) */
+/* Full Name — 100% TRANSPARENT background (Half on top of eye crop, half below) */
 .hero-name-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  transform: translateY(50%); /* EXACTLY half on top of eyecrop image, half below */
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  margin-top: -2.2rem;
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.4rem;
-  z-index: 20;
-  position: relative;
+  z-index: 25;
   pointer-events: none;
 }
 
@@ -3506,7 +3511,7 @@ body,
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(155, 108, 250, 0.6));
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(155, 108, 250, 0.65));
 }
 
 /* Outline sparkle SVG beside full name */
@@ -3527,7 +3532,7 @@ body,
 }
 
 .hero-container {
-  margin-top: 1.5rem !important;
+  margin-top: 3.5rem !important;
   padding: 0 3.5rem !important;
 }
 
@@ -4221,17 +4226,28 @@ body,
   padding: 0 1rem;
 }
 
-/* About Me header matching sketch */
+/* About Me Section Header — Vertically Stacked (ABOUT ME on top, WHO I AM below) */
+.about-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto 3.5rem auto !important;
+  width: 100% !important;
+}
+
 .about-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   gap: 0.8rem;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   letter-spacing: 0.25em;
   color: var(--accent-lavender);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.6rem !important;
+  width: auto;
 }
 
 .about-eyebrow .eyebrow-line {
@@ -4239,6 +4255,12 @@ body,
   width: 45px;
   height: 1px;
   background: rgba(162, 130, 240, 0.4);
+}
+
+.about-header .section-title {
+  display: block !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
 
 /* ===== ABOUT ME: DRAFT SKETCH ACCURATE (NO VISIBLE CONTAINER BOXES) ===== */
@@ -4249,12 +4271,18 @@ body,
   align-items: start;
 }
 
-/* Left Column: Canva Arch Frame (NO container box) */
+/* Left Column: Canva Arch Frame (Bigger so contents fit INSIDE arch) */
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .about-sketch-arch-wrap {
   position: relative;
   width: 100%;
-  max-width: 520px;
-  min-height: 540px;
+  max-width: 600px;
+  min-height: 640px;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -4271,24 +4299,28 @@ body,
   object-fit: fill;
   pointer-events: none;
   z-index: 1;
-  filter: drop-shadow(0 0 12px rgba(186, 155, 255, 0.35));
+  filter: drop-shadow(0 0 12px rgba(186, 155, 255, 0.4));
 }
 
 .about-sketch-arch-inner {
   position: relative;
   z-index: 2;
-  padding: 3.5rem 3.8rem 2.5rem 2.8rem;
+  /* Arch occupies the left 60% of the SVG; text sits cleanly inside it */
+  width: 60%;
+  max-width: 360px;
+  padding: 4.2rem 1.2rem 2.5rem 2.8rem;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .about-sketch-arch-inner .card-heading {
   font-family: var(--font-heading), 'Cinzel', serif;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: #ffffff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   background: linear-gradient(135deg, #ffffff 0%, #e0d0ff 60%, #b898ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -4297,35 +4329,41 @@ body,
 
 .about-sketch-arch-inner .body-text {
   font-family: var(--font-body), sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(240, 236, 250, 0.9);
-  margin-bottom: 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(240, 236, 250, 0.92);
+  margin-bottom: 0.9rem;
 }
 
+/* Color Palette: Centered, No Border, No Border Radius */
 .palette-bar-under-bg {
-  margin-top: 1.5rem;
-  padding: 0.5rem 0;
-  max-width: 480px;
+  margin: 1.8rem auto 0 2.8rem;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
 }
 
 .palette-bar-under-bg .palette-swatches {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.75rem;
+  display: flex;
+  width: 100%;
+  gap: 0 !important;
 }
 
 .palette-bar-under-bg .swatch {
-  height: 48px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex: 1;
+  height: 42px;
+  border-radius: 0 !important;
+  border: none !important;
+  outline: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, z-index 0.2s ease;
 }
 
 .palette-bar-under-bg .swatch:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  transform: scale(1.12);
+  z-index: 5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 /* Right Column: Education (NO visible container box, clean lines) */
