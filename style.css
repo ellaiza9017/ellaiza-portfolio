@@ -3455,14 +3455,14 @@ body,
 .eyecrop-banner {
   position: relative;
   width: 100%;
-  height: 230px !important;
-  min-height: 190px !important;
-  max-height: 260px !important;
+  height: 220px !important;
+  min-height: 180px !important;
+  max-height: 240px !important;
   overflow: hidden;
   background: transparent !important;
-  /* Smooth mask fade so bottom of eye crop melts seamlessly into the background with NO hard line */
-  -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 65%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, #000000 0%, #000000 65%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  border-bottom: 2px solid rgba(162, 130, 240, 0.45) !important;
 }
 
 .eyecrop-img {
@@ -3514,17 +3514,22 @@ body,
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(155, 108, 250, 0.65));
 }
 
-/* Outline sparkle SVG beside full name */
-.hero-name-sparkle-svg {
+/* Outline sparkle star image matching user's exact uploaded star */
+.hero-name-sparkle-img {
+  width: 26px;
+  height: auto;
   flex-shrink: 0;
-  opacity: 0.95;
   filter: drop-shadow(0 0 8px rgba(255, 214, 102, 0.85));
   animation: sparkleRotateFloat 4s ease-in-out infinite alternate;
 }
 
+.hero-name-sparkle-svg {
+  display: none;
+}
+
 @keyframes sparkleRotateFloat {
-  0% { transform: rotate(-8deg) scale(0.95); opacity: 0.85; }
-  100% { transform: rotate(8deg) scale(1.1); opacity: 1; }
+  0% { transform: rotate(-6deg) scale(0.95); opacity: 0.9; }
+  100% { transform: rotate(6deg) scale(1.08); opacity: 1; }
 }
 
 .hero-name-sparkle {
