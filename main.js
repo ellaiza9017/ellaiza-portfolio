@@ -354,6 +354,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    if (!currentId && window.scrollY < 300) {
+      currentId = 'home';
+    }
+
     navItems.forEach((link) => {
       link.classList.remove('active');
       if (link.getAttribute('data-nav') === currentId) {
@@ -362,7 +366,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('scroll', updateActiveNav);
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 
   // ==========================================================================
   // 8. WORKS FILTERING

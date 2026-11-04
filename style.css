@@ -5055,3 +5055,198 @@ body,
     max-width: 360px !important;
   }
 }
+
+
+/* ==========================================================================
+   NAVIGATION UPDATES:
+   1. FIXED STICKY TOP NAV ON SCROLL
+   2. SPINNING CELESTIAL STAR (CURSOR REPLICA) INDICATOR FOR TOP & SIDE NAV
+   3. ENLARGED SIDE NAV CONSTELLATION SPINE
+   4. MUSIC PLAYER WAVES SPAN FROM INNER BORDER TO INNER BORDER
+   ========================================================================== */
+
+/* 1. FIXED STICKY TOP NAVBAR ON SCROLL */
+.site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  padding: 1.1rem 3.5rem !important;
+  background: rgba(5, 3, 10, 0.72) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  border-bottom: 1px solid rgba(212, 184, 255, 0.15) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.site-header.scrolled {
+  padding: 0.85rem 3.5rem !important;
+  background: rgba(5, 3, 10, 0.92) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+  border-bottom: 1px solid rgba(212, 184, 255, 0.25) !important;
+}
+
+.page-viewport {
+  padding-top: 76px !important;
+}
+
+/* 2. TOP NAV: SPINNING STAR CURSOR REPLICA AS ACTIVE & HOVER INDICATOR */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2.2rem !important;
+}
+
+.nav-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  position: relative !important;
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: #EADCFE !important;
+  text-decoration: none !important;
+  letter-spacing: 0.02em !important;
+  transition: color 0.25s ease, text-shadow 0.25s ease !important;
+  cursor: pointer !important;
+}
+
+.nav-active-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  transform: scale(0.2) rotate(-90deg);
+  overflow: hidden;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.nav-star-spin-svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  animation: starSpinSlow 8s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(186, 155, 255, 0.85));
+}
+
+.nav-item.active .nav-active-star,
+.nav-item:hover .nav-active-star {
+  width: 17px;
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(212, 184, 255, 0.9) !important;
+}
+
+/* 3. ENLARGED SIDE NAV CONSTELLATION SPINE WITH SPINNING CURSOR STAR INDICATOR */
+.section-nav-indicator {
+  position: fixed !important;
+  left: 2.4rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+.section-nav-indicator .nav-line {
+  width: 1.5px !important;
+  flex: none !important;
+  min-height: 42px !important;
+  background: linear-gradient(to bottom, rgba(186, 155, 255, 0.15), rgba(186, 155, 255, 0.5), rgba(186, 155, 255, 0.15)) !important;
+  box-shadow: 0 0 6px rgba(186, 155, 255, 0.35) !important;
+}
+
+.nav-ind-dot {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  cursor: pointer !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dot-base-star {
+  font-size: 1.3rem !important;
+  color: rgba(186, 155, 255, 0.42) !important;
+  transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease !important;
+  pointer-events: none;
+}
+
+.nav-ind-dot:hover .dot-base-star {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(212, 184, 255, 0.95) !important;
+  transform: scale(1.25) !important;
+}
+
+.dot-active-cursor {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.3) rotate(-90deg);
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.side-nav-star-svg {
+  width: 26px;
+  height: 26px;
+  animation: starSpinSlow 8s linear infinite;
+  filter: drop-shadow(0 0 8px #FFFFFF) drop-shadow(0 0 16px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 24px rgba(212, 184, 255, 0.7));
+}
+
+.nav-ind-dot.active .dot-base-star {
+  opacity: 0 !important;
+}
+
+.nav-ind-dot.active .dot-active-cursor {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+/* 4. MUSIC PLAYER: WAVES SPAN FROM INNER BORDER TO INNER BORDER */
+.player-waveform {
+  width: calc(100% - 14px) !important; /* EXACT SPAN TO THE 5px INNER BORDER */
+  margin: 0 auto !important;
+  padding: 0 0 0.85rem 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  height: 44px !important;
+  flex-shrink: 0 !important;
+  background: linear-gradient(to top, rgba(10, 6, 18, 0.7) 0%, transparent 100%) !important;
+}
+
+.player-waveform .wbar {
+  width: 2.2px !important;
+  border-radius: 1px !important;
+  background: linear-gradient(to top, #8E63DB 0%, #D4B8FF 55%, #FFFFFF 100%) !important;
+  box-shadow: 0 0 6px rgba(212, 184, 255, 0.6) !important;
+  will-change: height, transform;
+  transform-origin: bottom center;
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .section-nav-indicator {
+    display: none !important;
+  }
+  .site-header {
+    padding: 0.85rem 1.5rem !important;
+  }
+}
