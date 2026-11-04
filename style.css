@@ -5373,11 +5373,12 @@ body,
 .about-paragraphs-wrap .body-text,
 .about-sketch-arch-inner .body-text {
   font-family: var(--font-body), sans-serif !important;
-  font-size: clamp(0.72rem, 0.84vw, 0.85rem) !important;
-  line-height: 1.68 !important;
-  color: rgba(240, 236, 250, 0.9) !important;
-  margin-bottom: 0.95rem !important;
-  text-align: center !important;
+  font-size: clamp(0.85rem, 1.05vw, 1.02rem) !important; /* Bigger */
+  line-height: 1.72 !important;
+  color: rgba(240, 236, 250, 0.92) !important;
+  margin-bottom: 1.1rem !important;
+  text-align: justify !important; /* Justified */
+  text-justify: inter-word !important;
   padding: 0 0.8rem !important;
   width: 100% !important;
   box-sizing: border-box !important;
@@ -5407,9 +5408,16 @@ body,
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important;
-  gap: 2.2rem !important;
   height: 100% !important;
+}
+
+/* College & Senior High School cards grouped in the vertical center of EDUCATION */
+.edu-cards-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2.5rem !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important; /* Vertically centers the contents with EDUCATION */
 }
 
 /* Compact EDUCATION spine - vertically centered in the column */
@@ -5429,7 +5437,7 @@ body,
 /* Color Palette: below SHS education, inline with bottom of background frame */
 /* Color Palette: below SHS education, inline with bottom of background frame */
 .palette-bar-edu {
-  margin-top: auto !important; /* Pushes to bottom of edu column, inline with arch frame bottom */
+  margin-top: 0 !important; /* Stays at bottom inline with arch frame bottom */
   padding-top: 2rem !important;
   margin-bottom: 0.1rem !important;
   width: 100% !important;
@@ -5542,8 +5550,9 @@ body,
   }
   .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
-    font-size: 0.72rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+    text-align: justify !important;
     padding: 0 0.5rem !important;
   }
   .education-sketch-col {
@@ -5605,9 +5614,10 @@ body,
   }
   .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
-    font-size: 0.68rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    text-align: justify !important;
+    margin-bottom: 0.6rem !important;
     padding: 0 0.3rem !important;
   }
 }
