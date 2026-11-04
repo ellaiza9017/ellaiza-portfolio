@@ -6228,65 +6228,109 @@ body,
   letter-spacing: 0.04em;
 }
 
-/* 5 Arch SVG Frames Row — Exact Canva Positioning & Generous Breathing Room */
+/* ==========================================================================
+   5 ARCH FRAMES: Canva-exact composition (design-space stage, scales fluidly)
+   Design space = 970 x 516 units measured from the reference layout.
+   ========================================================================== */
 .gallery-frames-row {
-  display: flex !important;
-  align-items: flex-start !important;
-  justify-content: center !important;
-  gap: 20px !important;
   position: relative;
-  max-width: 1380px;
-  width: 95%;
-  margin: 0 auto 3.5rem auto;
-  padding: 0 1rem;
+  display: block !important;
+  width: min(1003px, 94vw);
+  aspect-ratio: 970 / 516;
+  margin: 0 auto 4rem auto !important;
+  padding: 0 !important;
   z-index: 2;
 }
 
 .works-frame-col {
-  position: relative;
+  position: absolute;
   cursor: pointer;
   outline: none;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-  flex-shrink: 0;
+  margin: 0 !important;
+  transform-origin: 50% 70%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  will-change: transform;
+  animation: works-float 7s ease-in-out infinite;
+}
+
+.works-col-cat {
+  left: 0%;
+  top: 44.4%;
+  width: 21.44%;
+  z-index: 1;
+  animation-delay: 0s;
+}
+
+.works-col-luminang {
+  left: 22.06%;
+  top: 4.46%;
+  width: 17.32%;
+  z-index: 2;
+  animation-delay: -1.4s;
+}
+
+.works-col-video {
+  left: 39.69%;
+  top: 21.9%;
+  width: 21.86%;
+  z-index: 3;
+  animation-delay: -2.8s;
+}
+
+.works-col-fullbody {
+  left: 60%;
+  top: 6.4%;
+  width: 37.32%;
+  z-index: 2;
+  animation-delay: -4.2s;
+}
+
+.works-col-purplegirl {
+  left: 81.24%;
+  top: 0%;
+  width: 18.76%;
+  z-index: 4;
+  animation-delay: -5.6s;
+}
+
+@keyframes works-float {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -6px;
+  }
 }
 
 .works-frame-col:hover,
 .works-frame-col:focus-visible {
-  transform: translateY(-12px) scale(1.025);
-  filter: drop-shadow(0 15px 35px rgba(155, 108, 250, 0.5)) drop-shadow(0 0 20px rgba(212, 184, 255, 0.4));
+  animation-play-state: paused;
+  transform: translateY(-14px) scale(1.04);
   z-index: 10 !important;
+  filter: drop-shadow(0 18px 30px rgba(142, 99, 219, 0.45)) drop-shadow(0 0 18px rgba(212, 184, 255, 0.45));
 }
 
 .works-frame-svg {
   width: 100%;
   height: auto;
   display: block;
+  overflow: visible;
   user-select: none;
   pointer-events: none;
+  transition: filter 0.4s ease;
 }
 
-/* Card 1: Cat (short, sits low on baseline) */
-.works-col-cat {
-  width: 215px;
-  margin-top: 175px;
-  margin-left: 0 !important;
-  z-index: 1;
+/* Inline SVG (injected by JS) gets the same glow as the skills borders */
+svg.works-frame-svg {
+  filter: drop-shadow(0 0 5px rgba(142, 99, 219, 0.5));
 }
 
-/* Card 2: Luminang (tall, top-aligned) */
-.works-col-luminang {
-  width: 195px;
-  margin-top: -45px;
-  margin-left: 0 !important;
-  z-index: 2;
-}
-
-/* Card 3: Video (mid-height, center stagger) */
-.works-col-video {
-  width: 220px;
-  margin-top: 85px;
-  margin-left: 0 !important;
-  z-index: 3;
+.works-frame-col:hover svg.works-frame-svg,
+.works-frame-col:focus-visible svg.works-frame-svg {
+  filter: drop-shadow(0 0 12px rgba(212, 184, 255, 0.85)) brightness(1.08);
 }
 
 .video-frame-inner {
@@ -6301,7 +6345,6 @@ body,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Exact arch clip matching MiddleVideoFrameOverlay.svg bezier curve */
   clip-path: url(#archVideoClip);
   z-index: 1;
   background: #000;
@@ -6313,26 +6356,46 @@ body,
   z-index: 2;
 }
 
-/* Card 4: Full Body (tall, top-aligned) */
-.works-col-fullbody {
-  width: 420px;
-  margin-top: 10px;
-  margin-left: 0 !important;
-  z-index: 2;
+@media (prefers-reduced-motion: reduce) {
+  .works-frame-col {
+    animation: none;
+  }
 }
 
-/* Card 5: Purple Girl (short, top-aligned) */
-.works-col-purplegirl {
-  width: 205px;
-  margin-top: -27px;
-  margin-left: -125px !important;
-  z-index: 4;
-}
-
-@media (max-width: 1080px) {
+/* Tablet / mobile: drop the collage, stack as a wrapped grid */
+@media (max-width: 900px) {
   .gallery-frames-row {
-    flex-wrap: wrap !important;
-    gap: 2rem !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    aspect-ratio: auto;
+    width: 94%;
+  }
+
+  .works-frame-col,
+  .works-col-cat,
+  .works-col-luminang,
+  .works-col-video,
+  .works-col-fullbody,
+  .works-col-purplegirl {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 220px;
+  }
+
+  .works-col-fullbody {
+    width: 300px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-frames-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
   }
 
   .works-col-cat,
@@ -6340,25 +6403,7 @@ body,
   .works-col-video,
   .works-col-fullbody,
   .works-col-purplegirl {
-    width: 220px !important;
-    margin-top: 0 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-frames-row {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 3rem !important;
-  }
-
-  .works-col-cat,
-  .works-col-luminang,
-  .works-col-video,
-  .works-col-fullbody,
-  .works-col-purplegirl {
-    width: 80% !important;
-    max-width: 320px !important;
-    margin-top: 0 !important;
+    width: 80%;
+    max-width: 320px;
   }
 }

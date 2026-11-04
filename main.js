@@ -1268,4 +1268,107 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ==========================================================================
+  // WORKS FRAMES: holographic gradient on SVG border lines (same palette as Skills)
+  // Inlines each frame SVG, then paints its line/star shapes with an animated gradient.
+  // Falls back silently to the plain <img> if the SVG can't be fetched.
+  // ==========================================================================
+  (function initWorksFrameGradients() {
+    const NS = 'http://www.w3.org/2000/svg';
+    const STOPS = [
+      ['0%', '#3D2968'], ['20%', '#8E63DB'], ['38%', '#D4B8FF'], ['50%', '#FFFFFF'],
+      ['62%', '#D4B8FF'], ['80%', '#8E63DB'], ['100%', '#3D2968']
+    ];
+    const SKIP = new Set(['image', 'defs', 'clippath', 'mask', 'pattern', 'lineargradient',
+      'radialgradient', 'filter', 'style', 'title', 'desc', 'metadata', 'foreignobject']);
+    let uid = 0;
+
+    function makeGradient(defs, bb, delay) {
+      const vertical = bb.height > bb.width;
+      const len = Math.max(vertical ? bb.height : bb.width, 1);
+      const g = document.createElementNS(NS, 'linearGradient');
+      const id = 'wfg' + (uid++);
+      g.setAttribute('id', id);
+      g.setAttribute('gradientUnits', 'userSpaceOnUse');
+      g.setAttribute('spreadMethod', 'reflect');
+      g.setAttribute('x1', bb.x);
+      g.setAttribute('y1', bb.y);
+      g.setAttribute('x2', vertical ? bb.x : bb.x + len);
+      g.setAttribute('y2', vertical ? bb.y + len : bb.y);
+      STOPS.forEach(([o, c]) => {
+        const s = document.createElementNS(NS, 'stop');
+        s.setAttribute('offset', o);
+        s.setAttribute('stop-color', c);
+        g.appendChild(s);
+      });
+      const anim = document.createElementNS(NS, 'animateTransform');
+      anim.setAttribute('attributeName', 'gradientTransform');
+      anim.setAttribute('type', 'translate');
+      anim.setAttribute('from', '0 0');
+      anim.setAttribute('to', vertical ? '0 ' + (len * 2) : (len * 2) + ' 0');
+      anim.setAttribute('dur', '4.5s');
+      anim.setAttribute('begin', delay + 's');
+      anim.setAttribute('repeatCount', 'indefinite');
+      g.appendChild(anim);
+      defs.appendChild(g);
+      return 'url(#' + id + ')';
+    }
+
+    function paint(svg, delay) {
+      const vb = svg.viewBox && svg.viewBox.baseVal;
+      const vbArea = vb && vb.width ? vb.width * vb.height : Infinity;
+      let defs = svg.querySelector('defs');
+      if (!defs) { defs = document.createElementNS(NS, 'defs'); svg.insertBefore(defs, svg.firstChild); }
+
+      svg.querySelectorAll('path, line, polyline, polygon, circle, ellipse, rect').forEach((el) => {
+        if (el.closest('defs, clipPath, mask, pattern')) return;
+        if (SKIP.has(el.tagName.toLowerCase())) return;
+        let cs, bb;
+        try { cs = getComputedStyle(el); bb = el.getBBox(); } catch (e) { return; }
+        const fill = cs.fill, stroke = cs.stroke;
+        const hasStroke = stroke && stroke !== 'none' && !stroke.startsWith('url');
+        const hasFill = fill && fill !== 'none' && !fill.startsWith('url');
+        // Never recolour artwork: skip big filled shapes
+        const big = bb.width * bb.height > vbArea * 0.25;
+        if (hasStroke) {
+          el.setAttribute('stroke', makeGradient(defs, bb, delay));
+          el.style.stroke = el.getAttribute('stroke');
+        }
+        if (hasFill && !big) {
+          el.setAttribute('fill', makeGradient(defs, bb, delay));
+          el.style.fill = el.getAttribute('fill');
+        }
+      });
+    }
+
+    document.querySelectorAll('.works-frame-col img.works-frame-svg').forEach((img, i) => {
+      fetch(img.getAttribute('src'))
+        .then((r) => { if (!r.ok) throw new Error('svg ' + r.status); return r.text(); })
+        .then((txt) => {
+          const doc = new DOMParser().parseFromString(txt, 'image/svg+xml');
+          const src = doc.documentElement;
+          if (!src || src.nodeName.toLowerCase() !== 'svg') throw new Error('bad svg');
+          const svg = document.importNode(src, true);
+          // make ids unique per frame so clipPaths/patterns don't collide
+          const prefix = 'wf' + i + '_';
+          let markup = new XMLSerializer().serializeToString(svg);
+          markup = markup.replace(/id="([^"]+)"/g, 'id="' + prefix + '$1"')
+            .replace(/url\(#([^)]+)\)/g, 'url(#' + prefix + '$1)')
+            .replace(/(xlink:)?href="#([^"]+)"/g, (m, x, id) => (x || '') + 'href="#' + prefix + id + '"');
+          const holder = document.createElement('div');
+          holder.innerHTML = markup;
+          const live = holder.firstElementChild;
+          live.classList.add('works-frame-svg');
+          live.setAttribute('aria-hidden', 'true');
+          live.removeAttribute('width');
+          live.removeAttribute('height');
+          live.style.overflow = 'visible';
+          img.insertAdjacentElement('afterend', live);
+          img.style.display = 'none';
+          paint(live, -i * 0.9);
+        })
+        .catch(() => { /* keep static <img> fallback */ });
+    });
+  })();
+
 });
