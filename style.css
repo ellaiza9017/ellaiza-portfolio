@@ -3496,23 +3496,24 @@ body,
 }
 
 .hero-fullname {
-  font-family: 'Cinzel', serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 4.6vw, 3.8rem);
-  letter-spacing: 0.14em;
-  line-height: 1.1;
+  font-family: 'Ballet', cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(3rem, 6.2vw, 5.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
   margin: 0;
   text-align: center;
   white-space: nowrap;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #ffffff 0%, #ecdfff 45%, #bca5ff 100%);
+  text-transform: none;
+  background: linear-gradient(135deg, #F4EFFF 0%, #D4B8FF 45%, #8E63DB 80%, #3D2968 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(155, 108, 250, 0.65));
+  filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px rgba(212, 184, 255, 0.6));
 }
 
-/* Outline sparkle star image matching user's exact uploaded star */
 .hero-name-sparkle-img {
   width: clamp(24px, 3.2vw, 38px);
   height: auto;
