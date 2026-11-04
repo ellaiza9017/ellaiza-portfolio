@@ -1371,4 +1371,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // Keyboard: Enter / Space opens the focused work card
+  document.querySelectorAll('[data-works-card]').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
 });

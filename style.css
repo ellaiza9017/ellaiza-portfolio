@@ -6407,3 +6407,390 @@ svg.works-frame-svg {
     max-width: 320px;
   }
 }
+
+/* ==========================================================================
+ WORKS: HOVER OVERLAY (dark purple, clipped to each arch)
+ --ax/--ay/--aw/--ah = arch rectangle inside each frame's SVG box (tweak here)
+ ========================================================================== */
+.works-col-cat {
+  --ax: 30.8%;
+  --ay: 0%;
+  --aw: 69.2%;
+  --ah: 93.7%;
+}
+
+.works-col-luminang {
+  --ax: 9.5%;
+  --ay: 2.1%;
+  --aw: 90.5%;
+  --ah: 97.9%;
+}
+
+.works-col-video {
+  --ax: 11.4%;
+  --ay: 3.6%;
+  --aw: 88.5%;
+  --ah: 94.1%;
+}
+
+.works-col-fullbody {
+  --ax: 11.6%;
+  --ay: 0%;
+  --aw: 41.7%;
+  --ah: 90.9%;
+}
+
+.works-col-purplegirl {
+  --ax: 0%;
+  --ay: 0%;
+  --aw: 79.1%;
+  --ah: 100%;
+}
+
+.works-overlay {
+  position: absolute;
+  left: var(--ax);
+  top: var(--ay);
+  width: var(--aw);
+  height: var(--ah);
+  z-index: 5;
+  border-radius: 999px 999px 0 0;
+  background:
+    radial-gradient(120% 70% at 50% 100%, rgba(142, 99, 219, 0.35), transparent 70%),
+    linear-gradient(180deg, rgba(28, 12, 58, 0.78) 0%, rgba(40, 16, 82, 0.9) 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.works-frame-col:hover .works-overlay,
+.works-frame-col:focus-visible .works-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.works-overlay-inner {
+  width: 100%;
+  padding: 0 8% 12%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  transform: translateY(14px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.works-frame-col:hover .works-overlay-inner,
+.works-frame-col:focus-visible .works-overlay-inner {
+  transform: translateY(0);
+}
+
+.works-overlay-title {
+  font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 1.25vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #d8c2ff 50%, #b48cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.works-overlay-sub {
+  margin: 0;
+  font-size: clamp(0.5rem, 0.7vw, 0.68rem);
+  letter-spacing: 0.12em;
+  color: rgba(234, 220, 254, 0.8);
+}
+
+.works-overlay-hint {
+  margin-top: 0.2rem;
+  font-size: clamp(0.5rem, 0.7vw, 0.66rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(212, 184, 255, 0.7);
+}
+
+.works-visit-btn {
+  position: relative;
+  margin-top: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: clamp(0.55rem, 0.8vw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: rgba(12, 8, 24, 0.25);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.works-visit-btn::before,
+.btn-works-explore::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  padding: 1.3px;
+  background: linear-gradient(90deg, #3D2968 0%, #8E63DB 20%, #D4B8FF 40%, #FFFFFF 50%, #D4B8FF 60%, #8E63DB 80%, #3D2968 100%);
+  background-size: 300% 100%;
+  animation: holo-skill-border 4.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.works-visit-btn:hover {
+  background: rgba(142, 99, 219, 0.3);
+  box-shadow: 0 0 16px rgba(212, 184, 255, 0.4);
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+ EXPLORE FULL GALLERY button (theme-matched)
+ ========================================================================== */
+.btn-works-explore {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(155, 108, 250, 0.06);
+  box-shadow: none;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.btn-works-explore>span:not(.btn-sparkle) {
+  background: linear-gradient(135deg, #ffffff 0%, #d8c2ff 40%, #9b6cfa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-works-explore:hover {
+  background: rgba(155, 108, 250, 0.16);
+  box-shadow: 0 0 22px rgba(155, 108, 250, 0.35);
+  transform: translateY(-2px);
+}
+
+/* "Coming Soon" hover tooltip */
+.coming-soon-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.coming-soon-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 6px);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: #EADCFE;
+  background: rgba(20, 10, 40, 0.92);
+  border: 1px solid rgba(186, 155, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(142, 99, 219, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.3s ease, visibility 0.25s;
+}
+
+.coming-soon-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  background: rgba(20, 10, 40, 0.92);
+  border-right: 1px solid rgba(186, 155, 255, 0.45);
+  border-bottom: 1px solid rgba(186, 155, 255, 0.45);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.coming-soon-btn-wrapper:hover .coming-soon-bubble,
+.coming-soon-btn-wrapper:focus-within .coming-soon-bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* Click toast (touch devices / nav link) */
+.coming-soon-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  z-index: 100000;
+  transform: translate(-50%, 20px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  color: #EADCFE;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  background: rgba(20, 10, 40, 0.95);
+  border: 1px solid rgba(186, 155, 255, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-out-expo);
+}
+
+.coming-soon-toast.active {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ==========================================================================
+ WORKS LIGHTBOXES (image + video) -- were missing, so they rendered inline
+ ========================================================================== */
+.svgframe-lightbox-modal,
+.video-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s;
+}
+
+.svgframe-lightbox-modal.active,
+.video-lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.svgframe-lb-dialog,
+.video-lightbox-dialog {
+  position: relative;
+  z-index: 2;
+  max-width: min(92vw, 1100px);
+  max-height: 92vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border-focus);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(155, 108, 250, 0.3);
+  transform: scale(0.94) translateY(16px);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.svgframe-lightbox-modal.active .svgframe-lb-dialog,
+.video-lightbox-modal.active .video-lightbox-dialog {
+  transform: none;
+}
+
+.svgframe-lb-dialog .lightbox-close,
+.video-lightbox-dialog .lightbox-close {
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 3;
+  background: rgba(10, 6, 20, 0.7);
+  cursor: pointer;
+}
+
+.svgframe-lb-img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.modal-video-player {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  background: #000;
+}
+
+.svgframe-lb-actions:empty {
+  display: none;
+}
+
+.luminang-gradient-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: rgba(155, 108, 250, 0.08);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.luminang-gradient-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  padding: 1.3px;
+  background: linear-gradient(90deg, #3D2968 0%, #8E63DB 20%, #D4B8FF 40%, #FFFFFF 50%, #D4B8FF 60%, #8E63DB 80%, #3D2968 100%);
+  background-size: 300% 100%;
+  animation: holo-skill-border 4.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.luminang-gradient-link:hover {
+  background: rgba(155, 108, 250, 0.2);
+  box-shadow: 0 0 20px rgba(155, 108, 250, 0.4);
+}
+
+/* Mobile: overlays always readable, tap-friendly */
+@media (max-width: 900px) {
+  .gallery-frames-row {
+    left: auto;
+    transform: none;
+  }
+
+  .works-overlay-title {
+    font-size: 0.95rem;
+  }
+
+  .works-overlay-sub,
+  .works-overlay-hint {
+    font-size: 0.6rem;
+  }
+
+  .works-visit-btn {
+    font-size: 0.7rem;
+  }
+}
