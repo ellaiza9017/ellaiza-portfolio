@@ -7592,3 +7592,89 @@ svg.works-frame-svg {
     justify-self: center;
   }
 }
+
+/* ==========================================================================
+   REVISIONS (Nov 2026)
+   ========================================================================== */
+
+/* Contact: italic eyebrow */
+#contact .contact-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Contact: GET IN TOUCH uses the same face as WHO I AM (Cinzel, bold, spaced, same gradient) */
+#contact .contact-big-title {
+  font-family: var(--font-heading), serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+}
+
+#contact .contact-title-text {
+  background: linear-gradient(135deg, #ffffff 0%, #d8c2ff 40%, #9b6cfa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Contact: star centered on the card's top edge, side stars removed */
+.contact-card-spark {
+  left: 50%;
+}
+
+#contact .contact-sparkles-left {
+  display: none !important;
+}
+
+/* Footer: gold star before the name (matches the home name-bar star) */
+.footer-star {
+  fill: #FFD666;
+  stroke: #FFE9A8;
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 6px rgba(255, 214, 102, 0.9));
+}
+
+/* Works: middle frame text centered inside the arch (arch spans ~11.4%-100% of the frame) */
+.works-col-video .works-overlay-inner {
+  padding-left: 17%;
+  padding-right: 6%;
+  box-sizing: border-box;
+}
+
+/* Nav indicator: soft round glow instead of a boxed highlight */
+.nav-item {
+  isolation: isolate;
+}
+
+.nav-active-star {
+  overflow: visible !important;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  top: -16px;
+  bottom: -16px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+      rgba(186, 155, 255, 0.30) 0%,
+      rgba(142, 99, 219, 0.14) 42%,
+      rgba(142, 99, 219, 0) 72%);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.nav-item.active::before,
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item--disabled:hover::before {
+  opacity: 0.6;
+}

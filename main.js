@@ -691,18 +691,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Try playing immediately
     startMusic();
 
-    // Start immediately on ANY first user touch, tap, scroll, key, or pointer interaction
-    const autoPlayOnActivity = () => {
-      startMusic();
-      if (isMusicPlaying) {
-        ['pointerdown', 'mousemove', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
-          window.removeEventListener(evt, autoPlayOnActivity);
-        });
-      }
+    // Browsers only allow audio after a real user gesture (click / key / tap).
+    // mousemove and scroll do NOT count, so we listen for gestures that do.
+    const GESTURES = ['pointerup', 'mouseup', 'click', 'keydown', 'touchend'];
+    const removeGestureListeners = () => {
+      GESTURES.forEach((evt) => window.removeEventListener(evt, autoPlayOnActivity, true));
     };
-    ['pointerdown', 'mousemove', 'scroll', 'keydown', 'touchstart'].forEach((evt) => {
-      window.addEventListener(evt, autoPlayOnActivity, { passive: true });
+    function autoPlayOnActivity() {
+      if (isMusicPlaying) { removeGestureListeners(); return; }
+      bgAudio.play().then(() => {
+        updateMusicUI(true);
+        removeGestureListeners();
+      }).catch(() => { /* not allowed yet; wait for the next gesture */ });
+    }
+    GESTURES.forEach((evt) => {
+      window.addEventListener(evt, autoPlayOnActivity, { capture: true, passive: true });
     });
+
+    // Retry autoplay at every moment the browser might allow it
+    window.addEventListener('load', startMusic);
+    window.addEventListener('pageshow', startMusic);
+    bgAudio.addEventListener('canplay', startMusic, { once: true });
 
     if (logoBtn) {
       logoBtn.addEventListener('click', toggleMusic);
