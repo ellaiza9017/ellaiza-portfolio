@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Ballet:opsz@16..72&family=Cinzel:wght@400;600;700;900&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Ballet:opsz@16..72&family=Cinzel:wght@400;600;700;900&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -1603,32 +1603,99 @@
 
         <div class="section-header contact-header" data-reveal>
           <p class="contact-eyebrow">Don't be a stranger</p>
-          <h2 class="contact-big-title gradient-title"><span class="contact-title-strikethrough">GET IN TOUCH</span>
-          </h2>
-          <div class="canva-gradient-line contact-squigly-accent" aria-hidden="true"></div>
+          <h2 class="contact-big-title"><span class="contact-title-text">GET IN TOUCH</span></h2>
+          <svg class="contact-swash-svg" viewBox="0 0 920 380" aria-hidden="true">
+            <defs>
+              <linearGradient id="contactSwashGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="920" y2="0"
+                spreadMethod="reflect">
+                <stop offset="0%" stop-color="#3D2968" />
+                <stop offset="20%" stop-color="#8E63DB" />
+                <stop offset="38%" stop-color="#D4B8FF" />
+                <stop offset="50%" stop-color="#FFFFFF" />
+                <stop offset="62%" stop-color="#D4B8FF" />
+                <stop offset="80%" stop-color="#8E63DB" />
+                <stop offset="100%" stop-color="#3D2968" />
+                <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="1840 0" dur="5s"
+                  repeatCount="indefinite" />
+              </linearGradient>
+            </defs>
+            <path d="M 2 378 C 160 215, 430 95, 918 8" fill="none" stroke="url(#contactSwashGrad)" stroke-width="1.6"
+              stroke-linecap="round" />
+            <path d="M 4 379 C 200 220, 520 110, 918 44" fill="none" stroke="url(#contactSwashGrad)" stroke-width="1.1"
+              stroke-linecap="round" />
+            <path class="swash-star" d="M 884 4 L 889 18 L 903 24 L 889 30 L 884 44 L 879 30 L 865 24 L 879 18 Z"
+              fill="url(#contactSwashGrad)" />
+          </svg>
         </div>
 
         <div class="contact-sparkles-left" aria-hidden="true">
-          <img src="assets/SVG/solidSparkle2.svg" alt="" class="canva-svg-white" style="width: 24px; opacity: 0.65;">
+          <svg class="cs-star" viewBox="0 0 24 48" aria-hidden="true">
+            <path
+              d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.8 26.5 1 24 C9.8 21.5 11.3 15 12 1Z" />
+          </svg><svg class="cs-star" viewBox="0 0 24 48" aria-hidden="true">
+            <path
+              d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.8 26.5 1 24 C9.8 21.5 11.3 15 12 1Z" />
+          </svg><svg class="cs-star" viewBox="0 0 24 48" aria-hidden="true">
+            <path
+              d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.8 26.5 1 24 C9.8 21.5 11.3 15 12 1Z" />
+          </svg><svg class="cs-star" viewBox="0 0 24 48" aria-hidden="true">
+            <path
+              d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.8 26.5 1 24 C9.8 21.5 11.3 15 12 1Z" />
+          </svg><svg class="cs-star" viewBox="0 0 24 48" aria-hidden="true">
+            <path
+              d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.8 26.5 1 24 C9.8 21.5 11.3 15 12 1Z" />
+          </svg>
         </div>
 
         <div class="contact-grid">
-          <!-- Left: Clean Form -->
+          <!-- Left: hand-drawn form card -->
           <div class="contact-card contact-outline-card" data-reveal>
-            <h3 class="form-title">Send a Direct Message</h3>
+            <svg class="contact-card-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="contactCardGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"
+                  spreadMethod="reflect">
+                  <stop offset="0%" stop-color="#3D2968" />
+                  <stop offset="20%" stop-color="#8E63DB" />
+                  <stop offset="38%" stop-color="#D4B8FF" />
+                  <stop offset="50%" stop-color="#FFFFFF" />
+                  <stop offset="62%" stop-color="#D4B8FF" />
+                  <stop offset="80%" stop-color="#8E63DB" />
+                  <stop offset="100%" stop-color="#3D2968" />
+                  <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="200 0" dur="5s"
+                    repeatCount="indefinite" />
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke="url(#contactCardGrad)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" vector-effect="non-scaling-stroke">
+                <path vector-effect="non-scaling-stroke" d="M 0.6 2.4 C 8 2.3, 18 2.1, 28 2.0" />
+                <path vector-effect="non-scaling-stroke" d="M 64 1.6 C 78 1.3, 92 1.0, 99.4 0.8" />
+                <path vector-effect="non-scaling-stroke" d="M 99.4 0.8 C 99.2 30, 98.9 70, 98.7 99.2" />
+                <path vector-effect="non-scaling-stroke" d="M 98.7 99.2 C 85 99.0, 70 98.7, 59 98.6" />
+                <path vector-effect="non-scaling-stroke" d="M 41 99.1 C 28 99.0, 12 98.5, 0.2 98.0" />
+                <path vector-effect="non-scaling-stroke" d="M 0.2 98.0 C 0.3 70, 0.5 30, 0.6 2.4" />
+              </g>
+            </svg>
+            <svg class="contact-card-spark" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 2 C33 22 38 29 62 32 C38 35 33 42 32 62 C31 42 26 35 2 32 C26 29 31 22 32 2Z" fill="none"
+                stroke="url(#contactCardGrad)" stroke-width="1.6" />
+              <path d="M32 2 L32 62 M14 14 L22 22 M50 14 L42 22" stroke="url(#contactCardGrad)" stroke-width="1"
+                stroke-linecap="round" fill="none" />
+            </svg>
+
+            <h3 class="form-title">Send Direct Msg</h3>
             <form id="contact-form" class="ethereal-form">
               <div class="form-group">
-                <label for="contact-name">Your Full Name</label>
+                <label for="contact-name">Full Name:</label>
                 <input type="text" id="contact-name" name="name" required placeholder="e.g. John Doe">
               </div>
 
               <div class="form-group">
-                <label for="contact-email">Email Address</label>
+                <label for="contact-email">Email:</label>
                 <input type="email" id="contact-email" name="email" required placeholder="john.doe@example.com">
               </div>
 
               <div class="form-group">
-                <label for="contact-subject">Inquiry Type</label>
+                <label for="contact-subject">Type of Inquiry</label>
                 <select id="contact-subject" name="subject" class="form-select" required>
                   <option value="" disabled selected>Select an option</option>
                   <option value="ojt">OJT / Internship Opportunity</option>
@@ -1639,64 +1706,94 @@
 
               <div class="form-group">
                 <label for="contact-message">Message</label>
-                <textarea id="contact-message" name="message" rows="5" required
-                  placeholder="Share details about the role, project timeline, or questions..."></textarea>
+                <textarea id="contact-message" name="message" rows="3" required
+                  placeholder="Type message here..."></textarea>
               </div>
 
               <!-- Honeypot spam trap (hidden from humans) -->
               <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off"
                 aria-hidden="true">
 
-              <button type="submit" class="btn-celestial primary submit-btn">
+              <button type="submit" class="btn-celestial submit-btn">
                 <span class="btn-sparkle">✦</span>
-                <span>Send Message</span>
+                <span class="submit-label">Send Message</span>
+                <svg class="submit-plane" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+                  <path d="M21 3 3 10.5l7 3 3 7L21 3Z" />
+                  <path d="M10 13.5 21 3" />
+                </svg>
               </button>
 
               <div class="form-notification" id="form-status"></div>
             </form>
           </div>
 
-          <!-- Right: Direct Channels -->
-          <div class="contact-channels glass-panel" data-reveal>
-            <h3 class="form-title">Direct Information</h3>
+          <!-- Right: Direct Info -->
+          <div class="contact-channels" data-reveal>
+            <h3 class="form-title">Direct Info</h3>
 
             <div class="channel-list">
               <a href="mailto:pesonsellaiza@gmail.com" class="channel-item">
-                <div class="channel-icon">✉</div>
-                <div class="channel-info">
+                <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3.5 6.5 8.5 6.5 8.5-6.5" />
+                  </svg></span>
+                <span class="channel-info">
                   <span class="label">Personal Email</span>
                   <span class="val">pesonsellaiza@gmail.com</span>
-                </div>
-                <span class="arrow">↗</span>
+                </span>
               </a>
 
               <a href="mailto:pesonseb@students.national-u.edu.ph" class="channel-item">
-                <div class="channel-icon">🎓</div>
-                <div class="channel-info">
-                  <span class="label">University Academic Email</span>
+                <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m2 9 10-5 10 5-10 5L2 9Z" />
+                    <path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5" />
+                  </svg></span>
+                <span class="channel-info">
+                  <span class="label">University Email</span>
                   <span class="val">pesonseb@students.national-u.edu.ph</span>
-                </div>
-                <span class="arrow">↗</span>
+                </span>
               </a>
 
               <a href="https://github.com/ellaiza9017" target="_blank" rel="noopener noreferrer" class="channel-item">
-                <div class="channel-icon">💻</div>
-                <div class="channel-info">
+                <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg></span>
+                <span class="channel-info">
                   <span class="label">GitHub Profile</span>
                   <span class="val">github.com/ellaiza9017</span>
-                </div>
-                <span class="arrow">↗</span>
+                </span>
               </a>
 
               <a href="https://github.com/ellaiza9017/Luminang" target="_blank" rel="noopener noreferrer"
                 class="channel-item">
-                <div class="channel-icon">✦</div>
-                <div class="channel-info">
+                <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M12 2.5c.7 6 3.5 8.800 9.500 9.500-6 .7-8.800 3.500-9.500 9.500-.7-6-3.500-8.800-9.500-9.500 6-.7 8.800-3.500 9.500-9.500Z" />
+                  </svg></span>
+                <span class="channel-info">
                   <span class="label">Capstone Project (Luminang)</span>
                   <span class="val">github.com/ellaiza9017/Luminang</span>
-                </div>
-                <span class="arrow">↗</span>
+                </span>
               </a>
+
+              <div class="channel-item channel-static">
+                <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9.5" />
+                    <path d="M12 11v6" />
+                    <circle cx="12" cy="7.5" r="0.6" fill="currentColor" />
+                  </svg></span>
+                <span class="channel-info">
+                  <span class="label">Name</span>
+                  <span class="val">ELLAIZA ROSE B. PESONS</span>
+                </span>
+              </div>
             </div>
 
             <div class="status-box">
@@ -1752,10 +1849,14 @@
     <div class="footer-rule"></div>
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="footer-sparkle">✦</span>
+        <svg class="footer-star" viewBox="0 0 24 48" aria-hidden="true">
+          <path
+            d="M12 1 C12.7 15 14.2 21.5 23 24 C14.2 26.5 12.7 33 12 47 C11.3 33 9.800 26.500 1 24 C9.800 21.500 11.300 15 12 1Z" />
+        </svg>
         <span>ELLAIZA ROSE B. PESONS</span>
       </div>
-      <p class="footer-copy">This website is still under development &bull; &copy; 2026 All Rights Reserved</p>
+      <p class="footer-copy footer-note">This website is still under development</p>
+      <p class="footer-copy footer-rights"><span class="footer-c">&copy;</span> 2026 All Rights Reserved</p>
       <a href="#home" class="footer-back-to-top">
         <span>Back to top</span>
         <span class="up-arr">↑</span>
