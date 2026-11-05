@@ -1353,10 +1353,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       if (!best) return;
       const pct = (v, o, s) => (((v - o) / s) * 100).toFixed(3) + '%';
-      card.style.setProperty('--ax', pct(best.rx0, vb.x, vb.width));
-      card.style.setProperty('--ay', pct(best.ry0, vb.y, vb.height));
-      card.style.setProperty('--aw', ((best.w / vb.width) * 100).toFixed(3) + '%');
-      card.style.setProperty('--ah', ((best.h / vb.height) * 100).toFixed(3) + '%');
+      if (card.getAttribute('data-frame') === 'fullbody') {
+        // The raw LogoFrame.svg is an A4-sized canvas with the arch in the middle.
+        // Crop the viewBox to the arch so the frame renders at full size and sits where the layout expects.
+        const pad = 1.2;
+        const vx = best.rx0 - pad, vy = best.ry0 - pad, vw = best.w + pad * 2, vh = best.h + pad * 2;
+        live.setAttribute('viewBox', [vx, vy, vw, vh].join(' '));
+        card.style.setProperty('--ax', ((pad / vw) * 100).toFixed(3) + '%');
+        card.style.setProperty('--ay', ((pad / vh) * 100).toFixed(3) + '%');
+        card.style.setProperty('--aw', ((best.w / vw) * 100).toFixed(3) + '%');
+        card.style.setProperty('--ah', ((best.h / vh) * 100).toFixed(3) + '%');
+      } else {
+        card.style.setProperty('--ax', pct(best.rx0, vb.x, vb.width));
+        card.style.setProperty('--ay', pct(best.ry0, vb.y, vb.height));
+        card.style.setProperty('--aw', ((best.w / vb.width) * 100).toFixed(3) + '%');
+        card.style.setProperty('--ah', ((best.h / vb.height) * 100).toFixed(3) + '%');
+      }
 
       let defs = live.querySelector('defs');
       if (!defs) { defs = document.createElementNS(NS, 'defs'); live.insertBefore(defs, live.firstChild); }
