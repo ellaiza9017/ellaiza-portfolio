@@ -13,6 +13,23 @@
  * ==========================================================================
  */
 
+/* Scroll-reveal helper: reveals as soon as an element touches the viewport, and only
+   "re-arms" it once it is a full screen away, so nothing flickers at the screen edges
+   (and very tall elements on phones can never get stuck invisible). */
+function observeWithRearm(elements, onIn, onOut, opts) {
+  opts = opts || {};
+  const els = Array.from(elements);
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach((el) => onIn(el)); return; }
+  const inObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) onIn(e.target, e); });
+  }, { threshold: 0, rootMargin: opts.inMargin || '0px 0px -8% 0px' });
+  const outObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (!e.isIntersecting) onOut(e.target, e); });
+  }, { threshold: 0, rootMargin: opts.outMargin || '100% 0px 100% 0px' });
+  els.forEach((el) => { inObs.observe(el); outObs.observe(el); });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Immediate intro reveal trigger for hero eyecrop (slide right) & full name (fade up)
   const eyecropBanner = document.querySelector('.eyecrop-banner[data-reveal-right]');
@@ -134,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let height = (canvas.height = window.innerHeight);
 
     window.addEventListener('resize', () => {
+      // Mobile browsers fire "resize" whenever the URL bar shows/hides; resetting the
+      // canvas on those made the sparkles blink. Only react to real size changes.
+      if (window.innerWidth === width && Math.abs(window.innerHeight - height) < 160) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     });
@@ -290,10 +310,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY;
 
     // Background universe layers
+    // Layers are 140% tall, so only 40% of the viewport height can safely scroll.
+    // A triangle wave keeps movement continuous but always keeps the layer covering the screen.
+    const range = Math.max(1, window.innerHeight * 0.4);
     parallaxLayers.forEach((layer) => {
       const speed = parseFloat(layer.getAttribute('data-speed')) || 0.1;
-      const yOffset = -(scrollY * speed);
-      layer.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+      const p = (scrollY * speed) % (2 * range);
+      const yOffset = -(p <= range ? p : 2 * range - p);
+      layer.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0)`;
     });
 
     // Header background blur on scroll
@@ -319,22 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 6. POP-UP & SCROLL REVEAL OBSERVER (RE-TRIGGER ON EVERY SCROLL)
   // ==========================================================================
-  const revealElements = document.querySelectorAll('[data-reveal]');
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        } else {
-          // Re-arm animation so elements fade/pop in every time user scrolls past them
-          entry.target.classList.remove('revealed');
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -30px 0px' }
+  observeWithRearm(
+    document.querySelectorAll('[data-reveal]'),
+    (el) => el.classList.add('revealed'),
+    (el) => el.classList.remove('revealed')
   );
-
-  revealElements.forEach((el) => revealObserver.observe(el));
 
   // ==========================================================================
   // 7. ACTIVE NAVIGATION SCROLL-SPY
@@ -961,38 +974,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 15. SIDE REVEAL OBSERVER (SLIDE FROM SIDES FOR ABOUT SECTION)
   // ==========================================================================
-  const revealSideElements = document.querySelectorAll('[data-reveal-left], [data-reveal-right], [data-name-reveal]');
-  const sideRevealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        } else {
-          entry.target.classList.remove('revealed');
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -30px 0px' }
+  observeWithRearm(
+    document.querySelectorAll('[data-reveal-left], [data-reveal-right], [data-name-reveal]'),
+    (el) => el.classList.add('revealed'),
+    (el) => el.classList.remove('revealed')
   );
-  revealSideElements.forEach((el) => sideRevealObserver.observe(el));
 
   // ==========================================================================
   // 16. SKILL BOX OPEN ANIMATION (SPLIT OPEN FROM CENTER LINE)
   // ==========================================================================
   const skillBoxes = document.querySelectorAll('[data-box-open]');
-  const skillBoxObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = Array.from(skillBoxes).indexOf(entry.target) * 160;
-        setTimeout(() => {
-          entry.target.classList.add('box-opened');
-        }, delay);
-      } else {
-        entry.target.classList.remove('box-opened');
-      }
-    });
-  }, { threshold: 0.15 });
-  skillBoxes.forEach((box) => skillBoxObserver.observe(box));
+  observeWithRearm(
+    skillBoxes,
+    (el) => {
+      const delay = Array.from(skillBoxes).indexOf(el) * 160;
+      setTimeout(() => el.classList.add('box-opened'), delay);
+    },
+    (el) => el.classList.remove('box-opened')
+  );
 
   // ==========================================================================
   // 17. SKILL EXPLANATION POPUP PANEL
@@ -1015,6 +1014,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'ai-tooling': { title: 'AI Tooling (Claude, ChatGPT, Antigravity IDE)', desc: 'Utilizing Claude, ChatGPT, GitHub Copilot, and Antigravity IDE to streamline coding workflows, debugging, and ideation.' }
   };
 
+  skillDescriptions['db-schema'] = skillDescriptions['schema'];
+  skillDescriptions['json-rest'] = skillDescriptions['json-api'];
+  skillDescriptions['qa-testing'] = skillDescriptions['qa'];
+  skillDescriptions['ui-ux'] = skillDescriptions['uiux'];
+
   const skillPopup = document.getElementById('skill-popup');
   const skillPopupTitle = document.getElementById('skill-popup-title');
   const skillPopupDesc = document.getElementById('skill-popup-desc');
@@ -1029,7 +1033,9 @@ document.addEventListener('DOMContentLoaded', () => {
         skillPopupTitle.textContent = data.title;
         skillPopupDesc.textContent = data.desc;
         skillPopup.classList.add('active');
+        skillPopup.hidden = false;
         skillPopup.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('sheet-open');
       }
     });
   });
@@ -1038,6 +1044,8 @@ document.addEventListener('DOMContentLoaded', () => {
     skillPopupClose.addEventListener('click', () => {
       skillPopup.classList.remove('active');
       skillPopup.setAttribute('aria-hidden', 'true');
+      skillPopup.hidden = true;
+      document.body.classList.remove('sheet-open');
     });
   }
   if (skillPopup) {
@@ -1045,6 +1053,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === skillPopup) {
         skillPopup.classList.remove('active');
         skillPopup.setAttribute('aria-hidden', 'true');
+        skillPopup.hidden = true;
+        document.body.classList.remove('sheet-open');
       }
     });
   }
@@ -1517,18 +1527,14 @@ document.addEventListener('DOMContentLoaded', () => {
       cards.forEach((c, i) => c.style.setProperty('--i', i));
       row.classList.add('works-intro-armed');
       let timer = null;
-      new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            clearTimeout(timer);
-            cards.forEach((c) => c.classList.add('works-in'));
-            timer = setTimeout(() => cards.forEach((c) => c.classList.add('intro-done')), 2200 + cards.length * 180 + 150);
-          } else {
-            clearTimeout(timer);
-            cards.forEach((c) => c.classList.remove('works-in', 'intro-done'));
-          }
-        });
-      }, { threshold: 0.2 }).observe(row);
+      observeWithRearm([row], () => {
+        clearTimeout(timer);
+        cards.forEach((c) => c.classList.add('works-in'));
+        timer = setTimeout(() => cards.forEach((c) => c.classList.add('intro-done')), 2200 + cards.length * 180 + 150);
+      }, () => {
+        clearTimeout(timer);
+        cards.forEach((c) => c.classList.remove('works-in', 'intro-done'));
+      }, { inMargin: '0px 0px -10% 0px' });
     }
 
     // ----- Title -----
@@ -1569,17 +1575,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (reduce || !('IntersectionObserver' in window)) { fx.classList.add('is-in'); return; }
     let idleTimer = null;
-    new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        clearTimeout(idleTimer);
-        if (entry.isIntersecting) {
-          fx.classList.add('is-in');
-          idleTimer = setTimeout(() => fx.classList.add('is-idle'), 3600);
-        } else {
-          fx.classList.remove('is-in', 'is-idle');
-        }
-      });
-    }, { threshold: 0.4 }).observe(fx);
+    observeWithRearm([fx], () => {
+      clearTimeout(idleTimer);
+      fx.classList.add('is-in');
+      idleTimer = setTimeout(() => fx.classList.add('is-idle'), 3600);
+    }, () => {
+      clearTimeout(idleTimer);
+      fx.classList.remove('is-in', 'is-idle');
+    }, { inMargin: '0px 0px -12% 0px' });
   })();
 
 });
@@ -1686,4 +1689,154 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
+})();
+
+
+/* ==========================================================================
+   RESPONSIVE ENHANCEMENTS: mobile menu, skill accordion, works carousel
+   ========================================================================== */
+(function initResponsive() {
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+  ready(function () {
+    const mq = window.matchMedia('(max-width: 900px)');
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Mobile menu: scroll lock, Escape, auto-close, active link ---------- */
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    if (toggle && drawer) {
+      const sync = () => {
+        const open = drawer.classList.contains('active');
+        document.body.classList.toggle('nav-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      new MutationObserver(sync).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+      sync();
+      const close = () => { toggle.classList.remove('active'); drawer.classList.remove('active'); };
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 1024) close(); });
+
+      const links = Array.from(drawer.querySelectorAll('.mobile-nav-item[data-nav]'));
+      const secs = links.map((l) => document.getElementById(l.getAttribute('data-nav'))).filter(Boolean);
+      let ticking = false;
+      const mark = () => {
+        ticking = false;
+        let current = secs[0];
+        secs.forEach((s) => { if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) current = s; });
+        links.forEach((l) => l.classList.toggle('active', !!current && l.getAttribute('data-nav') === current.id));
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+      mark();
+    }
+
+    /* ---------- Skills: tap a category to expand it (phones / tablets) ---------- */
+    const cards = Array.from(document.querySelectorAll('.skill-holo-card'));
+    cards.forEach((card, i) => {
+      const title = card.querySelector('.holo-category-title');
+      if (!title) return;
+      title.setAttribute('role', 'button');
+      title.setAttribute('tabindex', '0');
+      const setOpen = (open) => {
+        card.classList.toggle('is-open', open);
+        title.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      const flip = () => {
+        if (!mq.matches) return;
+        const willOpen = !card.classList.contains('is-open');
+        cards.forEach((other) => {
+          if (other !== card) {
+            other.classList.remove('is-open');
+            const t = other.querySelector('.holo-category-title');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
+        });
+        setOpen(willOpen);
+      };
+      title.addEventListener('click', flip);
+      title.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+      });
+      setOpen(i === 0);
+    });
+    const popup = document.getElementById('skill-popup');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup && !popup.hidden) {
+        popup.hidden = true;
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sheet-open');
+      }
+    });
+
+    /* ---------- Works: auto-swiping carousel on phones / tablets ---------- */
+    const row = document.getElementById('gallery-container');
+    if (row) {
+      const slides = Array.from(row.querySelectorAll('.works-frame-col'));
+      const dots = document.createElement('div');
+      dots.className = 'works-carousel-dots';
+      slides.forEach((s, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'works-dot';
+        b.setAttribute('aria-label', 'Show work ' + (i + 1));
+        b.addEventListener('click', () => { pauseAuto(); goTo(i); });
+        dots.appendChild(b);
+      });
+      row.insertAdjacentElement('afterend', dots);
+
+      let active = 0, raf = 0, inView = false, userPause = false, resumeTimer = null;
+      const center = (el) => el.offsetLeft + el.offsetWidth / 2;
+      const goTo = (i) => {
+        const el = slides[i];
+        if (!el) return;
+        row.scrollTo({ left: center(el) - row.clientWidth / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+      };
+      const setActive = (i) => {
+        active = i;
+        slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+        Array.from(dots.children).forEach((d, k) => d.classList.toggle('is-active', k === i));
+      };
+      const nearest = () => {
+        const mid = row.scrollLeft + row.clientWidth / 2;
+        let best = 0, bd = Infinity;
+        slides.forEach((s, i) => { const d = Math.abs(center(s) - mid); if (d < bd) { bd = d; best = i; } });
+        return best;
+      };
+      row.addEventListener('scroll', () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = 0; const n = nearest(); if (n !== active) setActive(n); });
+      }, { passive: true });
+      setActive(0);
+
+      // tapping a side slide brings it to the centre first; tapping the centred one opens it
+      row.addEventListener('click', (e) => {
+        if (!mq.matches) return;
+        const card = e.target.closest('.works-frame-col');
+        if (!card) return;
+        const i = slides.indexOf(card);
+        if (i !== active) { e.preventDefault(); e.stopPropagation(); pauseAuto(); goTo(i); }
+      }, true);
+
+      function pauseAuto() {
+        userPause = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { userPause = false; }, 6500);
+      }
+      ['pointerdown', 'touchstart', 'wheel'].forEach((ev) => row.addEventListener(ev, pauseAuto, { passive: true }));
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.35 }).observe(row);
+      } else { inView = true; }
+
+      if (!reduceMotion) {
+        setInterval(() => {
+          if (!mq.matches || userPause || !inView || document.hidden) return;
+          goTo((active + 1) % slides.length);
+        }, 3800);
+      }
+      window.addEventListener('resize', () => { if (mq.matches) goTo(active); });
+    }
+  });
 })();
