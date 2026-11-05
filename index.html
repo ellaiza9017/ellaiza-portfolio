@@ -230,7 +230,18 @@
       <!-- Eye Crop Banner & Full Name Bar (Screenshot 2 Match) -->
       <div class="eyecrop-wrapper">
         <div class="eyecrop-banner" data-reveal-right>
-          <img src="assets/images/Illustrations/eyesCrop.png" alt="Eyes crop illustration" class="eyecrop-img">
+          <div class="eyecrop-stage" id="eyecrop-stage">
+            <div class="eyecrop-parallax" id="eyecrop-parallax">
+              <img src="assets/images/Illustrations/eyesCrop.png" alt="Eyes crop illustration" class="eyecrop-img">
+            </div>
+            <div class="eyecrop-eyeglow eyecrop-eyeglow--l" aria-hidden="true"></div>
+            <div class="eyecrop-eyeglow eyecrop-eyeglow--r" aria-hidden="true"></div>
+            <canvas class="eyecrop-particles" id="eyecrop-particles" aria-hidden="true"></canvas>
+            <div class="eyecrop-grade" aria-hidden="true"></div>
+            <div class="eyecrop-sweep" aria-hidden="true"></div>
+            <div class="eyecrop-vignette" aria-hidden="true"></div>
+            <div class="eyecrop-grain" aria-hidden="true"></div>
+          </div>
         </div>
         <!-- Full Name Bar pinned along the bottom edge of the eyecrop -->
         <div class="hero-name-bar" data-name-reveal>

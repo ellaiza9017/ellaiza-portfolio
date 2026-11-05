@@ -1583,3 +1583,107 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 });
+
+/* ==========================================================================
+   HERO EYE CROP: mouse parallax + faint floating particles (live-wallpaper feel)
+   ========================================================================== */
+(function initEyecropLive() {
+  function start() {
+    const stage = document.getElementById('eyecrop-stage');
+    const para = document.getElementById('eyecrop-parallax');
+    const canvas = document.getElementById('eyecrop-particles');
+    if (!stage || !canvas) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, dpr = 1;
+    let visible = true;
+    let tx = 0, ty = 0, cx = 0, cy = 0; // parallax target / current (-1..1)
+
+    const COLORS = ['255,255,255', '214,190,255', '186,155,255', '240,160,255'];
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    function makeParticle(initial) {
+      const depth = Math.random();            // 0 far .. 1 near
+      return {
+        x: Math.random() * W,
+        y: initial ? Math.random() * H : H + 10,
+        r: 0.6 + depth * 1.8,                 // tiny, subtle
+        depth,
+        vy: 4 + depth * 12,                   // px / second, upward
+        sway: rand(4, 18),
+        freq: rand(0.15, 0.5),
+        phase: rand(0, Math.PI * 2),
+        a: 0.12 + depth * 0.3,                // very slightly visible
+        tw: rand(0.4, 1.2),
+        color: COLORS[(Math.random() * COLORS.length) | 0],
+        bokeh: depth > 0.88                    // a few larger soft orbs
+      };
+    }
+
+    let particles = [];
+    function resize() {
+      const rect = stage.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = Math.max(1, Math.round(rect.width));
+      H = Math.max(1, Math.round(rect.height));
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.max(24, Math.min(70, Math.round(W / 28)));
+      particles = Array.from({ length: count }, () => makeParticle(true));
+    }
+    resize();
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+    else window.addEventListener('resize', resize);
+
+    if (window.IntersectionObserver) {
+      new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }).observe(stage);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      tx = (e.clientX / window.innerWidth) * 2 - 1;
+      ty = (e.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+
+    let last = performance.now();
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (!visible || document.hidden) { last = now; return; }
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+
+      // ease parallax toward the pointer
+      cx += (tx - cx) * 0.04;
+      cy += (ty - cy) * 0.04;
+      if (para) para.style.transform = 'translate3d(' + (cx * -14).toFixed(2) + 'px,' + (cy * -8).toFixed(2) + 'px,0)';
+
+      ctx.clearRect(0, 0, W, H);
+      const t = now / 1000;
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.y -= p.vy * dt;
+        if (p.y < -12) { particles[i] = makeParticle(false); continue; }
+        const x = p.x + Math.sin(t * p.freq + p.phase) * p.sway + cx * 22 * p.depth;
+        const y = p.y + cy * 12 * p.depth;
+        const tw = 0.6 + 0.4 * Math.sin(t * p.tw + p.phase);
+        // fade in/out near the vertical edges
+        const edge = Math.min(1, p.y / 60, (H - p.y) / 60);
+        const alpha = p.a * tw * Math.max(0, edge);
+        const rad = p.bokeh ? p.r * 3.2 : p.r;
+        const g = ctx.createRadialGradient(x, y, 0, x, y, rad * 3);
+        g.addColorStop(0, 'rgba(' + p.color + ',' + alpha + ')');
+        g.addColorStop(p.bokeh ? 0.5 : 0.35, 'rgba(' + p.color + ',' + (alpha * 0.35) + ')');
+        g.addColorStop(1, 'rgba(' + p.color + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(x, y, rad * 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
