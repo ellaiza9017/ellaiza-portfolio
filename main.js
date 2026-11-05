@@ -1257,7 +1257,7 @@ document.addEventListener('DOMContentLoaded', () => {
           openVideoLb();
           break;
         case 'fullbody':
-          openSvgLb('assets/images/Works/character_fullbody.png', 'Character Full Body Illustration');
+          openSvgLb('assets/images/ellaiza-logo.png', 'Personal Logo (AI Modified Design)');
           break;
         case 'purplegirl':
           openSvgLb('assets/images/Works/purple_girl_full.png', 'Character Close-up Illustration');
@@ -1373,6 +1373,39 @@ document.addEventListener('DOMContentLoaded', () => {
       card.classList.add('works-clip-ready');
     }
 
+
+    // For big fills that are clipped to a small shape (e.g. a star cut from a huge rect),
+    // return the clip region's bbox in the element's own coordinates so the gradient fits it.
+    function clippedBBox(el, svg) {
+      const ec = el.getScreenCTM();
+      if (!ec) return null;
+      const elInv = ec.inverse();
+      let best = null;
+      for (let g = el.parentNode; g && g !== svg; g = g.parentNode) {
+        const m = ((g.getAttribute && g.getAttribute('clip-path')) || '').match(/url\(#([^)]+)\)/);
+        if (!m) continue;
+        const cp = svg.querySelector('[id="' + m[1] + '"]');
+        const gc = g.getScreenCTM && g.getScreenCTM();
+        if (!cp || !gc) continue;
+        const rel = elInv.multiply(gc);
+        cp.querySelectorAll('path').forEach((p) => {
+          const nums = ((p.getAttribute('d') || '').match(/-?\d*\.?\d+/g) || []).map(Number);
+          let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+          for (let k = 0; k + 1 < nums.length; k += 2) {
+            x0 = Math.min(x0, nums[k]); x1 = Math.max(x1, nums[k]);
+            y0 = Math.min(y0, nums[k + 1]); y1 = Math.max(y1, nums[k + 1]);
+          }
+          if (!isFinite(x0)) return;
+          const ax = rel.a * x0 + rel.c * y0 + rel.e, ay = rel.b * x0 + rel.d * y0 + rel.f;
+          const bx = rel.a * x1 + rel.c * y1 + rel.e, by = rel.b * x1 + rel.d * y1 + rel.f;
+          const r = { x: Math.min(ax, bx), y: Math.min(ay, by), width: Math.abs(bx - ax), height: Math.abs(by - ay) };
+          const area = r.width * r.height;
+          if (area > 0 && (!best || area < best.area)) best = Object.assign(r, { area });
+        });
+      }
+      return best;
+    }
+
     function paint(svg, delay) {
       const vb = svg.viewBox && svg.viewBox.baseVal;
       const vbArea = vb && vb.width ? vb.width * vb.height : Infinity;
@@ -1396,6 +1429,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hasFill && !big) {
           el.setAttribute('fill', makeGradient(defs, bb, delay));
           el.style.fill = el.getAttribute('fill');
+        } else if (hasFill && big) {
+          const cb = clippedBBox(el, svg);
+          if (cb && cb.area < bb.width * bb.height * 0.5) {
+            el.setAttribute('fill', makeGradient(defs, cb, delay));
+            el.style.fill = el.getAttribute('fill');
+          }
         }
       });
     }
@@ -1499,7 +1538,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const y = 8 + Math.random() * 84;
       s.style.setProperty('--x', x.toFixed(1) + '%');
       s.style.setProperty('--y', y.toFixed(1) + '%');
-      s.style.setProperty('--s', (9 + Math.random() * 15).toFixed(0) + 'px');
+      s.style.setProperty('--s', (5 + Math.random() * 6).toFixed(0) + 'px');
       s.style.setProperty('--delay', (x / 100 * 2.3 + Math.random() * 0.25).toFixed(2) + 's');
       s.style.setProperty('--dur', (1.1 + Math.random() * 0.9).toFixed(2) + 's');
       s.style.setProperty('--idle-dur', (3.2 + Math.random() * 3.5).toFixed(2) + 's');

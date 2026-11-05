@@ -6892,22 +6892,29 @@ svg.works-frame-svg {
 }
 
 .works-title-fx.fx-ready .works-svg-title-img {
-  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.works-title-fx.fx-ready.is-in .works-svg-title-img {
+  animation: worksTitleWrite 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 .works-title-grad {
   position: absolute;
   inset: 0;
   display: none;
-  background: linear-gradient(100deg, #3D2968 0%, #8E63DB 18%, #D4B8FF 36%, #FFFFFF 50%, #D4B8FF 64%, #8E63DB 82%, #3D2968 100%);
-  background-size: 300% 100%;
+  /* shimmer only: the title keeps its original SVG colours underneath */
+  background: linear-gradient(100deg, rgba(168, 120, 230, 0) 0%, rgba(168, 120, 230, 0.4) 28%, rgba(255, 255, 255, 0.85) 50%, rgba(168, 120, 230, 0.4) 72%, rgba(168, 120, 230, 0) 100%);
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  background-position: 150% 0;
   -webkit-mask-image: var(--title-mask);
   mask-image: var(--title-mask);
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  animation: holo-skill-border 5s linear infinite;
+  animation: worksTitleShimmer 5s linear infinite;
   clip-path: inset(0 100% 0 0);
 }
 
@@ -6916,7 +6923,7 @@ svg.works-frame-svg {
 }
 
 .works-title-fx.is-in .works-title-grad {
-  animation: holo-skill-border 5s linear infinite, worksTitleWrite 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: worksTitleShimmer 5s linear infinite, worksTitleWrite 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 @keyframes worksTitleWrite {
@@ -6979,8 +6986,8 @@ svg.works-frame-svg {
   top: var(--y);
   font-size: var(--s);
   line-height: 1;
-  color: #fff;
-  text-shadow: 0 0 6px #fff, 0 0 12px #b48cff, 0 0 22px #8E63DB;
+  color: #DCCBF7;
+  text-shadow: 0 0 3px #C9B0F0, 0 0 8px #9D78E0;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0);
 }
@@ -7030,5 +7037,19 @@ svg.works-frame-svg {
 @media (max-width: 900px) {
   .works-frame-col .works-frame-svg.works-lines {
     display: none;
+  }
+}
+
+@keyframes worksTitleShimmer {
+  0% {
+    background-position: 150% 0;
+  }
+
+  65% {
+    background-position: -50% 0;
+  }
+
+  100% {
+    background-position: -50% 0;
   }
 }
