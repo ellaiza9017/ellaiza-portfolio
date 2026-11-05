@@ -1314,6 +1314,65 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'url(#' + id + ')';
     }
 
+
+    // Measure the real arch shape from the SVG's own clip paths so the hover overlay
+    // matches each frame exactly (position, size AND the arch curve).
+    function measureArch(live, card, idx) {
+      const vb = live.viewBox && live.viewBox.baseVal;
+      const rootCTM = live.getScreenCTM();
+      if (!vb || !vb.width || !rootCTM) return;
+      const inv = rootCTM.inverse();
+      let best = null;
+      live.querySelectorAll('[clip-path]').forEach((g) => {
+        const m = (g.getAttribute('clip-path') || '').match(/url\(#([^)]+)\)/);
+        if (!m) return;
+        const cp = live.querySelector('[id="' + m[1] + '"]');
+        if (!cp) return;
+        cp.querySelectorAll('path').forEach((p) => {
+          const d = p.getAttribute('d') || '';
+          if (!/C/.test(d) || /[A-BD-KN-YZa-df-z]/.test(d.replace(/[MLCZ]/g, ''))) return;
+          const nums = (d.match(/-?\d*\.?\d+/g) || []).map(Number);
+          let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+          for (let k = 0; k + 1 < nums.length; k += 2) {
+            x0 = Math.min(x0, nums[k]); x1 = Math.max(x1, nums[k]);
+            y0 = Math.min(y0, nums[k + 1]); y1 = Math.max(y1, nums[k + 1]);
+          }
+          const gc = g.getScreenCTM();
+          if (!gc) return;
+          const rel = inv.multiply(gc);
+          const X = (x, y) => rel.a * x + rel.c * y + rel.e;
+          const Y = (x, y) => rel.b * x + rel.d * y + rel.f;
+          const rx0 = Math.min(X(x0, y0), X(x1, y1)), rx1 = Math.max(X(x0, y0), X(x1, y1));
+          const ry0 = Math.min(Y(x0, y0), Y(x1, y1)), ry1 = Math.max(Y(x0, y0), Y(x1, y1));
+          const w = rx1 - rx0, h = ry1 - ry0, aspect = w / h;
+          if (aspect < 0.2 || aspect > 0.85 || w * h < vb.width * vb.height * 0.04) return;
+          if (!best || w * h > best.area) {
+            best = { area: w * h, rx0, ry0, w, h, d, px: x0, py: y0, pw: x1 - x0, ph: y1 - y0 };
+          }
+        });
+      });
+      if (!best) return;
+      const pct = (v, o, s) => (((v - o) / s) * 100).toFixed(3) + '%';
+      card.style.setProperty('--ax', pct(best.rx0, vb.x, vb.width));
+      card.style.setProperty('--ay', pct(best.ry0, vb.y, vb.height));
+      card.style.setProperty('--aw', ((best.w / vb.width) * 100).toFixed(3) + '%');
+      card.style.setProperty('--ah', ((best.h / vb.height) * 100).toFixed(3) + '%');
+
+      let defs = live.querySelector('defs');
+      if (!defs) { defs = document.createElementNS(NS, 'defs'); live.insertBefore(defs, live.firstChild); }
+      const clip = document.createElementNS(NS, 'clipPath');
+      const cid = 'works-arch-clip-' + idx;
+      clip.setAttribute('id', cid);
+      clip.setAttribute('clipPathUnits', 'objectBoundingBox');
+      const path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', best.d);
+      path.setAttribute('transform', 'matrix(' + (1 / best.pw) + ',0,0,' + (1 / best.ph) + ',' + (-best.px / best.pw) + ',' + (-best.py / best.ph) + ')');
+      clip.appendChild(path);
+      defs.appendChild(clip);
+      card.style.setProperty('--arch-clip', 'url(#' + cid + ')');
+      card.classList.add('works-clip-ready');
+    }
+
     function paint(svg, delay) {
       const vb = svg.viewBox && svg.viewBox.baseVal;
       const vbArea = vb && vb.width ? vb.width * vb.height : Infinity;
@@ -1358,7 +1417,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const holder = document.createElement('div');
           holder.innerHTML = markup;
           const live = holder.firstElementChild;
-          live.classList.add('works-frame-svg');
+          live.setAttribute('class', img.getAttribute('class') || 'works-frame-svg');
           live.setAttribute('aria-hidden', 'true');
           live.removeAttribute('width');
           live.removeAttribute('height');
@@ -1366,6 +1425,10 @@ document.addEventListener('DOMContentLoaded', () => {
           img.insertAdjacentElement('afterend', live);
           img.style.display = 'none';
           paint(live, -i * 0.9);
+          const owner = img.closest('[data-works-card]');
+          if (owner && !img.classList.contains('works-lines') && owner.getAttribute('data-frame') !== 'video') {
+            try { measureArch(live, owner, i); } catch (e) { /* keep CSS fallback */ }
+          }
         })
         .catch(() => { /* keep static <img> fallback */ });
     });
@@ -1380,5 +1443,83 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ==========================================================================
+  // WORKS: frame intro (same slow pop-up as music player / Live2D) + title intro
+  // ==========================================================================
+  (function initWorksIntros() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ----- Frames -----
+    const row = document.getElementById('gallery-container');
+    if (row && !reduce && 'IntersectionObserver' in window) {
+      const cards = Array.from(row.querySelectorAll('.works-frame-col'));
+      cards.forEach((c, i) => c.style.setProperty('--i', i));
+      row.classList.add('works-intro-armed');
+      let timer = null;
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            clearTimeout(timer);
+            cards.forEach((c) => c.classList.add('works-in'));
+            timer = setTimeout(() => cards.forEach((c) => c.classList.add('intro-done')), 2200 + cards.length * 180 + 150);
+          } else {
+            clearTimeout(timer);
+            cards.forEach((c) => c.classList.remove('works-in', 'intro-done'));
+          }
+        });
+      }, { threshold: 0.2 }).observe(row);
+    }
+
+    // ----- Title -----
+    const fx = document.getElementById('works-title-fx');
+    if (!fx) return;
+    const img = fx.querySelector('.works-svg-title-img');
+    const grad = fx.querySelector('.works-title-grad');
+    const field = fx.querySelector('.works-title-sparkles');
+
+    // gradient layer uses the title SVG itself as a mask (works with any artwork)
+    if (img && grad) {
+      const probe = new Image();
+      probe.onload = () => {
+        fx.style.setProperty('--title-mask', 'url("' + img.getAttribute('src') + '")');
+        fx.classList.add('fx-ready');
+      };
+      probe.src = img.getAttribute('src');
+    }
+
+    // sparkles: delay follows the write-on beam (left -> right)
+    const GLYPHS = ['✦', '✧', '✦', '✦'];
+    const N = 18;
+    for (let k = 0; k < N; k++) {
+      const s = document.createElement('i');
+      s.className = 'ws-sparkle';
+      s.textContent = GLYPHS[k % GLYPHS.length];
+      const x = 4 + Math.random() * 92;
+      const y = 8 + Math.random() * 84;
+      s.style.setProperty('--x', x.toFixed(1) + '%');
+      s.style.setProperty('--y', y.toFixed(1) + '%');
+      s.style.setProperty('--s', (9 + Math.random() * 15).toFixed(0) + 'px');
+      s.style.setProperty('--delay', (x / 100 * 2.3 + Math.random() * 0.25).toFixed(2) + 's');
+      s.style.setProperty('--dur', (1.1 + Math.random() * 0.9).toFixed(2) + 's');
+      s.style.setProperty('--idle-dur', (3.2 + Math.random() * 3.5).toFixed(2) + 's');
+      s.style.setProperty('--idle-delay', (Math.random() * 5).toFixed(2) + 's');
+      field.appendChild(s);
+    }
+
+    if (reduce || !('IntersectionObserver' in window)) { fx.classList.add('is-in'); return; }
+    let idleTimer = null;
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        clearTimeout(idleTimer);
+        if (entry.isIntersecting) {
+          fx.classList.add('is-in');
+          idleTimer = setTimeout(() => fx.classList.add('is-idle'), 3600);
+        } else {
+          fx.classList.remove('is-in', 'is-idle');
+        }
+      });
+    }, { threshold: 0.4 }).observe(fx);
+  })();
 
 });

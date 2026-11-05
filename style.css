@@ -6278,9 +6278,9 @@ body,
 }
 
 .works-col-fullbody {
-  left: 60%;
-  top: 6.4%;
-  width: 37.32%;
+  left: 64.28%;
+  top: 6.3%;
+  width: 15.68%;
   z-index: 2;
   animation-delay: -4.2s;
 }
@@ -6387,7 +6387,7 @@ svg.works-frame-svg {
   }
 
   .works-col-fullbody {
-    width: 300px;
+    width: 170px;
   }
 }
 
@@ -6434,10 +6434,10 @@ svg.works-frame-svg {
 }
 
 .works-col-fullbody {
-  --ax: 11.6%;
-  --ay: 0%;
-  --aw: 41.7%;
-  --ah: 90.9%;
+  --ax: 0.3%;
+  --ay: 0.1%;
+  --aw: 99.3%;
+  --ah: 99.7%;
 }
 
 .works-col-purplegirl {
@@ -6455,11 +6455,7 @@ svg.works-frame-svg {
   height: var(--ah);
   z-index: 5;
   border-radius: 999px 999px 0 0;
-  background:
-    radial-gradient(120% 70% at 50% 100%, rgba(142, 99, 219, 0.35), transparent 70%),
-    linear-gradient(180deg, rgba(28, 12, 58, 0.78) 0%, rgba(40, 16, 82, 0.9) 100%);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
   opacity: 0;
   transition: opacity 0.45s ease;
   display: flex;
@@ -6792,5 +6788,247 @@ svg.works-frame-svg {
 
   .works-visit-btn {
     font-size: 0.7rem;
+  }
+}
+
+/* ==========================================================================
+   FULL BODY: frame + separate line layer
+   ========================================================================== */
+.works-frame-col .works-frame-svg.works-lines {
+  position: absolute;
+  left: -27.3%;
+  top: 65.6%;
+  width: 238.7%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   OVERLAY refinements: exact arch clip (set by JS), black glass, calmer glow
+   ========================================================================== */
+.works-frame-col.works-clip-ready .works-overlay {
+  border-radius: 0;
+  clip-path: var(--arch-clip);
+}
+
+/* Video frame: reuse the exact arch clip that already shapes the video */
+.works-col-video .works-overlay {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  clip-path: url(#archVideoClip);
+}
+
+.works-overlay-inner {
+  padding: 0 9% 13%;
+}
+
+.works-visit-btn {
+  white-space: nowrap;
+  padding: 0.4rem 0.85rem;
+  font-size: clamp(0.5rem, 0.72vw, 0.7rem);
+}
+
+.works-frame-col:hover,
+.works-frame-col:focus-visible {
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 8px rgba(142, 99, 219, 0.35));
+}
+
+.works-frame-col:hover svg.works-frame-svg,
+.works-frame-col:focus-visible svg.works-frame-svg {
+  filter: drop-shadow(0 0 6px rgba(212, 184, 255, 0.6));
+}
+
+/* ==========================================================================
+   FRAME INTRO (same feel as [data-reveal] on the music player / Live2D)
+   JS arms the row, then adds .works-in on scroll-into-view.
+   ========================================================================== */
+.gallery-frames-row.works-intro-armed .works-frame-col {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  animation-name: none;
+  transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s;
+}
+
+.gallery-frames-row.works-intro-armed .works-frame-col.works-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: calc(var(--i, 0) * 0.18s);
+}
+
+.gallery-frames-row.works-intro-armed .works-frame-col.works-in.intro-done {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease, opacity 0.3s ease;
+  transition-delay: 0s;
+  animation-name: works-float;
+}
+
+.gallery-frames-row.works-intro-armed .works-frame-col.works-in.intro-done:hover,
+.gallery-frames-row.works-intro-armed .works-frame-col.works-in.intro-done:focus-visible {
+  transform: translateY(-14px) scale(1.04);
+}
+
+/* ==========================================================================
+   "SELECTED WORKS" TITLE: holo gradient + sparkly write-on intro
+   ========================================================================== */
+.works-title-fx {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  max-width: 440px;
+}
+
+.works-title-fx .works-svg-title-img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  filter: none;
+}
+
+.works-title-fx.fx-ready {
+  filter: drop-shadow(0 0 22px rgba(155, 108, 250, 0.45));
+}
+
+.works-title-fx.fx-ready .works-svg-title-img {
+  opacity: 0;
+}
+
+.works-title-grad {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: linear-gradient(100deg, #3D2968 0%, #8E63DB 18%, #D4B8FF 36%, #FFFFFF 50%, #D4B8FF 64%, #8E63DB 82%, #3D2968 100%);
+  background-size: 300% 100%;
+  -webkit-mask-image: var(--title-mask);
+  mask-image: var(--title-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: holo-skill-border 5s linear infinite;
+  clip-path: inset(0 100% 0 0);
+}
+
+.works-title-fx.fx-ready .works-title-grad {
+  display: block;
+}
+
+.works-title-fx.is-in .works-title-grad {
+  animation: holo-skill-border 5s linear infinite, worksTitleWrite 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes worksTitleWrite {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 -2% 0 0);
+  }
+}
+
+.works-title-beam {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 46px;
+  margin-left: -23px;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(190, 150, 255, 0.45) 45%, transparent 75%);
+  filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.works-title-fx.is-in .works-title-beam {
+  animation: worksTitleBeam 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes worksTitleBeam {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.works-title-sparkles {
+  position: absolute;
+  inset: -20% -4%;
+  pointer-events: none;
+}
+
+.ws-sparkle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-size: var(--s);
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 6px #fff, 0 0 12px #b48cff, 0 0 22px #8E63DB;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.works-title-fx.is-in .ws-sparkle {
+  animation: wsTwinkle var(--dur) ease-in-out var(--delay) 1 both;
+}
+
+.works-title-fx.is-in.is-idle .ws-sparkle {
+  animation: wsTwinkle var(--idle-dur) ease-in-out var(--idle-delay) infinite both;
+}
+
+@keyframes wsTwinkle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  }
+
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15) rotate(45deg);
+  }
+
+  60% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.8) rotate(70deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(120deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .works-title-fx.is-in .works-title-grad {
+    animation: holo-skill-border 5s linear infinite;
+    clip-path: none;
+  }
+
+  .works-title-beam,
+  .ws-sparkle {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .works-frame-col .works-frame-svg.works-lines {
+    display: none;
   }
 }
