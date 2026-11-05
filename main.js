@@ -597,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardPlayPath = document.getElementById('card-play-path');
   const cardSoundWave = document.getElementById('card-sound-wave');
   let isMusicPlaying = false;
+  let hasEverPlayed = false; // false until the browser actually lets the music start
 
   const PATH_PLAY = 'M8 5v14l11-7z';
   const PATH_PAUSE = 'M6 19h4V5H6v14zm8-14v14h4V5h-4z';
@@ -613,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     if (musicText) {
-      musicText.textContent = playing ? 'Now Playing' : 'Vinyl Muted';
+      musicText.textContent = playing ? 'Now Playing' : (hasEverPlayed ? 'Vinyl Muted' : 'Tap to play');
     }
     if (cardPlayPath) {
       cardPlayPath.setAttribute('d', playing ? PATH_PAUSE : PATH_PLAY);
@@ -668,9 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bgAudio.load();
 
     if (autoPlay) {
-      bgAudio.play().then(() => {
-        updateMusicUI(true);
-      }).catch(() => {
+      bgAudio.play().catch(() => {
         updateMusicUI(false);
       });
     }
@@ -681,47 +680,57 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bgAudio) {
     bgAudio.volume = 0.32; // Comfortable, cozy lo-fi volume
 
+    // Preload track 0 metadata
+    loadTrack(0, false);
+
+    // The UI follows what the <audio> element is REALLY doing, so the badge can never say
+    // "Now Playing" while the browser is blocking the sound.
+    bgAudio.addEventListener('playing', () => {
+      hasEverPlayed = true;
+      updateMusicUI(true);
+      removeGestureListeners();
+    });
+    bgAudio.addEventListener('pause', () => {
+      if (bgAudio.ended) return; // track finished: the next one is about to start
+      updateMusicUI(false);
+    });
+
+    // 1) Try right away. Browsers allow this only for returning visitors they trust (or users who allowed
+    //    autoplay for the site); everyone else gets NotAllowedError and falls through to step 2.
     function startMusic() {
-      if (!isMusicPlaying) {
-        bgAudio.play().then(() => {
-          updateMusicUI(true);
-        }).catch(() => { });
-      }
+      if (isMusicPlaying) return;
+      bgAudio.play().catch(() => { updateMusicUI(false); });
     }
 
     function toggleMusic() {
       if (isMusicPlaying) {
         bgAudio.pause();
-        updateMusicUI(false);
       } else {
         startMusic();
       }
     }
 
-    // Preload track 0 metadata
-    loadTrack(0, false);
-
-    // Try playing immediately
-    startMusic();
-
-    // Browsers only allow audio after a real user gesture (click / key / tap).
-    // mousemove and scroll do NOT count, so we listen for gestures that do.
-    const GESTURES = ['pointerup', 'mouseup', 'click', 'keydown', 'touchend'];
-    const removeGestureListeners = () => {
+    // 2) Autoplay without a gesture is blocked by Chrome / Safari / Firefox (not by this site's code), so the
+    //    music starts on the FIRST gesture the browser accepts as "user activation". Scrolling and mouse
+    //    movement never count; mouse-down, tap-release and key presses do. We listen for all of them.
+    const GESTURES = ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'touchend', 'click', 'keydown'];
+    const CONTROLS = '#btn-view-logo, #card-play-btn, #player-prev-btn, #player-next-btn';
+    function removeGestureListeners() {
       GESTURES.forEach((evt) => window.removeEventListener(evt, autoPlayOnActivity, true));
-    };
-    function autoPlayOnActivity() {
-      if (isMusicPlaying) { removeGestureListeners(); return; }
-      bgAudio.play().then(() => {
-        updateMusicUI(true);
-        removeGestureListeners();
-      }).catch(() => { /* not allowed yet; wait for the next gesture */ });
+    }
+    function autoPlayOnActivity(e) {
+      if (isMusicPlaying) return;
+      // taps on the music controls are handled by those controls (otherwise we'd start the music here
+      // and the button would toggle it straight back off)
+      if (e && e.target && e.target.closest && e.target.closest(CONTROLS)) return;
+      bgAudio.play().catch(() => { /* not accepted as a gesture yet; wait for the next one */ });
     }
     GESTURES.forEach((evt) => {
       window.addEventListener(evt, autoPlayOnActivity, { capture: true, passive: true });
     });
 
-    // Retry autoplay at every moment the browser might allow it
+    // Retry at every moment the browser might allow it
+    startMusic();
     window.addEventListener('load', startMusic);
     window.addEventListener('pageshow', startMusic);
     bgAudio.addEventListener('canplay', startMusic, { once: true });
