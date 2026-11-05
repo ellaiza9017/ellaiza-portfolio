@@ -8377,6 +8377,7 @@ body.sheet-open {
   }
 
   .arch-slices .arch-mid {
+    background-image: var(--arch-mid-img, url("assets/SVG/backgroundFrame.svg"));
     flex: 1 1 auto;
     margin: -1px 0;
     background-size: 100% 1250%;
@@ -8394,8 +8395,8 @@ body.sheet-open {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    width: 52% !important;
-    margin: 0 0 0 27.4% !important;
+    width: 50% !important;
+    margin: 0 0 0 28% !important;
     padding: 12% 0 14% !important;
     z-index: 2 !important;
   }
@@ -8761,90 +8762,6 @@ body.sheet-open {
   .skill-popup-desc {
     font-size: 1rem !important;
   }
-
-  /* ---------- Works: auto-playing carousel ----------
-     Same composition as desktop (design space 970 x 516): every frame keeps its desktop size and
-     vertical offset. JS (main.js > initWorksCarousel) slides the whole collage sideways and loops it. */
-  .works-title-fx.fx-ready .works-svg-title-img {
-    clip-path: none !important;
-    animation: none !important;
-  }
-
-  .works-title-grad,
-  .works-title-beam {
-    display: none !important;
-  }
-
-  .works-carousel-dots {
-    display: none !important;
-  }
-
-  .gallery-frames-row.works-carousel {
-    --stage-w: min(290vw, 1500px);
-    --stage-h: calc(var(--stage-w) * 0.532);
-    --pad: 2rem;
-    position: relative !important;
-    display: block !important;
-    width: 100vw !important;
-    max-width: none !important;
-    height: calc(var(--stage-h) + var(--pad) * 2) !important;
-    aspect-ratio: auto !important;
-    margin: 0 0 1.2rem calc(50% - 50vw) !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    touch-action: pan-y;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: grab;
-  }
-
-  .gallery-frames-row.works-carousel.is-dragging {
-    cursor: grabbing;
-  }
-
-  .gallery-frames-row.works-carousel .works-frame-col {
-    position: absolute !important;
-    left: 0 !important;
-    margin: 0 !important;
-    max-width: none !important;
-    animation: none !important;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .gallery-frames-row.works-carousel .works-col-cat {
-    top: calc(var(--pad) + var(--stage-h) * 0.444) !important;
-    width: calc(var(--stage-w) * 0.2144) !important;
-  }
-
-  .gallery-frames-row.works-carousel .works-col-luminang {
-    top: calc(var(--pad) + var(--stage-h) * 0.0446) !important;
-    width: calc(var(--stage-w) * 0.1732) !important;
-  }
-
-  .gallery-frames-row.works-carousel .works-col-video {
-    top: calc(var(--pad) + var(--stage-h) * 0.219) !important;
-    width: calc(var(--stage-w) * 0.2186) !important;
-  }
-
-  .gallery-frames-row.works-carousel .works-col-fullbody {
-    top: calc(var(--pad) + var(--stage-h) * 0.063) !important;
-    width: calc(var(--stage-w) * 0.1568) !important;
-  }
-
-  .gallery-frames-row.works-carousel .works-col-purplegirl {
-    top: var(--pad) !important;
-    width: calc(var(--stage-w) * 0.1876) !important;
-  }
-
-  /* the centred frame shows its caption; the others stay clean */
-  .gallery-frames-row.works-carousel .works-frame-col.is-active .works-overlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .gallery-frames-row.works-carousel .works-frame-col.is-active .works-overlay-inner {
-    transform: translateY(0);
-  }
 }
 
 @keyframes skillSheetUp {
@@ -8919,4 +8836,171 @@ body.sheet-open {
 /* Mobile-only 3-slice About frame: hidden on desktop so the desktop layout is untouched */
 .arch-slices {
   display: none;
+}
+
+/* ==========================================================================
+   PHONES + TABLETS (<= 1024px): Works stage carousel + desktop-like galaxy background
+   ========================================================================== */
+@media (max-width: 1024px) {
+
+  /* ---------- Background: soft galaxy light instead of hard diagonal bands ----------
+     Desktop blurs big gradients; on phones that blur is what makes scrolling flicker. So the softness is
+     baked into the gradients instead (many stops, fading to nothing on every side). No filter, no animation. */
+  .nebula-orb {
+    filter: none !important;
+    animation: none !important;
+    opacity: 0.55 !important;
+  }
+
+  .orb-1 {
+    width: 150vw;
+    height: 150vw;
+    top: -30vw;
+    left: -25vw;
+    background: radial-gradient(circle, rgba(96, 50, 172, 0.9) 0%, rgba(77, 36, 139, 0.55) 22%, rgba(77, 36, 139, 0.2) 45%, rgba(77, 36, 139, 0.05) 62%, rgba(77, 36, 139, 0) 75%);
+  }
+
+  .orb-2 {
+    width: 170vw;
+    height: 170vw;
+    top: 22%;
+    right: -85vw;
+    left: auto;
+    background: radial-gradient(circle, rgba(62, 32, 120, 0.95) 0%, rgba(45, 22, 92, 0.55) 24%, rgba(45, 22, 92, 0.2) 46%, rgba(45, 22, 92, 0.05) 62%, rgba(45, 22, 92, 0) 75%);
+  }
+
+  .orb-3 {
+    width: 140vw;
+    height: 140vw;
+    top: 58%;
+    left: -55vw;
+    background: radial-gradient(circle, rgba(104, 48, 190, 0.9) 0%, rgba(91, 40, 168, 0.5) 24%, rgba(91, 40, 168, 0.18) 46%, rgba(91, 40, 168, 0.04) 62%, rgba(91, 40, 168, 0) 75%);
+  }
+
+  .galaxy-milky-dust {
+    filter: none !important;
+    animation: none !important;
+    width: 170vw;
+    height: 62vw;
+    left: -35vw;
+    background: radial-gradient(ellipse at center, rgba(222, 204, 255, 0.2) 0%, rgba(170, 128, 252, 0.11) 28%, rgba(124, 58, 237, 0.045) 52%, rgba(124, 58, 237, 0) 72%);
+  }
+
+  .dust-1 {
+    top: 16%;
+    transform: rotate(-24deg);
+  }
+
+  .dust-2 {
+    top: 56%;
+    transform: rotate(-14deg);
+    opacity: 0.8;
+  }
+
+  /* a few faint distant glows so the sky reads as a galaxy rather than flat violet */
+  .parallax-backdrop::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 16% 24%, rgba(216, 194, 255, 0.1), rgba(216, 194, 255, 0) 24%),
+      radial-gradient(circle at 84% 46%, rgba(155, 108, 250, 0.11), rgba(155, 108, 250, 0) 28%),
+      radial-gradient(circle at 34% 80%, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0) 26%);
+  }
+
+  /* ---------- Works: auto-playing carousel ----------
+     Same composition as desktop (design stage 970 x 516): each frame keeps its desktop width and vertical
+     offset. main.js (initResponsive > Works) glides the collage sideways frame by frame and loops it. */
+  .works-title-fx.fx-ready .works-svg-title-img {
+    clip-path: none !important;
+    animation: none !important;
+  }
+
+  .works-title-grad,
+  .works-title-beam {
+    display: none !important;
+  }
+
+  .works-carousel-dots {
+    display: none !important;
+  }
+
+  .gallery-frames-row.works-carousel {
+    --stage-w: min(290vw, 1500px);
+    --stage-h: calc(var(--stage-w) * 0.532);
+    --pad: 2rem;
+    position: relative !important;
+    display: block !important;
+    width: 100vw !important;
+    max-width: none !important;
+    height: calc(var(--stage-h) + var(--pad) * 2) !important;
+    aspect-ratio: auto !important;
+    margin: 0 0 1.2rem calc(50% - 50vw) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: grab;
+  }
+
+  .gallery-frames-row.works-carousel.is-dragging {
+    cursor: grabbing;
+  }
+
+  .gallery-frames-row.works-carousel .works-frame-col {
+    position: absolute !important;
+    left: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: translate;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .gallery-frames-row.works-carousel .works-col-cat {
+    top: calc(var(--pad) + var(--stage-h) * 0.444) !important;
+    width: calc(var(--stage-w) * 0.2144) !important;
+  }
+
+  .gallery-frames-row.works-carousel .works-col-luminang {
+    top: calc(var(--pad) + var(--stage-h) * 0.0446) !important;
+    width: calc(var(--stage-w) * 0.1732) !important;
+  }
+
+  .gallery-frames-row.works-carousel .works-col-video {
+    top: calc(var(--pad) + var(--stage-h) * 0.219) !important;
+    width: calc(var(--stage-w) * 0.2186) !important;
+  }
+
+  .gallery-frames-row.works-carousel .works-col-fullbody {
+    top: calc(var(--pad) + var(--stage-h) * 0.063) !important;
+    width: calc(var(--stage-w) * 0.1568) !important;
+  }
+
+  .gallery-frames-row.works-carousel .works-col-purplegirl {
+    top: var(--pad) !important;
+    width: calc(var(--stage-w) * 0.1876) !important;
+  }
+
+  /* the swirl lines under the logo frame are part of the desktop design: keep them */
+  .gallery-frames-row.works-carousel .works-frame-col svg.works-frame-svg.works-lines {
+    display: block !important;
+  }
+
+  .gallery-frames-row.works-carousel .works-frame-col img.works-frame-svg.works-lines {
+    display: block;
+  }
+
+  /* the frame resting in the middle shows its caption; the others stay clean */
+  .gallery-frames-row.works-carousel .works-frame-col.is-active .works-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .gallery-frames-row.works-carousel .works-frame-col.is-active .works-overlay-inner {
+    transform: translateY(0);
+  }
 }

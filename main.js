@@ -1770,73 +1770,212 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    /* ---------- Works: auto-swiping carousel on phones / tablets ---------- */
+    /* ---------- About: stretchable middle slice of the arch frame (phones / tablets) ----------
+       CSS can only stretch an SVG background if the SVG says preserveAspectRatio="none", so the middle slice gets
+       a copy of backgroundFrame.svg with that attribute (the file itself is untouched; top/bottom slices use it as is). */
+    (function stretchArchFrame() {
+      const wrapEl = document.querySelector('.about-sketch-arch-wrap');
+      const src = document.querySelector('.about-sketch-arch-svg');
+      if (!wrapEl || !src || !window.fetch || !window.URL || !URL.createObjectURL) return;
+      fetch(src.getAttribute('src'))
+        .then((r) => r.text())
+        .then((txt) => {
+          const out = txt.replace(/<svg\b([^>]*)>/i, (m0, attrs) =>
+            '<svg' + attrs.replace(/\spreserveAspectRatio\s*=\s*("[^"]*"|'[^']*')/i, '') + ' preserveAspectRatio="none">');
+          const url = URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
+          wrapEl.style.setProperty('--arch-mid-img', 'url("' + url + '")');
+        })
+        .catch(() => { /* keep the plain background-image fallback */ });
+    })();
+
+    /* ---------- Works: auto-playing stage carousel (phones / tablets) ----------
+       Same collage as desktop (positions/sizes/vertical offsets come from the CSS stage), but the whole
+       collage glides sideways: it eases from frame to frame on its own, loops forever, and can be
+       swiped. No dots. Frames are wrapped around a loop of length L so nothing is cloned. */
     const row = document.getElementById('gallery-container');
     if (row) {
+      const wmq = window.matchMedia('(max-width: 1024px)');
       const slides = Array.from(row.querySelectorAll('.works-frame-col'));
-      const dots = document.createElement('div');
-      dots.className = 'works-carousel-dots';
-      slides.forEach((s, i) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'works-dot';
-        b.setAttribute('aria-label', 'Show work ' + (i + 1));
-        b.addEventListener('click', () => { pauseAuto(); goTo(i); });
-        dots.appendChild(b);
-      });
-      row.insertAdjacentElement('afterend', dots);
+      // desktop composition, in % of the design stage (see .works-col-* in the CSS)
+      const SPEC = {
+        cat: [0, 21.44], luminang: [22.06, 17.32], video: [39.69, 21.86],
+        fullbody: [64.28, 15.68], purplegirl: [81.24, 18.76]
+      };
+      const GAP = 0.06;            // empty space between the last frame and the first one of the next loop
+      const DWELL = 2800;          // ms a frame rests in the middle
+      let on = false, L = 0, vw = 0, pos = 0, active = -1;
+      let anim = 0, dwellTimer = 0, inView = true, dragging = false, userPause = false, resumeTimer = 0;
+      let items = [];              // { el, c (centre in stage px), w }
 
-      let active = 0, raf = 0, inView = false, userPause = false, resumeTimer = null;
-      const center = (el) => el.offsetLeft + el.offsetWidth / 2;
-      const goTo = (i) => {
-        const el = slides[i];
-        if (!el) return;
-        row.scrollTo({ left: center(el) - row.clientWidth / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
-      };
-      const setActive = (i) => {
-        active = i;
-        slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
-        Array.from(dots.children).forEach((d, k) => d.classList.toggle('is-active', k === i));
-      };
-      const nearest = () => {
-        const mid = row.scrollLeft + row.clientWidth / 2;
+      const wrap = (v) => ((v + L / 2) % L + L) % L - L / 2;
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+      function measure() {
+        const probe = document.createElement('div');
+        probe.style.cssText = 'position:absolute;visibility:hidden;height:0;pointer-events:none;width:var(--stage-w)';
+        row.appendChild(probe);
+        const stageW = probe.offsetWidth || row.clientWidth * 2.9;
+        probe.remove();
+        L = stageW * (1 + GAP);
+        vw = row.clientWidth;
+        items = slides.map((el) => {
+          const s = SPEC[el.getAttribute('data-frame')] || [0, 20];
+          const w = s[1] / 100 * stageW;
+          return { el, w, c: s[0] / 100 * stageW + w / 2 };
+        });
+      }
+
+      function render() {
         let best = 0, bd = Infinity;
-        slides.forEach((s, i) => { const d = Math.abs(center(s) - mid); if (d < bd) { bd = d; best = i; } });
+        items.forEach((it, i) => {
+          const d = wrap(it.c - pos);
+          it.el.style.translate = (vw / 2 + d - it.w / 2).toFixed(2) + 'px 0';
+          if (Math.abs(d) < bd) { bd = Math.abs(d); best = i; }
+        });
+        if (best !== active) {
+          active = best;
+          items.forEach((it, i) => it.el.classList.toggle('is-active', i === best));
+        }
+      }
+
+      function nextCentre(from) {
+        let best = Infinity;
+        items.forEach((it) => {
+          const k = Math.floor((from - it.c) / L);
+          for (let j = k; j <= k + 1; j++) { const v = it.c + j * L; if (v > from + 2 && v < best) best = v; }
+        });
         return best;
-      };
-      row.addEventListener('scroll', () => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => { raf = 0; const n = nearest(); if (n !== active) setActive(n); });
-      }, { passive: true });
-      setActive(0);
+      }
+      function nearestCentre(from) {
+        let best = from, bd = Infinity;
+        items.forEach((it) => {
+          const k = Math.round((from - it.c) / L);
+          for (let j = k - 1; j <= k + 1; j++) { const v = it.c + j * L; if (Math.abs(v - from) < bd) { bd = Math.abs(v - from); best = v; } }
+        });
+        return best;
+      }
 
-      // tapping a side slide brings it to the centre first; tapping the centred one opens it
-      row.addEventListener('click', (e) => {
-        if (!mq.matches) return;
-        const card = e.target.closest('.works-frame-col');
-        if (!card) return;
-        const i = slides.indexOf(card);
-        if (i !== active) { e.preventDefault(); e.stopPropagation(); pauseAuto(); goTo(i); }
-      }, true);
+      function glide(target, done, minMs) {
+        cancelAnimationFrame(anim);
+        const from = pos, dist = target - from;
+        if (Math.abs(dist) < 0.5 || reduceMotion) { pos = target; render(); if (done) done(); return; }
+        const dur = Math.max(minMs || 900, Math.min(1700, 800 + Math.abs(dist) * 1.1));
+        const t0 = performance.now();
+        const step = (now) => {
+          const t = Math.min(1, (now - t0) / dur);
+          pos = from + dist * ease(t);
+          render();
+          if (t < 1) anim = requestAnimationFrame(step);
+          else if (done) done();
+        };
+        anim = requestAnimationFrame(step);
+      }
 
+      function canPlay() { return on && inView && !document.hidden && !dragging && !userPause && !reduceMotion; }
+      function schedule() {
+        clearTimeout(dwellTimer);
+        if (!on) return;
+        dwellTimer = setTimeout(() => {
+          if (!canPlay()) { schedule(); return; }
+          glide(nextCentre(pos), schedule);
+        }, DWELL);
+      }
       function pauseAuto() {
         userPause = true;
         clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => { userPause = false; }, 6500);
+        resumeTimer = setTimeout(() => { userPause = false; }, 5000);
       }
-      ['pointerdown', 'touchstart', 'wheel'].forEach((ev) => row.addEventListener(ev, pauseAuto, { passive: true }));
+
+      /* ---- swipe / drag ---- */
+      let down = null, moved = false, suppress = false, samples = [];
+      row.addEventListener('pointerdown', (e) => {
+        if (!on || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        down = { id: e.pointerId, x: e.clientX, y: e.clientY, pos };
+        moved = false; samples = [{ x: e.clientX, t: performance.now() }];
+      });
+      row.addEventListener('pointermove', (e) => {
+        if (!down || e.pointerId !== down.id) return;
+        const dx = e.clientX - down.x;
+        if (!moved) {
+          if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(e.clientY - down.y)) return;
+          moved = true; dragging = true;
+          cancelAnimationFrame(anim); clearTimeout(dwellTimer);
+          row.classList.add('is-dragging');
+          try { row.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+        }
+        pos = down.pos - dx;
+        render();
+        const now = performance.now();
+        samples.push({ x: e.clientX, t: now });
+        while (samples.length > 2 && now - samples[0].t > 120) samples.shift();
+      });
+      const release = (e) => {
+        if (!down || (e && e.pointerId !== down.id)) return;
+        const wasMoved = moved;
+        down = null;
+        if (!wasMoved) return;
+        dragging = false; row.classList.remove('is-dragging');
+        suppress = true; setTimeout(() => { suppress = false; }, 60);
+        const a = samples[0], b = samples[samples.length - 1];
+        const vx = b && a && b.t > a.t ? (b.x - a.x) / (b.t - a.t) : 0;   // px/ms, finger direction
+        pauseAuto();
+        glide(nearestCentre(pos - vx * 260), schedule, 700);
+      };
+      row.addEventListener('pointerup', release);
+      row.addEventListener('pointercancel', release);
+
+      // a tap on a side frame brings it to the middle first; a tap on the middle one opens it
+      row.addEventListener('click', (e) => {
+        if (!on) return;
+        if (suppress) { e.preventDefault(); e.stopPropagation(); return; }
+        const card = e.target.closest('.works-frame-col');
+        if (!card) return;
+        const i = slides.indexOf(card);
+        if (i !== active) {
+          e.preventDefault(); e.stopPropagation();
+          pauseAuto();
+          const it = items[i];
+          const k = Math.round((pos - it.c) / L);
+          glide(it.c + k * L, schedule, 800);
+        }
+      }, true);
 
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.35 }).observe(row);
-      } else { inView = true; }
-
-      if (!reduceMotion) {
-        setInterval(() => {
-          if (!mq.matches || userPause || !inView || document.hidden) return;
-          goTo((active + 1) % slides.length);
-        }, 3800);
+        new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.2 }).observe(row);
       }
-      window.addEventListener('resize', () => { if (mq.matches) goTo(active); });
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) schedule(); });
+
+      function enable() {
+        if (on) return;
+        on = true;
+        row.classList.add('works-carousel');
+        measure();
+        pos = items.length ? items[0].c : 0;
+        active = -1;
+        render();
+        schedule();
+      }
+      function disable() {
+        on = false;
+        cancelAnimationFrame(anim); clearTimeout(dwellTimer);
+        row.classList.remove('works-carousel', 'is-dragging');
+        slides.forEach((s) => { s.style.translate = ''; s.classList.remove('is-active'); });
+      }
+      const sync = () => (wmq.matches ? enable() : disable());
+      let rz = 0;
+      window.addEventListener('resize', () => {
+        cancelAnimationFrame(rz);
+        rz = requestAnimationFrame(() => {
+          if (!on) return;
+          const cur = active >= 0 && items[active] ? items[active].c : pos;
+          const idx = Math.max(0, active);
+          measure();
+          pos = items[idx] ? items[idx].c : cur;
+          render();
+        });
+      });
+      if (wmq.addEventListener) wmq.addEventListener('change', sync); else wmq.addListener(sync);
+      sync();
     }
   });
 })();
