@@ -8332,12 +8332,12 @@ body.sheet-open {
   }
 
   .about-sketch-arch-wrap {
-    --arch-w: min(100vw, 560px);
+    --arch-w: min(160vw, 640px);
     --arch-text: calc(var(--arch-w) * 0.034);
     position: relative !important;
     width: var(--arch-w) !important;
     max-width: none !important;
-    margin: 0 0 0 calc(50% - var(--arch-w) / 2) !important;
+    margin: 0 0 0 calc(50% - var(--arch-w) * 0.5315) !important;
     height: auto !important;
     min-height: calc(var(--arch-w) * 1.0857) !important;
     padding: 0 !important;
@@ -8422,7 +8422,7 @@ body.sheet-open {
   .about-paragraphs-wrap .body-text,
   .about-sketch-arch-inner .body-text {
     text-align: left !important;
-    font-size: clamp(0.8rem, var(--arch-text), 1rem) !important;
+    font-size: clamp(0.88rem, var(--arch-text), 1.02rem) !important;
     line-height: 1.62 !important;
     padding: 0 !important;
     margin: 0 0 0.7rem !important;
@@ -9003,4 +9003,13 @@ body.sheet-open {
   .gallery-frames-row.works-carousel .works-frame-col.is-active .works-overlay-inner {
     transform: translateY(0);
   }
+}
+
+
+/* ==========================================================================
+   HERO EYE CROP: no dark overlay (violet grade + vignette removed so the art shows at full brightness)
+   ========================================================================== */
+.eyecrop-grade,
+.eyecrop-vignette {
+  display: none !important;
 }
